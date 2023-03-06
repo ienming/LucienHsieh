@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PTFLO: Modern Love</title>
+    <title>PTFLO</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -15,7 +15,7 @@
             <!-- Content -->
             <section class="row mb-0 mt-5">
                 <div class="col-12">
-                    <h1 class="t-display mt-0 mt-md-5 mb-lg-1 t-a-c">Modern Love</h1>
+                    <h1 class="t-display mt-0 mt-md-5 mb-lg-1 t-a-c">{{project.name}}</h1>
                     <!-- Description -->
                     <section class="row jcc">
                         <div class="col-12 col-md-6">
@@ -29,7 +29,8 @@
                             </ul>
                         </div>
                     </section>
-                    <div class="pj-cover" style="background-image: url('./assets/img/pj_modern_love/cover.png')"></div>
+                    <project-cover :project-name="project.name"></project-cover>
+                    <!-- <div class="pj-cover" style="background-image: url('./assets/img/pj_modern_love/cover.png')"></div> -->
                 </div>
                 <main class="px-1 px-md-5">
                     <!-- Layouts -->

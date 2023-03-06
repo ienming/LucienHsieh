@@ -174,8 +174,6 @@ const Footer = {
                     <img src="./assets/img/logo.png" alt="Logo" class="logo">
                 </a>
                 <div class="sns my-1">
-                    <a href="" target="_blank"><img src="./assets/img/icons/fb_negative.svg" alt="Facebook" class="icon mr-1"></a>
-                    <a href="" target="_blank"><img src="./assets/img/icons/yt_negative.svg" alt="Youtube" class="icon"></a>
                 </div>
             </div>
             <div class="col-md-4">
@@ -438,6 +436,27 @@ const LayoutLT = {
     }
 }
 Vue.component('layout-lt', LayoutLT)
+
+// 
+// 
+// 
+// custom
+const ProjectCover = {
+    template: `
+        <div class="pj-cover" :style="{backgroundImage: styleUrl}"></div>
+    `,
+    props: ['projectName'],
+    computed: {
+        styleUrl(){
+            let pjName = this.projectName.split(" ").join("_").toLowerCase()
+            return `url(./assets/img/pj_${pjName}/cover.png)`
+        }
+    },
+    data(){
+        return {}
+    }
+}
+Vue.component('project-cover', ProjectCover)
 
 // 
 // 
