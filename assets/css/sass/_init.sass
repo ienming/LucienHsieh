@@ -1,0 +1,33 @@
+*, *::after, *::before
+  box-sizing: border-box
+  margin: 0
+  padding: 0
+
+ol, ul
+  list-style: none
+  padding-left: 0
+
+a
+  text-decoration: none
+  color: unset
+  +basicTransition()
+  &:hover
+    opacity: .5
+
+p
+  margin-bottom: 1rem
+
+img
+  max-width: 100%
+
+button
+  border: none
+  outline: none
+  cursor: pointer
+  background: none
+  &:disabled
+    cursor: initial
+
+//firefox scrollbar
+.hide-scrollbar
+  scrollbar-width: none

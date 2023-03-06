@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PTFLO: projects</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <main id="app">
+        <my-header :is-scroll-down="isScrollDown" @mobile-is-open="mobileIsOpen" @mobile-is-close="mobileIsClose" @show-search="switchSearchShow"></my-header>
+
+        <main style="overflow: hidden;">
+            <!-- Content -->
+            <section class="row mb-0 mt-5">
+                <div class="col-12 pl-1 pl-md-5">
+                    <h1 class="t-display mt-0 mt-md-5 mb-2 mb-lg-1">Works</h1>
+                </div>
+                <!-- All works -->
+                <div class="col-12 mb-2 px-1 px-md-5">
+                    <drop-down :lists="cate" :title="nowCate" @drop-click="switchGate" class="w-100 w-md-50"></drop-down>
+                </div>
+                <transition-group class="col-12 row" name="fade">
+                    <div class="col-12 col-md-4" v-for="work of filteredWorks" :key="work.name">
+                        <a href="" target="_blank" class="cover-enter-point">
+                            <figure>
+                                <img class="w-100" src="./assets/img/banner.png" alt="">
+                            </figure>
+                            <p class="description">
+                                <span class="t-z-5 t-w-6">{{work.name}}</span>
+                                <span>{{work.date}}</span>
+                            </p>
+                        </a>
+                    </div>
+                </transition-group>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <my-footer></my-footer>
+    </main>
+
+    <!-- GSAP -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.js' integrity='sha512-NbdYutU8SqxAdwkioXbsw2Tr3jbPA1LCB3aQj/LkIshNnMMggYViEafkDdazPtAYklypxdjPfeG12OATLwZlnQ==' crossorigin='anonymous'></script>
+
+    <!-- Vue -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.14/vue.common.dev.min.js" integrity="sha512-TpgbLHXaTCAZ7ULhjopb1PveTz5Jx6KEQUtMfXhV0m0EArh+6O8ybZjjDN1Yug6oagN6iFm6EoMjuYSiFr0qXQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="assets/js/components.js"></script>
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data:{
+                isScrollDown: false,
+                lastScrollTop: 0,
+                mobileMenuOpen: false,
+                nowCate: "全部 All",
+                cate: [
+                    {
+                        content: "全部 All"
+                    },{
+                        content: "設計 Design"
+                    },{
+                        content: "程式 Code"
+                    },{
+                        content: "繪畫 Painting"
+                    }
+                ],
+                works: [
+                    {
+                        name: "p1",
+                        date: "2023",
+                        tags: ['design', 'code']
+                    },{
+                        name: "p2",
+                        date: "2023",
+                        tags: ['design']
+                    },{
+                        name: "p3",
+                        date: "2023",
+                        tags: ['code']
+                    },{
+                        name: "p4",
+                        date: "2023",
+                        tags: ['painting']
+                    }
+                ]
+            },
+            computed: {
+                filteredWorks(){
+                    let nowFilter = this.nowCate.split(' ')[1].toLowerCase()
+                    if (nowFilter !== 'all'){
+                        return this.works.filter(work => work.tags.includes(nowFilter) )
+                    }else {
+                        return this.works
+                    }
+                }
+            },
+            methods: {
+                scrollDirect(){
+                    let st = window.pageYOffset || document.documentElement.scrollTop
+                    if (!this.mobileMenuOpen){
+                        if (st > this.lastScrollTop){
+                            this.isScrollDown = true
+                        } else {
+                            this.isScrollDown = false
+                        }
+                    }else{
+                        let deltaY = st - this.lastScrollTop
+                        TweenMax.to(".scroll", .5, {
+                            y: "-="+ deltaY*3 + "px"
+                        })
+                    }
+                    this.lastScrollTop = st <= 0 ? 0 : st
+                },
+                mobileIsOpen(){
+                    this.mobileMenuOpen = true
+                },
+                mobileIsClose(){
+                    this.mobileMenuOpen = false
+                },
+                switchSearchShow(){
+                    this.searchShow = !this.searchShow
+                },
+                switchGate(el){
+                    this.nowCate = el
+                }
+            },
+            created(){
+                window.addEventListener('scroll', this.scrollDirect);
+            },
+            destroyed(){
+                window.removeEventListener('scroll', this.scrollDirect);
+            }
+        })
+    </script>
+</body>
+</html>

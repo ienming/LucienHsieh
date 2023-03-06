@@ -1,0 +1,85 @@
+$txtBase: 10px
+$txtStep: 2px
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@200;300;400;500;600;700;800;900&family=Noto+Serif+TC:wght@200;300;400;500;600;700;800;900&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap')
+
+@function fontSize($level:1)
+    @if ($level <= 0)
+        $level: 1
+    @return $txtBase + $txtStep * $level
+
+@mixin typography($level, $lineHeight : 1.5)
+    $size: fontSize($level)
+    font-size: $size
+    line-height: $lineHeight
+    +rwd(md)
+        $size: fontSize($level + 1)
+        font-size: $size
+
+/* Typography */
+@for $i from 1 through 10
+    $level: $i
+    @if ($i > 5)
+        $level: $i+($i - 5)
+    .t-z-#{$i}
+        @include typography($level)
+
+@for $i from 1 through 9
+    .t-w-#{$i}
+        font-weight: $i*100
+
+.t-title-1
+    $fontLevel: 9
+    font-family: 'Noto Serif TC', serif
+    font-weight: 700
+    +typography($fontLevel+($fontLevel - 5))
+
+.t-title-2
+    $fontLevel: 8
+    font-family: 'Noto Sans TC', sans-serif
+    font-weight: 700
+    writing-mode: horizontal-tb
+    +rwd(md)
+        letter-spacing: 4px
+        writing-mode: vertical-lr
+    >span
+        +typography($fontLevel+($fontLevel - 5))
+        position: relative
+        &::after
+            content: ''
+            display: block
+            +size(100%, 6px)
+            position: absolute
+            bottom: -8px
+            left: 0
+            background-color: darken($mainLight, 10%)
+        +rwd(lg)
+            &::after
+                bottom: unset
+                left: unset
+                top: 0
+                right: -15px
+                +size(6px, 100%)
+
+.t-display
+    font-family: 'Noto Serif TC', serif
+    font-size: 28px
+    font-weight: 700
+    +rwd(lg)
+        font-size: 36px
+    +rwd(xl)
+        font-size: 45px
+
+.sec-title-sticky
+    position: sticky
+    top: 120px
+
+.t-c
+    color: $main
+
+.t-c-g
+    color: $secondaryGrey
+
+p, span, a, ul
+    +typography($typographyBase)

@@ -1,0 +1,933 @@
+//Buttons
+.my-btn
+    +typography($typographyBase - 1)
+    font-weight: bold
+    border-radius: 50px
+    background-color: $mainDark
+    color: $white
+    padding: .5rem 1.75rem
+    transition: all 0.6s $easeOutQuint
+    &:active
+        transform: scale(1.15)
+    &:hover
+        opacity: .5
+    &.small
+        +typography($typographyBase - 2)
+        font-weight: normal
+        padding: .25rem 1rem
+
+.my-btn:disabled
+    opacity: 0.3
+
+.my-btn.highlight
+    background: $white
+    color: $mainTer
+
+.my-btn.outline
+    background: transparent
+    border: 1px solid $dark
+    color: $dark
+
+.my-btn.outline.highlight
+    border-color: $white
+    color: $white
+
+.my-btn.link
+    &:hover
+        .icon
+            transform: translate(30px, -30px)
+    .icon-container
+        vertical-align: middle
+    .icon:nth-child(2)
+        top: 30px
+        left: -30px
+    &.small
+        .icon-container
+            width: 14px
+
+.my-cta-container
+    padding: 3px
+    width: 100%
+    &:not(.large)
+        max-width: 400px
+    .my-cta
+        font-weight: bold
+        font-size: 20px
+        color: $black
+        display: flex
+        justify-content: space-between
+        align-items: center
+        padding: .25rem 1rem
+        .icon-container
+            width: calc(70px + 1.5rem)
+            height: 43px
+        img
+            width: 70px
+            margin-left: 1.5rem
+            position: absolute
+            +basicTransition()
+            &:nth-child(2)
+                left: -100px
+        &:hover
+            opacity: 1
+            img
+                transform: translateX(130%)
+
+.my-cta-container.large
+    width: 100%
+    min-width: 110vw
+    padding: 30px 20px
+    +rwd(lg)
+        height: 100px
+    >a
+        flex-direction: column
+        align-items: start
+        +rwd(lg)
+            flex-direction: row
+            align-items: unset
+        >span
+            +typography(9)
+            border-bottom: 4px solid #000
+    .icon-container
+        margin-left: 0
+        +rwd(lg)
+            margin-left: 8px
+    img
+        margin-left: 0
+        +rwd(lg)
+            margin-left: 1.5rem
+
+// Icon
+.icon
+    width: 18px
+.icon-container
+    display: inline-block
+    margin-left: 8px
+    position: relative
+    +size(18px)
+    overflow: hidden
+    .icon
+        position: absolute
+        transition: .3s ease-in-out
+        width: 100%
+
+// Links
+.my-link
+    position: relative
+    +typography($typographyBase - 1)
+    &::after
+        content: ''
+        display: block
+        +size(100%, 2px)
+        background-color: $dark
+        +poa()
+        bottom: -4px
+        top: unset
+    .icon:nth-child(2)
+        top: 30px
+        left: -30px
+    &:hover
+        &::after
+            animation: flyAway .7s $easeOutQuint
+        .icon
+            transform: translate(30px, -30px)
+
+.my-link.highlight
+    &::after
+        background-color: $white
+
+.file-link
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    margin: 24px 0
+    +rwd(lg)
+        flex-direction: row
+        margin: 32px 0
+    padding-bottom: 4px
+    border-bottom: 1px solid $darkGrey
+    .title
+        +typography(5)
+        margin-bottom: 8px
+        +rwd(lg)
+            margin-bottom: 0
+    .sub-title
+        +typography(1)
+        margin-left: 8px
+    .cate
+        font-weight: bold
+        // color: $main
+        color: $white
+        background-color: $main
+        padding: .25rem 1rem
+        border-radius: 16px
+    &::after
+        display: none
+    &:hover
+        opacity: 1
+
+// drop down menu
+.dpd-container
+    position: relative
+    cursor: pointer
+    display: inline-block
+    max-width: 600px
+    .dpd-head
+        position: relative
+        padding: 0 8px
+        display: flex
+        justify-content: space-between
+        &::after
+            content: ''
+            display: block
+            +size(100%, 2px)
+            background-color: $dark
+            +poa()
+            top: unset
+            bottom: -4px
+        &::before
+            content: ''
+            display: block
+            +size(100%, 50px)
+            +poa()
+            top: unset
+            bottom: -40px
+        .icon:nth-child(2)
+            top: -30px
+            left: 0px
+    .dpd-lists
+        position: absolute
+        left: 0
+        top: 32px
+        opacity: 0
+        background-color: $base
+        pointer-events: none
+        min-width: max-content
+        +basicTransition()
+        padding: 4px
+        z-index: 99
+        overflow: auto
+        max-height: 350px
+    &:hover
+        .dpd-lists
+            opacity: 1
+            cursor: pointer
+            pointer-events: initial
+        .icon
+            transform: translate(0px, 30px)
+.dpd-list
+    padding: 8px 16px
+    opacity: .8
+    color: $black
+    +basicTransition()
+    &:hover
+        background-color: transparentize($main, .7)
+        opacity: 1
+
+/* Input */
+input.valid
+  border: 2px solid #76bc47
+
+input.invalid
+  border: 2px solid $alarm
+
+.my-inpt-container
+    cursor: pointer
+    .aid
+        font-size: 14px
+        margin-bottom: 8px
+        >span
+            color: $alarm
+
+.my-inpt
+    -webkit-appearance: none
+    border-radius: 8px
+    border: none
+    box-shadow: 0 0 0 1px $secondaryGrey
+    +basicTransition()
+    width: 100%
+    padding: 12px 16px
+    &:focus, &:active, &:checked, &:hover, &:checked:hover
+        outline: none
+        box-shadow: 0 0 0 2px $main, 0 0 0 5px $mainLight
+
+// Checkbox
+.my-inpt[type="checkbox"]
+    @include size(24px)
+    margin-right: 0.5rem
+    background: url("../img/icons/checked.svg")
+    background-size: 0
+    background-position: center center
+    background-repeat: no-repeat
+    transition: .3s ease-in-out
+    padding: 0
+    flex-shrink: 0
+    &:checked
+        box-shadow: none
+        background-size: 120%
+
+// Select
+select.my-inpt
+    background-image: url("/assets/img/icons/arrow_down.svg")
+    background-size: 18px
+    background-repeat: no-repeat
+    background-position: 95% 50%
+    padding-right: 42px
+
+// Textarea
+textarea
+    min-height: 120px
+
+
+/* Images */
+figure
+    .mask
+        +size(100%, unset)
+        overflow: hidden
+        position: relative
+        &::after
+            content: ''
+            +size(100%)
+            +poa()
+            background: linear-gradient(0deg, rgba(200, 226, 214, 0.3) -0.09%, rgba(212, 85, 85, 0.05) 99.91%)
+.img-showcase
+    img
+        aspect-ratio: 1/1
+        object-fit: cover
+    figcaption
+        margin-left: 18px
+        padding: 12px 0 8px 16px
+        border-left: solid $dark
+        +rwd(lg)
+            padding: 18px 0 8px 24px
+            margin-left: 36px
+
+
+/* Snake Banner */
+.snake-banner
+    position: fixed
+    bottom: 24px
+    left: 50%
+    transform: translateX(-50%)
+    width: 90vw
+    +basicShadow()
+    background-color: $mainTer
+    display: flex
+    justify-content: space-between
+    align-items: center
+    color: $white
+    border-radius: 24px
+    padding: 1rem 2rem
+    z-index: 98
+    +basicTransition()
+    transition: 1s
+    &.hide
+        opacity: 0
+        pointer-events: none
+        transform: translate(-50%, 30px)
+
+
+/* Card */
+.card
+    background-color: $white
+    +basicShadow()
+    padding: 24px
+    flex-shrink: 0
+
+.card-title
+    +typography(3)
+    font-weight: bold
+    .note
+        font-family: "Noto Serif TC", "serif"
+        color: $mainDark
+        margin-bottom: 8px
+
+
+/* Footer */
+footer
+    padding: 25px
+    padding-top: 150px
+    flex-direction: column
+    color: $black
+    +rwd(md)
+        flex-direction: row
+        padding: 60px
+    .col-md-4
+        margin: 30px 0
+        +rwd(md)
+            margin: 0
+            padding: 0 30px
+        &:nth-child(1)
+            padding-bottom: 30px
+            margin-bottom: 10px
+            border-bottom: 1px solid transparentize($dark, .5)
+            +rwd(md)
+                border: none
+                margin-bottom: 0
+                padding-bottom: 0
+        &:nth-child(3)
+            display: flex
+            flex-direction: column
+            justify-content: space-between
+    .logo
+        mix-blend-mode: multiply
+    .sns>a
+        transition: .3s ease-in-out
+        &:hover
+            opacity: 0.5
+
+
+/* Header */
+.my-header
+    position: fixed
+    top: 0
+    z-index: 98
+    width: 100vw
+    transition: 1s $easeOutQuint
+    >a //outer link
+        margin-right: 15px
+        +rwd(lg)
+            margin-right: 80px
+    >div:not(.search-container)
+        padding: .25rem 25px
+        margin-top: 20px
+        +rwd(lg)
+            padding: .75rem 60px
+            margin-top: 50px
+        display: flex
+        justify-content: space-between
+        align-items: center
+    >.my-btn
+        margin-top: 16px
+        display: inline-block
+        background-color: rgba(255,255,255,.85)
+    +rwd(md)
+        top: 0
+    &.out
+        transform: translateY(calc(-100% - 25px))
+    .mobile-menu
+        .menu
+            opacity: 0
+            pointer-events: none
+            transition: all .5s $easeOutQuint
+            +poa()
+            +size(100vw, 100vh)
+            background-color: $base
+            padding: 30px
+            padding-top: 0
+            color: $black
+            header
+                position: relative
+                z-index: 99
+                width: 100%
+                padding: 30px 0
+                >div
+                    display: flex
+                    justify-content: space-between
+                .logo
+                    width: 100px
+            >div
+                display: flex
+                justify-content: center
+                align-items: center
+                +rwd(md)
+                    justify-content: space-between
+            .nav
+                margin-top: 40px
+            .mobile-nav
+                .heading
+                    padding: 0 0 16px 0
+                    border-bottom: 3px solid $black
+                    margin-top: 16px
+                    +typography(3)
+                    display: flex
+                    width: 100%
+                    align-items: center
+            .cta
+                display: inline-block
+                width: 100%
+                text-align: center
+                padding: 1rem
+                font-size: 20px
+                margin: 24px 0
+                +rwd(sm)
+                    margin: 120px 0 40px 0
+                border-radius: 16px
+            .sns
+                margin: 40px 0
+            &.show
+                opacity: 1
+                pointer-events: initial
+                z-index: 999
+            figure
+                height: 130px
+                overflow: hidden
+                +rwd(md)
+                    height: unset
+    .sns>a
+        transition: .3s ease-in-out
+        &:hover
+            opacity: 0.5
+    .hamburger
+        span
+            +size(100%, 3px)
+            display: inline-block
+            background-color: $black
+            margin: 3px 0
+            &:nth-child(1)
+                width: 170%
+
+/* Cover Enter Point*/
+.cover-enter-point
+    position: relative
+    &::after
+        display: block
+        position: absolute
+        left: 0
+        top: 0
+        +size(100%)
+        content: ""
+        background-color: $base
+        opacity: 0
+        +basicTransition()
+        transition-duration: 0.7s
+        transform-origin: left
+        transform: scaleX(0)
+    .description
+        +poa(50%, 50%)
+        transform: translate(-50%, -50%)
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        color: $black
+        opacity: 0
+        +basicTransition()
+        z-index: 2
+    &:hover
+        opacity: unset
+        .description
+            opacity: 1
+    &:hover::after
+        opacity: 1
+        transform: scaleX(100%)
+
+/* table  */
+$tableWidth: 600px
+.my-table-container
+    overflow: auto
+    &.wide
+        display: flex
+        +rwd(md)
+            justify-content: center
+        .table
+            max-width: 80vw
+    table, td, th
+        border-collapse: collapse
+    .table
+        width: 100%
+        max-width: $tableWidth
+        table-layout: fixed
+        // +rwd(md)
+        //     width: 100%
+    .table-heads
+        width: 100%
+        padding-bottom: 6px
+        border-bottom: 2px solid $black
+    .table-head
+        text-align: left
+        th
+            &:nth-child(1)
+                width: 4*$tableWidth/10
+            &:nth-child(2)
+                width: 5*$tableWidth/10
+            &:nth-child(3)
+                width: 1.5*$tableWidth/10
+            &:nth-child(4)
+                width: 2*$tableWidth/10
+            &:nth-child(5)
+                width: 2*$tableWidth/10
+            padding-left: 24px
+            position: relative
+            &::after
+                content: ''
+                +size(12px)
+                border-radius: 50%
+                background-color: $main
+                position: absolute
+                left: 8px
+                top: 50%
+                transform: translateY(-50%)
+    .table-rows
+        tr
+            width: 100%
+            padding: 16px 4px
+        &.striped tr:nth-of-type(even)
+            background-color: $accent
+    td
+        padding: 10px 4px 10px 8px
+        &:nth-child(1)
+            font-size: 18px
+            font-weight: bold
+
+.my-table
+    .dpd-container
+        margin-bottom: 60px
+
+
+.my-paginations
+    margin: 0 auto
+    margin-top: 32px
+    text-align: center
+    .pagination
+        margin: 0 8px
+        padding-bottom: 6px
+        &:focus, &:active, &.active
+            border-bottom: 5px solid $mainDark
+
+// Meshi
+.my-meshi
+    width: 380px
+    position: relative
+    margin: 16px
+    margin-bottom: 52px
+    padding: 36px 24px
+    border-top: 6px solid $main
+    +rwd(lg)
+        margin: 0
+        margin-right: 46px
+        margin-bottom: 72px
+    +basicShadow()
+    .content
+        display: flex
+        justify-content: space-between
+    .title
+        font-size: 24px
+        font-weight: bold
+        padding-right: 8px
+    figure
+        aspect-ratio: 1
+        object-fit: cover
+        position: relative
+        margin: 0
+        +size(100px)
+        +rwd(lg)
+            +size(150px, auto)
+            top: -50px
+    .my-link
+        background-color: $mainTer
+        border-radius: 50%
+        padding: 20px
+        position: absolute
+        bottom: -24px
+        right: 30px
+        font-size: 0
+        &:hover
+            opacity: 1
+            background-color: $mainDark
+        &::after
+            display: none
+    .icon-container
+        margin: 0
+        vertical-align: middle
+    .icon
+        width: 24px
+
+
+//News
+.my-news
+    max-width: 300px
+    margin: 30px
+    .my-link
+        position: absolute
+        bottom: 10px
+        right: 16px
+        &::after
+            display: none
+    .cover
+        position: relative
+        +rwd(md)
+            min-width: 300px
+        figure
+            margin: 0
+            overflow: hidden
+            aspect-ratio: 1
+        img
+            transition: opacity .3s ease-in, transform .6s ease-in-out, filter .3s
+            object-fit: cover
+            height: 100%
+            &:not(.icon)
+                min-width: -webkit-fill-available
+                min-width: -moz-available
+    .cate
+        background-color: $base
+        position: absolute
+        bottom: 0
+        left: 0
+        border-radius: 0 8px 0 0
+        padding: 6px 16px
+    h6
+        margin-top: 8px
+    &:hover
+        img
+            opacity: .8
+            transform: scale(1.05)
+            // filter: unset
+    &.highlight
+        max-width: unset
+        width: 100%
+        a
+            +rwd(lg)
+                display: flex
+        .text
+            +rwd(lg)
+                padding: 24px
+                width: 33%
+                flex-shrink: 0
+        .cover
+            +rwd(lg)
+                width: 66%
+                flex-shrink: 0
+        figure
+            aspect-ratio: 3/5
+            +rwd(lg)
+                aspect-ratio: 5/3
+
+/* Tabs */
+.tab-head-container
+    display: flex
+    .tabs
+        width: 100%
+        > button
+            +typography(3)
+            padding: 12px 16px
+            position: relative
+            width: 100%
+            color: $secondaryGrey
+            border-bottom: 2px solid $tertiaryGrey
+            &.active
+                color: $dark
+                border-color: $dark
+                font-weight: 700
+
+.tab-content-container
+    position: relative
+    .tab-content
+        padding: 30px 0
+        justify-content: center
+        align-items: center
+        flex-direction: column
+        +rwd(md)
+            padding: 40px 10%
+        +rwd(lg)
+            padding: 60px 25%
+            display: flex
+
+
+/* Carousel Auto */
+.stage-carousel-container
+    display: flex
+    padding: 0 15px 30px 15px
+    padding-bottom: 500px
+    position: relative
+    +rwd(lg)
+        padding: 30px
+        padding-bottom: 180px
+    >div
+        +rwd(lg)
+            display: flex
+    .vue-transition
+        top: 150px
+        left: 0
+        +rwd(lg)
+            top: 30px
+            left: 150px
+    .btn-controls
+        margin-bottom: 60px
+        margin-right: 24px
+        +rwd(lg)
+            flex-direction: column
+            margin-bottom: 0
+
+.btn-controls
+    display: flex
+    .ctrl
+        +size(50px)
+        border-radius: 50%
+        border: 3px solid $main
+        margin: 16px
+        color: $main
+        font-weight: bold
+        &:hover
+            background-color: $mainLight
+
+.kol-card
+    position: relative
+    background-color: $white
+    +basicShadow()
+    // max-width: 260px
+    width: 100%
+    padding: 24px
+    flex-shrink: 0
+    +rwd(lg)
+        margin: 0 65px
+        padding: 46px
+        width: 580px
+    .img-container
+        +size(120px)
+        border-radius: 50%
+        background-color: $secondaryGrey
+        overflow: hidden
+        object-fit: cover
+        position: absolute
+        top: -50px
+        left: 50%
+        transform: translateX(-50%)
+        +rwd(lg)
+            +size(150px)
+            left: 0px
+            top: -20px
+    .head
+        margin: 55px 0 36px 0
+        +rwd(lg)
+            margin: 0 0 50px 52px
+
+.aside
+    $padding: 24px
+    padding: 0 $padding*1/2 0 0
+    position: sticky
+    left: 0
+    z-index: 1
+    width: 120px
+    top: 100px
+    +rwd(lg)
+        top: 130px
+        width: 180px
+    .head>h3
+        writing-mode: vertical-lr
+        letter-spacing: 4px
+        transition: all .3s
+        pointer-events: none
+    .line
+        +size(100%, 2px)
+        background-color: $tertiaryGrey
+        position: relative
+        left: $padding*-1
+        top: 4px
+    &.scroll-over
+        .line
+            left: -12px
+        .head>h3
+            opacity: 0
+            writing-mode: unset
+            height: 0
+
+.aside-nav
+    text-align: right
+    cursor: pointer
+    &.is-open
+        .subs
+            opacity: 1
+    .subs
+        padding-top: 24px
+        height: 0
+        opacity: 0
+        overflow: hidden
+        transition: all .5s ease-in-out
+        li
+            padding: 12px 0
+            margin-bottom: 12px
+            +typography(3)
+            opacity: .5
+            +basicTransition()
+            &:hover
+                opacity: 1
+    .heading
+        &.active
+            font-weight: bold
+
+//accordion
+.plus-icon
+    span
+        display: inline-block
+        @include size(18px, 2px)
+        background-color: black
+        transition: .3s ease-in-out
+    span:nth-child(1)
+        transform-origin: center center
+        transform: translateX(100%) rotate(90deg)
+
+.my-accordion
+    margin-bottom: 32px
+    &.is-open
+        .accordion-body
+            opacity: 1
+            margin-top: 28px
+        .plus-icon span:nth-child(1)
+            transform: translateX(100%) rotate(0)
+    .accordion-header
+        padding-bottom: 8px
+        border-bottom: 1px solid black
+        transition: .3s ease-in-out
+        cursor: pointer
+        >h4
+            font-weight: bold
+            font-size: 20px
+            margin: 0
+            max-width: 80%
+            +rwd(lg)
+                max-width: 90%
+    &:hover
+        .accordion-header
+            color: rgba(0,0,0,.7)
+    .accordion-body
+        margin: 0
+        opacity: 0
+        height: 0
+        overflow: hidden
+        list-style: none
+        transition: all .5s ease-in-out
+        padding-left: 30px
+        li
+            margin-bottom: 24px
+            position: relative
+            flex-direction: column
+            &::after
+                content: ''
+                display: block
+                border-radius: 50%
+                background-color: $main
+                @include size(8px)
+                position: absolute
+                left: -24px
+                top: 8px
+            @include rwd(md)
+                flex-direction: row
+
+.capsule
+    border-radius: 24px
+    background-color: $accent
+    font-size: 14px
+    font-weight: bold
+    padding: 8px 12px
+    display: inline-block
+    margin-bottom: 8px
+    margin-right: 8px
+
+.search-container
+    position: fixed
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    +size(100%, auto)
+    max-width: 80vw
+    background-color: $mainLight
+    z-index: 999
+    box-shadow: 0 0 50px 20px rgba(0,0,0,.25)
+    border-radius: 24px
+    padding: 24px
+    +rwd(md)
+        padding: 60px
+    .card
+        +size(70%, auto)
+        margin: 0 auto

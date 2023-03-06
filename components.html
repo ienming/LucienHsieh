@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Components</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <main id="app">
+        <article class="px-1 px-md-3">
+            <my-header :is-scroll-down="isScrollDown" @mobile-is-open="mobileIsOpen" @mobile-is-close="mobileIsClose"></my-header>
+
+            <section class="container">
+                <h3 class="mb-1">Typography</h3>
+                <div>
+                    <p class="t-z-1">Typography scaling 1</p>
+                    <p class="t-z-2">Typography scaling 2</p>
+                    <p class="t-z-3">Typography scaling 3</p>
+                    <p class="t-z-4">Typography scaling 4</p>
+                    <p class="t-z-5">Typography scaling 5</p>
+                    <p class="t-z-6">Typography scaling 6</p>
+                    <p class="t-z-7">Typography scaling 7</p>
+                    <p class="t-z-8">Typography scaling 8</p>
+                    <p class="t-z-9">Typography scaling 9</p>
+                    <p class="t-z-10">Typography scaling 10</p>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit consectetur ducimus nemo qui atque itaque reiciendis. Aperiam adipisci, dignissimos, modi temporibus expedita doloribus labore quae accusamus cum exercitationem sint in.</p>
+                    <h1 class="t-title-1">Biobanking for a Healthier Future</h1>
+                    <h2 class="t-title-2">報名注意事項</h2>
+                </div>
+            </section>
+    
+    
+            <!-- Link -->
+            <section class="container">
+                <h3 class="mb-1">Link</h3>
+                <basic-link title="有圖案外部連結" url="https://vuejs.org/v2/guide/class-and-style.html" class="mb-2 mb-md-1 d-inline-block"></basic-link>
+                <basic-link title="有圖案外部連結" url="https://vuejs.org/v2/guide/class-and-style.html" :full="true" class="mb-2 mb-md-1"></basic-link>
+                <basic-link title="純文字連結" url="https://vuejs.org/v2/guide/class-and-style.html"></basic-link>
+                <button-link title="國家級人體生物資料庫整合平台" url="https://nbct.nhri.org.tw/" :small="true" :outline="true"></button-link>
+                <file-link title="法規" url="https://nbct.nhri.org.tw/"></file-link>
+            </section>
+    
+    
+            <!-- Button -->
+            <section class="container">
+                <h3 class="mb-1">Button</h3>
+                <basic-button v-for="btn of btns" :small="btn.small" :highlight="btn.highlight" :outline="btn.outline"></basic-button>
+                <cta></cta>
+                <cta :fill="true"></cta>
+                <cta :large="true"></cta>
+            </section>
+    
+    
+            <!-- Image -->
+            <section class="container">
+                <h3 class="mb-1">Images</h3>
+                <div class="img-showcases flexable">
+                    <figure class="img-showcase col-xs-12 col-sm-6 col-md-4">
+                        <div class="mask">
+                            <img src="/assets/img/personal-info-files-room.jpg" alt="個資檔案室">
+                        </div>
+                        <figcaption class="card-title">高標準資安保護</br>匿名編碼儲存參與者資訊
+                        </figcaption>
+                    </figure>
+                    <figure class="img-showcase col-xs-12 col-sm-6 col-md-4">
+                        <div class="mask">
+                            <img src="/assets/img/usa-hb.JPG" alt="個資檔案室">
+                        </div>
+                        <figcaption class="card-title">高標準資安保護</br>匿名編碼儲存參與者資訊
+                        </figcaption>
+                    </figure>
+                </div>
+            </section>
+    
+    
+            <!-- Input -->
+            <section class="container">
+                <h3 class="mb-1">Input</h3>
+                <input-checkbox></input-checkbox>
+                <input-text title="姓名" placeholder="請輸入姓名"></input-text>
+                <input-select name="test" id="testSelect"></input-select>
+                <input-text-area name="message" id="message" title="其他訊息"></input-text-area>
+            </section>
+
+
+            <!-- Table -->
+            <section class="container">
+                <my-table :table-content="table"></my-table>
+            </section>
+
+            <!-- Tabs -->
+            <section class="container">
+                <my-tabs @switch-tab="handleSwitchTab"></my-tabs>
+                <div class="tab-content-container">
+                    <div class="tab-content" v-show="nowTabContent == 1">
+                        111
+                    </div>
+                    <div class="tab-content" v-show="nowTabContent == 2">
+                        <my-table :table-content="table"></my-table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Aside -->
+            <my-aside-nav></my-aside-nav>
+
+            <!-- Stage Carousel Auto -->
+            <section class="container">
+                <!-- <div class="stage-carousel-container">
+                    <kol v-for="n in 4" title="前副總統" name="陳建仁 Dr. Chen Chien-Jen" content="「台灣人體生物資料庫」旨在建立國家生物醫學研究基礎設施。其中，「台灣人體生物資料庫」，是臺灣31家生物資料庫中歷史最悠久，規模最大的人體生物庫，作為臺灣其他人體生物庫的標竿學習目標，是臺灣首家達到12萬參與者大關的生物庫及首先獲得個人資料保護和資訊安全雙重認證的生物庫。"></kol>
+                </div> -->
+                <my-stage-carousel :kols="kols"></my-stage-carousel>
+            </section>
+
+            
+            <!-- Other -->
+            <my-meshi name="Jacob Nielson" job-title="Performer"></my-meshi>
+            <my-news cate="媒體報導" title="中研院台灣人體生物資料庫已累積逾14萬筆資料 目標20萬筆收集"></my-news>
+
+            <!-- Drop Down List -->
+            <drop-down title="下拉式選單" :lists="dropDownLists"></drop-down>  
+        </article>
+
+        <!-- Footer -->
+        <my-footer></my-footer>
+    </main>
+
+    <!-- GSAP -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.js' integrity='sha512-NbdYutU8SqxAdwkioXbsw2Tr3jbPA1LCB3aQj/LkIshNnMMggYViEafkDdazPtAYklypxdjPfeG12OATLwZlnQ==' crossorigin='anonymous'></script>
+
+    <!-- Vue -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.14/vue.common.dev.min.js" integrity="sha512-TpgbLHXaTCAZ7ULhjopb1PveTz5Jx6KEQUtMfXhV0m0EArh+6O8ybZjjDN1Yug6oagN6iFm6EoMjuYSiFr0qXQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="assets/js/components.js"></script>
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data:{
+                isScrollDown: false,
+                lastScrollTop: 0,
+                mobileMenuOpen: false,
+                nowTabContent: 1,
+                kols: [
+                    {
+                        title: "前副總統",
+                        name: "陳建仁 Dr. Chen Chien-Jen",
+                        content: "「台灣人體生物資料庫」旨在建立國家生物醫學研究基礎設施。其中，「台灣人體生物資料庫」，是臺灣31家生物資料庫中歷史最悠久，規模最大的人體生物庫，作為臺灣其他人體生物庫的標竿學習目標，是臺灣首家達到12萬參與者大關的生物庫及首先獲得個人資料保護和資訊安全雙重認證的生物庫。",
+                    },{
+                        title: "中央研究院副院長",
+                        name: "劉扶東（Dr. Liu, Fu-Tong）",
+                        content: "現在全球生物產業蓬勃發展，台灣具備發展生醫的條件與優勢，如健全的健保系統資料庫、政府投入的國家型計畫，如已經建構逐漸完成的台灣人體生物資料庫（Taiwan BioBank）、生技醫藥國家型科技計畫（NRPB）等， 以及國家南港生技園區等，都可以協助台灣盡快找到生醫產業的出路。",
+                    },{
+                        title: "前副總統",
+                        name: "陳建仁 Dr. Chen Chen-Jen",
+                        content: "「台灣人體生物資料庫」旨在建立國家生物醫學研究基礎設施。其中，「台灣人體生物資料庫」，是臺灣31家生物資料庫中歷史最悠久，規模最大的人體生物庫，作為臺灣其他人體生物庫的標竿學習目標，是臺灣首家達到12萬參與者大關的生物庫及首先獲得個人資料保護和資訊安全雙重認證的生物庫。",
+                    },{
+                        title: "中央研究院副院長",
+                        name: "劉扶東（Dr.Liu, Fu-Tong）",
+                        content: "現在全球生物產業蓬勃發展，台灣具備發展生醫的條件與優勢，如健全的健保系統資料庫、政府投入的國家型計畫，如已經建構逐漸完成的台灣人體生物資料庫（Taiwan BioBank）、生技醫藥國家型科技計畫（NRPB）等， 以及國家南港生技園區等，都可以協助台灣盡快找到生醫產業的出路。",
+                    },{
+                        title: "前副總統",
+                        name: "陳建仁 Dr. Chen hien-Jen",
+                        content: "「台灣人體生物資料庫」旨在建立國家生物醫學研究基礎設施。其中，「台灣人體生物資料庫」，是臺灣31家生物資料庫中歷史最悠久，規模最大的人體生物庫，作為臺灣其他人體生物庫的標竿學習目標，是臺灣首家達到12萬參與者大關的生物庫及首先獲得個人資料保護和資訊安全雙重認證的生物庫。",
+                    },{
+                        title: "中央研究院副院長",
+                        name: "劉扶東（D. Liu, Fu-Tong）",
+                        content: "現在全球生物產業蓬勃發展，台灣具備發展生醫的條件與優勢，如健全的健保系統資料庫、政府投入的國家型計畫，如已經建構逐漸完成的台灣人體生物資料庫（Taiwan BioBank）、生技醫藥國家型科技計畫（NRPB）等， 以及國家南港生技園區等，都可以協助台灣盡快找到生醫產業的出路。",
+                    },{
+                        title: "前副總統",
+                        name: "陳建仁 Dr. Chen Chien",
+                        content: "「台灣人體生物資料庫」旨在建立國家生物醫學研究基礎設施。其中，「台灣人體生物資料庫」，是臺灣31家生物資料庫中歷史最悠久，規模最大的人體生物庫，作為臺灣其他人體生物庫的標竿學習目標，是臺灣首家達到12萬參與者大關的生物庫及首先獲得個人資料保護和資訊安全雙重認證的生物庫。",
+                    },{
+                        title: "中央研究院副院長",
+                        name: "劉扶東（Dr. Liuong）",
+                        content: "現在全球生物產業蓬勃發展，台灣具備發展生醫的條件與優勢，如健全的健保系統資料庫、政府投入的國家型計畫，如已經建構逐漸完成的台灣人體生物資料庫（Taiwan BioBank）、生技醫藥國家型科技計畫（NRPB）等， 以及國家南港生技園區等，都可以協助台灣盡快找到生醫產業的出路。",
+                    }
+                ],
+                table: {
+                    heads: [
+                        '駐站','地址','縣市','電話','傳真'
+                    ],
+                    rows: [
+                        {
+                            name: "宏恩醫院駐站",
+                            addr: "臺北市大安區仁愛路四段61號 前棟大樓9樓",
+                            county: "台北市",
+                            tele: "02-27718497",
+                            fax: "02-27718497"
+                        },{
+                            name: "宏恩醫院駐站",
+                            addr: "臺北市大安區仁愛路四段61號 前棟大樓9樓",
+                            county: "台北市",
+                            tele: "02-27718497",
+                            fax: "02-27718497"
+                        },{
+                            name: "宏恩醫院駐站",
+                            addr: "臺北市大安區仁愛路四段61號 前棟大樓9樓",
+                            county: "台北市",
+                            tele: "02-27718497",
+                            fax: "02-27718497"
+                        },{
+                            name: "宏恩醫院駐站",
+                            addr: "臺北市大安區仁愛路四段61號 前棟大樓9樓",
+                            county: "台北市",
+                            tele: "02-27718497",
+                            fax: "02-27718497"
+                        },{
+                            name: "宏恩醫院駐站",
+                            addr: "臺北市大安區仁愛路四段61號 前棟大樓9樓",
+                            county: "台北市",
+                            tele: "02-27718497",
+                            fax: "02-27718497"
+                        },{
+                            name: "宏恩醫院駐站",
+                            addr: "臺北市大安區仁愛路四段61號 前棟大樓9樓",
+                            county: "台北市",
+                            tele: "02-27718497",
+                            fax: "02-27718497"
+                        },{
+                            name: "宏恩醫院駐站",
+                            addr: "臺北市大安區仁愛路四段61號 前棟大樓9樓",
+                            county: "台北市",
+                            tele: "02-27718497",
+                            fax: "02-27718497"
+                        },{
+                            name: "宏恩醫院駐站",
+                            addr: "臺北市大安區仁愛路四段61號 前棟大樓9樓",
+                            county: "台北市",
+                            tele: "02-27718497",
+                            fax: "02-27718497"
+                        },{
+                            name: "宏恩醫院駐站",
+                            addr: "臺北市大安區仁愛路四段61號 前棟大樓9樓",
+                            county: "台北市",
+                            tele: "02-27718497",
+                            fax: "02-27718497"
+                        },{
+                            name: "宏恩醫院駐站",
+                            addr: "臺北市大安區仁愛路四段61號 前棟大樓9樓",
+                            county: "台北市",
+                            tele: "02-27718497",
+                            fax: "02-27718497"
+                        },{
+                            name: "宏恩醫院駐站",
+                            addr: "臺北市大安區仁愛路四段61號 前棟大樓9樓",
+                            county: "高雄市",
+                            tele: "02-27718497",
+                            fax: "02-27718497"
+                        },{
+                            name: "宏恩駐站",
+                            addr: "臺北市大安區仁愛路四段61號 前棟大樓9樓",
+                            county: "台南市",
+                            tele: "02-27718497",
+                            fax: "02-27718497"
+                        }
+                    ]
+                },
+                btns: [
+                    {
+                        small: false,
+                        highlight: false,
+                        outline: false
+                    },{
+                        small: false,
+                        highlight: true,
+                        outline: false
+                    },{
+                        small: false,
+                        highlight: false,
+                        outline: true
+                    },{
+                        small: false,
+                        highlight: true,
+                        outline: true
+                    },{
+                        small: true,
+                        highlight: false,
+                        outline: false
+                    },{
+                        small: true,
+                        highlight: true,
+                        outline: false
+                    },{
+                        small: true,
+                        highlight: false,
+                        outline: true
+                    },{
+                        small: true,
+                        highlight: true,
+                        outline: true
+                    }
+                ],dropDownLists: [{content: '選項1'},{content: '選項2'},{content: '選項3'}]
+            },
+            methods: {
+                scrollDirect(){
+                    let st = window.pageYOffset || document.documentElement.scrollTop
+                    if (!this.mobileMenuOpen){
+                        if (st > this.lastScrollTop){
+                            this.isScrollDown = true
+                        } else {
+                            this.isScrollDown = false
+                        }
+                    }else{
+                        let deltaY = st - this.lastScrollTop
+                        TweenMax.to(".scroll", .5, {
+                            y: "-="+ deltaY*3 + "px"
+                        })
+                    }
+                    this.lastScrollTop = st <= 0 ? 0 : st
+                },
+                mobileIsOpen(){
+                    this.mobileMenuOpen = true
+                },
+                mobileIsClose(){
+                    this.mobileMenuOpen = false
+                },
+                handleSwitchTab(nowTab){
+                    this.nowTabContent = nowTab + 1
+                }
+            },
+            created(){
+                window.addEventListener('scroll', this.scrollDirect);
+            },
+            destroyed(){
+                window.removeEventListener('scroll', this.scrollDirect);
+            }
+        })
+    </script>
+</body>
+</html>

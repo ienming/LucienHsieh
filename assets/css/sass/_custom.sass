@@ -1,0 +1,425 @@
+#heroImg
+    position: relative
+    margin: 0
+    margin-right: 40px
+    &::before
+        content: ''
+        display: block
+        position: absolute
+        top: -32px
+        left: 32px
+        +size(150%, 445px)
+        border-radius: 50px
+        background: $mainGradient
+        z-index: -1
+    .mask
+        border-radius: 50px 0 0 0
+        height: 840px
+        img
+            height: 100%
+            object-fit: cover
+
+#hero
+    background-image: url("/assets/img/hero_crop_dark.jpg")
+    background-position: 30%
+    padding-top: 25vh
+    +rwd(lg)
+        background-position: center center
+        padding-top: 32vh
+    background-size: cover
+    position: relative
+    height: 95vh
+    >div
+        padding-bottom: 120px
+        +rwd(lg)
+            padding-bottom: 0
+    h1
+        color: $white
+        text-shadow: 2px 2px 5px rgba(0,0,0,.3)
+        padding-top: 30px
+        font-size: 30px
+        +rwd(xs)
+            font-size: 36px
+        +rwd(lg)
+            font-size: 44px
+        position: relative
+    #case
+        position: relative
+        z-index: 1
+        left: 20px
+        padding: 32px
+        width: 80%
+        top: -5.5vh
+        +rwd(xs)
+            top: 8.5vh
+        +rwd(lg)
+            position: absolute
+            top: unset
+            right: 100px
+            left: unset
+            bottom: -70px
+            width: initial
+        background-color: $base
+        border-radius: 16px
+        box-shadow: 30px -30px 0 5px $mainDark
+    .cases
+        justify-content: space-between
+        padding: 0 16px 8px 16px
+        border-bottom: 1px solid $darkGrey
+        margin-top: 40px
+        span:nth-child(1)
+            font-size: 30px
+            +rwd(lg)
+                font-size: 50px
+            margin-right: 16px
+        span:nth-child(2)
+            font-size: 18px
+            +rwd(lg)
+                font-size: 30px
+            font-weight: 300
+            line-height: 250%
+            color: $darkGrey
+    .my-cta
+        +basicShadow()
+
+.marquee
+    top: 410px
+    +rwd(lg)
+        top: unset
+    margin: 120px 0
+
+.col-2-txt
+    padding-top: 330px
+    padding-bottom: 30px
+    position: relative
+    +rwd(md)
+        padding-bottom: 120px
+        padding-top: 600px
+    h1
+        width: 100%
+        // top: 300px
+        +rwd(lg)
+            position: absolute
+            z-index: 1
+            top: 100px
+    span
+        font-size: 18px
+        +rwd(lg)
+            font-size: 24px
+
+.col-2-img
+    padding-left: 0
+    .mask
+        height: 50vh
+        +rwd(lg)
+            height: 1105px
+        img
+            height: 100%
+            object-fit: cover
+
+
+.web-title
+    position: relative
+    &::after
+        content: ''
+        display: block
+        +size(100vw, 3px)
+        background-color: $main
+        position: absolute
+        bottom: 28px
+        opacity: 0
+        animation: lineGrow 1.5s .5s $easeOutQuint forwards
+        transform-origin: right bottom
+        +rwd(md)
+            +size(66vw, 3px)
+            right: -3*$spacer
+            top: 50%
+            transform: translateY(-50%)
+    @for $i from 1 through 10
+        h1.t-title-1>span:nth-child(#{$i})
+            position: relative
+            opacity: 0
+            animation: textFadeIn .5s #{$i * .1}s ease-in-out forwards
+
+//animation
+@keyframes lineGrow
+    from
+        transform: scaleX(0)
+        opacity: 0
+    to
+        transform: scaleX(1)
+        opacity: 1
+
+.locate-table
+    +rwd(lg)
+        display: flex
+        justify-content: center
+    >div
+        +rwd(md)
+            padding: 48px
+            padding-top: 60px
+            border-radius: 16px
+            +basicShadow()
+
+.enter-animation
+    display: flex
+    justify-content: center
+    align-items: center
+    background-color: $main
+    z-index: 99
+    position: fixed
+    +size(100vw, 100vh)
+    pointer-events: none
+    >img
+        width: 250px
+            
+.sec-title-spe
+    position: relative
+    +typography(3)
+    &::after
+        content: ''
+        display: block
+        +size(100%, 5px)
+        background-color: $mainDark
+        position: absolute
+        left: 0
+        bottom: -12px
+
+// 參加步驟
+.steps
+    flex-direction: column
+    align-items: center
+    &:nth-child(2)>.col
+        flex-direction: column
+    &:nth-child(3)>.col
+        flex-direction: column-reverse
+    +rwd(lg)
+        flex-direction: row
+        &:nth-child(2)>.col
+            flex-direction: row
+        &:nth-child(3)>.col
+            flex-direction: row
+    .step-arrow
+        width: 150px
+        align-items: center
+        text-align: center
+        display: none
+        +rwd(lg)
+            display: flex
+    .step
+        cursor: pointer
+        +basicTransition()
+        margin: 40px 0
+        img
+            width: 75%
+        span
+            +typography(3)
+        &:hover
+            opacity: .6
+        +rwd(lg)
+            margin: 0
+            img
+                width: 100%
+
+.step-descrip
+    width: 80vw
+    max-height: 85vh
+    +rwd(sm)
+        max-height: unset
+    background-color: $mainLight
+    padding: 20px 30px 60px 30px
+    border-radius: 32px
+    +basicShadow()
+    min-height: 100px
+    +rwd(lg)
+        max-height: 570px
+    position: fixed
+    left: 50%
+    top: 50%
+    transform: translate(-50%, -50%)
+    h4
+        +typography(4)
+        margin-bottom: 12px
+        +rwd(lg)
+            margin-bottom: 24px
+    span.d-block
+        margin-bottom: 12px
+    p
+        overflow: auto
+        scrollbar-width: none
+        +rwd(lg)
+            max-height: 400px
+    .col-lg-7>div
+        max-height: 30vh
+        +rwd(sm)
+            max-height: unset
+        overflow: auto
+        +rwd(lg)
+            max-height: unset
+            overflow: unset
+    .col
+        padding: 0
+        +rwd(lg)
+            padding: 0 24px
+    .btn-controls
+        position: fixed
+        left: 50%
+        top: 150px
+        transform: translateX(-50%)
+        width: 110%
+        display: flex
+        justify-content: space-between
+        button
+            border-radius: 50%
+            +size(50px)
+            font-size: 20px
+            +rwd(lg)
+                +size(80px)
+                font-size: 30px
+            background-color: $mainDark
+            color: $white
+            +basicTransition()
+            &:hover
+                opacity: 1
+                background-color: darken($mainDark, 15)
+                transform: scale(.95)
+    .vue-transition
+        top: 70px
+        .aic
+            padding: 0 30px
+
+.overlay
+    background-color: rgba(0, 0, 0, .25)
+    position: fixed
+    top: 0
+    left: 0
+    z-index: 99
+    +size(100%)
+    .close
+        width: 40px
+        cursor: pointer
+        +rwd(lg)
+            padding: 20px 0
+        &:hover
+            opacity: 0.5
+            +basicTransition()
+
+.name-card
+    +basicShadow()
+    border-top: 3px solid $mainTer
+    padding: 16px
+    margin: 0 0 30px 0
+    +rwd(lg)
+        max-width: 270px
+        margin: 0 30px 30px 0
+    h4
+        margin-bottom: 8px
+    p:nth-child(4)
+        color: $darkGrey
+
+.history-sec
+    margin-bottom: 80px
+
+.bounce-x
+    animation: bounce-x 1.5s infinite alternate $easeOutQuint
+
+.bounce-y
+    animation: bounce-y 1.5s infinite alternate ease-in-out
+
+.my-table.sec-location
+    th
+        &:nth-child(1)
+            width: 4*$tableWidth/10
+        &:nth-child(2)
+            width: 5*$tableWidth/10
+        &:nth-child(3)
+            width: 1.5*$tableWidth/10
+        &:nth-child(4)
+            width: 2*$tableWidth/10
+        &:nth-child(5)
+            width: 2*$tableWidth/10
+        &:nth-child(6)
+            width: 2*$tableWidth/10
+
+.progress-container
+    .nodes
+        display: flex
+        justify-content: space-between
+    .node
+        +size(16px)
+        border-radius:  50%
+        background-color: $tertiaryGrey
+        position: relative
+        z-index: 1
+        cursor: pointer
+        +basicTransition()
+        &:hover
+            background-color: $main
+        &.active
+            background-color: $main
+    .base
+        +size(100%, 8px)
+        background-color: $tertiaryGrey
+        position: relative
+        top: -12px
+        overflow: hidden
+        .progress
+            +poa()
+            +size(0%, 100%)
+            background-color: $main
+            +basicTransition()
+            transition: .5s
+
+#privacyCard
+    position: fixed
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    border-radius: 16px
+    z-index: 99
+    padding: 60px 20px 20px 20px
+    max-height: 80vh
+    overflow: auto
+    +rwd(md)
+        max-height: unset
+        padding: 60px 40px 40px 40px
+
+
+#privacyCard>.close
+    position: absolute
+    cursor: pointer
+    right: 16px
+    top: 16px
+    width: 35px
+    +rwd(md)
+        width: 50px
+        right: 32px
+        top: 30px
+
+
+#privacyCard>.content
+    height: 60vh
+    max-height: 300px
+    overflow: auto
+
+.scroll-container
+    overflow-y: auto
+    max-height: 50vh
+
+.search-container
+    .my-btn
+        border: none
+        margin-top: 16px
+        cursor: pointer
+        +rwd(md)
+            margin-left: 24px
+            margin-top: 0
+    form
+        display: flex
+        flex-direction: column
+        +rwd(md)
+            flex-direction: row
+    .close
+        margin-bottom: 12px
+        +rwd(md)
+            margin-bottom: 0

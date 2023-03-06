@@ -1,0 +1,20 @@
+@mixin size($w, $h:$w)
+    width: $w
+    height: $h
+
+@mixin dFlex($jc:center, $ai:center, $wrap:wrap)
+    display: flex
+    justify-content: $jc
+    align-items: $ai
+    flex-wrap: $wrap
+
+@mixin poa($t:0, $l:0)
+    position: absolute
+    top: $t
+    left: $l
+
+@mixin basicShadow()
+    box-shadow: 0 4px 20px 0 rgba(0,0,0,.25)
+
+@mixin basicTransition()
+    transition: .3s $easeOutQuint

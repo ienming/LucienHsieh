@@ -1,0 +1,30 @@
+@import 'variables'
+@import '_mixins'
+@import '_init'
+@import '_rwd'
+@import '_typography'
+@import '_grid'
+@import '_layouts'
+@import '_animation'
+@import '_components'
+@import '_custom'
+
+html, body
+    width: 100%
+    height: 100%
+    margin: 0
+    padding: 0
+    color: $dark
+    font-family: 'Noto Sans TC', sans-serif
+    font-weight: normal
+
+body
+    background-color: $base
+
+main.gl-mt
+    // overflow: hidden
+    margin-bottom: 40px
+    +rwd(lg)
+        margin-bottom: 80px
+    .web-title
+        overflow: hidden
