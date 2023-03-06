@@ -1,42 +1,33 @@
-const BasicButton = {
+// 
+// 
+// 
+// 
+// 今回使ったcomponentたち
+const CoverEnterPoint = {
     template: `
-        <button class="my-btn" :class="mybtnClasses">{{ title }}</button>
+    <div>
+        <a :href="url" target="newTab ? '_blank' : ''" class="cover-enter-point">
+            <figure>
+                <img class="w-100" :src="coverImg" alt="">
+            </figure>
+            <p class="description">
+                <span class="t-z-5 t-w-6">{{coverTitle}}</span>
+                <span>{{coverDes}}</span>
+            </p>
+        </a>
+    </div>
     `,
-    props: {
-        title: {
-            type: String,
-            default: "Button"
-        },
-        highlight: {
-            type: Boolean,
-            default: false
-        },
-        outline: {
-            type: Boolean,
-            default: false
-        },
-        small: {
-            type: Boolean,
-            default: false
-        }
-    },
-    data: function () {
-        return {
-            mybtnClasses: {
-                "highlight": this.highlight,
-                "outline": this.outline,
-                "small": this.small
-            }
-        }
+    props: ['coverImg', 'coverTitle', 'coverDes', 'url', 'newTab'],
+    data(){
+        return {}
     }
 }
-
-Vue.component('basic-button', BasicButton)
+Vue.component('cover-enter-point', CoverEnterPoint)
 
 const CTA = {
     template: `
         <div class="my-cta-container" :class="{ 'large' : large}">
-        <a :href="url" class="my-cta" :class="{ 'fill' : fill}" :target="{ '_blank' : newTab }">
+        <a :href="url" class="my-cta" :class="{ 'fill' : fill}" :target="newTab ? '_blank' : ''">
             <span v-html="title"></span>
             <div class="icon-container">
                 <img :src="iconUrl" alt="">
@@ -69,9 +60,9 @@ const CTA = {
     },
     computed: {
         iconUrl(){
-            let iconUrl = "/assets/img/icons/arrow_rightLong.svg"
+            let iconUrl = "./assets/img/icons/arrow_rightLong.svg"
             if (this.fill){
-                iconUrl = "/assets/img/icons/arrow_rightLong_ht.svg"
+                iconUrl = "./assets/img/icons/arrow_rightLong_ht.svg"
             }
             return iconUrl
         }
@@ -138,6 +129,223 @@ const Link = {
 }
 
 Vue.component('basic-link', Link)
+
+const DropDown = {
+    template: `
+    <nav class="dpd-container">
+        <span class="dpd-head">{{title}}
+            <div class="icon-container">
+                <img src="assets/img/icons/arrow_down.svg" alt="" class="icon">
+                <img src="assets/img/icons/arrow_down.svg" alt="" class="icon">
+            </div>
+        </span>
+        <ul class="dpd-lists w-100">
+            <li class="dpd-list" v-for="list of lists" :key="list.content" @click="$emit('drop-click', list.content)">{{list.content}}</li>
+        </ul>
+    </nav>
+    `,props: {
+        title: {
+            type: String,
+            default: "Drop Down List"
+        },lists: {
+            type: Array,
+            default(){
+                return [
+                    {
+                        content: ""
+                    }
+                ]
+            }
+        }
+    },data(){
+        return {}
+    }
+}
+
+Vue.component('drop-down', DropDown)
+
+
+const Footer = {
+    template: `
+        <footer class="flexable t-z-3">
+            <div class="col-md-4">
+                <a :href="links.home">
+                    <img src="./assets/img/logo.png" alt="Logo" class="logo">
+                </a>
+                <div class="sns my-1">
+                    <a href="" target="_blank"><img src="./assets/img/icons/fb_negative.svg" alt="Facebook" class="icon mr-1"></a>
+                    <a href="" target="_blank"><img src="./assets/img/icons/yt_negative.svg" alt="Youtube" class="icon"></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <a :href="links.about" class="d-block mb-1 t-z-3">關於 About</a>
+                <a :href="links.about" class="d-block mb-1 t-z-3">設計 Design</a>
+                <a :href="links.about" class="d-block mb-1 t-z-3">程式 Code</a>
+                <a :href="links.about" class="d-block mb-1 t-z-3">繪畫 Painting</a>
+            </div>
+            <div class="col-md-4">
+                <div>
+                    <basic-link title="あるリンク" :url="links.sinica" :has-icon="true" :full="true" :highlight="false" class="mb-2 mb-md-1 d-block"></basic-link>
+                </div>
+                <span class="t-z-1 mt-5">Copyrights©2023</br>Lucien Hsieh</span>
+            </div>
+        </footer>
+    `,
+    data(){
+        return{
+            links: {
+                home: "index.html",
+                about: "about.html",
+                design: "",
+                code: "",
+                painting: ""
+            }
+        }
+    }
+}
+
+Vue.component('my-footer', Footer)
+
+const Header = {
+    template: `
+    <header class="my-header" :class="{ 'out' : childIsScrollDown }">
+    <div>
+    <h1>
+        <a href="./index.html">
+            <img src="./assets/img/logo.png" alt="logo" class="logo">
+        </a>
+    </h1>
+    <nav class="mobile-menu">
+        <button @click="openMobile" class="d-flex flex-column ain hamburger">
+            <p class="m-0 t-w-6">MENU</p>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="menu" :class="{ 'show' : mobileShow }">
+            <header>
+                <div>
+                    <h1>
+                        <img src="./assets/img/logo.png" alt="logo" class="logo">
+                    </h1>
+                    <button><img src="./assets/img/icons/close_dark.svg" alt="Close" @click="closeMobile" class="icon"/></button>
+                </div>
+            </header>
+            <div style="overflow: scroll;">
+                <div class="row w-100 mt-md-3">
+                    <figure class="col-12 col-md-6 px-md-1">
+                        <img src="./assets/img/banner.png" />
+                    </figure>
+                    <nav class="col-12 col-md-6 px-md-1">
+                        <a v-for="page of pages" class="mobile-nav" :href="page.worksCate ? 'works.html#'+page.worksCate : page.url">
+                            <span class="heading">{{ page.heading }}</span>
+                        </a>
+                        <div class="sns">
+                            <p>SNS</p>
+                            <a href=""><img src="./assets/img/icons/fb.svg" alt="Facebook" class="icon mr-1"></a>
+                            <a href=""><img src="./assets/img/icons/yt.svg" alt="Youtube" class="icon"></a>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </nav>
+    </div>
+</header>
+    `,
+    props: {
+        isScrollDown: {
+            type: Boolean,
+            default: false
+        },
+        nowPage: {
+            type: String
+        }
+    },
+    data(){
+        let pages = [
+            {
+                heading: '關於 About',
+                url: 'about.html'
+            },{
+                heading: '設計 Design',
+                worksCate: 'design',
+            },{
+                heading: '程式 Code',
+                worksCate: 'code',
+            },{
+                heading: '繪畫 Painting',
+                worksCate: 'painting',
+            }
+        ]
+        return {
+            pages: pages,
+            mobileShow: false,
+            lastScrollTop: 0
+        }
+    },
+    computed: {
+        childIsScrollDown(){
+            let childIsScrollDown = this.isScrollDown
+            if (this.mobileShow){
+                childIsScrollDown = false
+            }
+            return childIsScrollDown
+        }
+    },
+    methods: {
+        openMobile(){
+            this.mobileShow = true
+            this.$emit('mobile-is-open')
+        },
+        closeMobile(){
+            this.mobileShow = false
+            TweenMax.to(".scroll", .5, {
+                y: 0
+            })
+            this.$emit('mobile-is-close')
+        }
+    }
+}
+Vue.component("my-header", Header)
+// 
+// 
+// 
+// 
+// 
+// 
+const BasicButton = {
+    template: `
+        <button class="my-btn" :class="mybtnClasses">{{ title }}</button>
+    `,
+    props: {
+        title: {
+            type: String,
+            default: "Button"
+        },
+        highlight: {
+            type: Boolean,
+            default: false
+        },
+        outline: {
+            type: Boolean,
+            default: false
+        },
+        small: {
+            type: Boolean,
+            default: false
+        }
+    },
+    data: function () {
+        return {
+            mybtnClasses: {
+                "highlight": this.highlight,
+                "outline": this.outline,
+                "small": this.small
+            }
+        }
+    }
+}
+Vue.component('basic-button', BasicButton)
 
 const FileLink = {
     template: `
@@ -450,84 +658,10 @@ const inputSelect = {
 
 Vue.component('input-select', inputSelect)
 
-const DropDown = {
-    template: `
-    <nav class="dpd-container">
-        <span class="dpd-head">{{title}}
-            <div class="icon-container">
-                <img src="assets/img/icons/arrow_down.svg" alt="" class="icon">
-                <img src="assets/img/icons/arrow_down.svg" alt="" class="icon">
-            </div>
-        </span>
-        <ul class="dpd-lists w-100">
-            <li class="dpd-list" v-for="list of lists" :key="list.content" @click="$emit('drop-click', list.content)">{{list.content}}</li>
-        </ul>
-    </nav>
-    `,props: {
-        title: {
-            type: String,
-            default: "Drop Down List"
-        },lists: {
-            type: Array,
-            default(){
-                return [
-                    {
-                        content: ""
-                    }
-                ]
-            }
-        }
-    },data(){
-        return {}
-    }
-}
-
-Vue.component('drop-down', DropDown)
-
-
-const Footer = {
-    template: `
-        <footer class="flexable t-z-3">
-            <div class="col-md-4">
-                <img src="/assets/img/logo.png" alt="Logo" class="logo">
-                <div class="sns my-1">
-                    <a href="" target="_blank"><img src="/assets/img/icons/fb_negative.svg" alt="Facebook" class="icon mr-1"></a>
-                    <a href="" target="_blank"><img src="/assets/img/icons/yt_negative.svg" alt="Youtube" class="icon"></a>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <a :href="links.about" class="d-block mb-1 t-z-3">關於 About</a>
-                <a :href="links.about" class="d-block mb-1 t-z-3">設計 Design</a>
-                <a :href="links.about" class="d-block mb-1 t-z-3">程式 Code</a>
-                <a :href="links.about" class="d-block mb-1 t-z-3">繪畫 Painting</a>
-            </div>
-            <div class="col-md-4">
-                <div>
-                    <basic-link title="あるリンク" :url="links.sinica" :has-icon="true" :full="true" :highlight="false" class="mb-2 mb-md-1 d-block"></basic-link>
-                </div>
-                <span class="t-z-1 mt-5">Copyrights©2023</br>Lucien Hsieh</span>
-            </div>
-        </footer>
-    `,
-    data(){
-        return{
-            links: {
-                about: "",
-                design: "",
-                code: "",
-                painting: ""
-            }
-        }
-    }
-}
-
-Vue.component('my-footer', Footer)
-
-
 const SearchBtn = {
     template:`
     <button @click="startSearch">
-        <img src="/assets/img/icons/search.svg" alt="Search" class="icon">
+        <img src="./assets/img/icons/search.svg" alt="Search" class="icon">
     </button>
     `,
     data(){
@@ -540,109 +674,6 @@ const SearchBtn = {
     }
 }
 Vue.component('search-btn', SearchBtn)
-
-
-const Header = {
-    template: `
-    <header class="my-header" :class="{ 'out' : childIsScrollDown }">
-    <div>
-    <h1>
-        <a href="./index.html">
-            <img src="/assets/img/logo.png" alt="logo" class="logo">
-        </a>
-    </h1>
-    <nav class="mobile-menu">
-        <button @click="openMobile" class="d-flex flex-column ain hamburger">
-            <p class="m-0 t-w-6">MENU</p>
-            <span></span>
-            <span></span>
-        </button>
-        <div class="menu" :class="{ 'show' : mobileShow }">
-            <header>
-                <div>
-                    <h1>
-                        <img src="/assets/img/logo.png" alt="logo" class="logo">
-                    </h1>
-                    <button><img src="/assets/img/icons/close_dark.svg" alt="Close" @click="closeMobile" class="icon"/></button>
-                </div>
-            </header>
-            <div style="overflow: scroll;">
-                <div class="row w-100 mt-md-3">
-                    <figure class="col-12 col-md-6 px-md-1">
-                        <img src="/assets/img/banner.png" />
-                    </figure>
-                    <nav class="col-12 col-md-6 px-md-1">
-                        <a v-for="page of pages" class="mobile-nav" :href="page.worksCate ? 'works.html#'+page.worksCate : page.url">
-                            <span class="heading">{{ page.heading }}</span>
-                        </a>
-                        <div class="sns">
-                            <p>SNS</p>
-                            <a href=""><img src="/assets/img/icons/fb.svg" alt="Facebook" class="icon mr-1"></a>
-                            <a href=""><img src="/assets/img/icons/yt.svg" alt="Youtube" class="icon"></a>
-                        </div>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </nav>
-    </div>
-</header>
-    `,
-    props: {
-        isScrollDown: {
-            type: Boolean,
-            default: false
-        },
-        nowPage: {
-            type: String
-        }
-    },
-    data(){
-        let pages = [
-            {
-                heading: '關於 About',
-                url: 'about.html'
-            },{
-                heading: '設計 Design',
-                worksCate: 'design',
-            },{
-                heading: '程式 Code',
-                worksCate: 'code',
-            },{
-                heading: '繪畫 Painting',
-                worksCate: 'painting',
-            }
-        ]
-        return {
-            pages: pages,
-            mobileShow: false,
-            lastScrollTop: 0
-        }
-    },
-    computed: {
-        childIsScrollDown(){
-            let childIsScrollDown = this.isScrollDown
-            if (this.mobileShow){
-                childIsScrollDown = false
-            }
-            return childIsScrollDown
-        }
-    },
-    methods: {
-        openMobile(){
-            this.mobileShow = true
-            this.$emit('mobile-is-open')
-        },
-        closeMobile(){
-            this.mobileShow = false
-            TweenMax.to(".scroll", .5, {
-                y: 0
-            })
-            this.$emit('mobile-is-close')
-        }
-    }
-}
-Vue.component("my-header", Header)
 
 
 const Search = {
@@ -688,7 +719,7 @@ const Snake = {
     template: `
     <div class="snake-banner" :class="{ 'hide' : childIsScrollDown }">
     <p class="t-z-2 m-0">＊ 每天02：00～03：00為系統更新時間，此期間暫停報名事宜</p>
-    <button><img src="/assets/img/icons/close.svg" alt="close" class="icon" @click="closeSnake"></button>
+    <button><img src="./assets/img/icons/close.svg" alt="close" class="icon" @click="closeSnake"></button>
     </div>
     `,
     data(){

@@ -22,17 +22,16 @@
                     <drop-down :lists="cate" :title="nowCate" @drop-click="switchGate" class="w-100 w-md-50"></drop-down>
                 </div>
                 <transition-group class="col-12 row" name="fade">
-                    <div class="col-12 col-md-4" v-for="work of filteredWorks" :key="work.name">
-                        <a href="" target="_blank" class="cover-enter-point">
-                            <figure>
-                                <img class="w-100" src="./assets/img/banner.png" alt="">
-                            </figure>
-                            <p class="description">
-                                <span class="t-z-5 t-w-6">{{work.name}}</span>
-                                <span>{{work.date}}</span>
-                            </p>
-                        </a>
-                    </div>
+                    <cover-enter-point
+                        class="col-12 col-md-4"
+                        v-for="work of filteredWorks"
+                        newTab="false"
+                        :url="work.url"
+                        :cover-img="work.img"
+                        :cover-title="work.name"
+                        :cover-des="work.date"
+                        :key="work.name">
+                    </cover-enter-point>
                 </transition-group>
             </section>
         </main>
@@ -71,18 +70,26 @@
                     {
                         name: "p1",
                         date: "2023",
+                        img: "./assets/img/banner.png",
+                        url: "pj1.html",
                         tags: ['design', 'code']
                     },{
                         name: "p2",
                         date: "2023",
+                        img: "./assets/img/banner.png",
+                        url: "",
                         tags: ['design']
                     },{
                         name: "p3",
                         date: "2023",
+                        img: "./assets/img/banner.png",
+                        url: "",
                         tags: ['code']
                     },{
                         name: "p4",
                         date: "2023",
+                        img: "./assets/img/banner.png",
+                        url: "",
                         tags: ['painting']
                     }
                 ]

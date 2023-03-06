@@ -4,44 +4,44 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PTFLO: 工事中</title>
+    <title>PTFLO: about</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <main id="app">
-        <!-- Enter Animation-->
-        <div class="enter-animation">
-            <img src="/assets/img/logo.png" alt="">
-        </div>
         <my-header :is-scroll-down="isScrollDown" @mobile-is-open="mobileIsOpen" @mobile-is-close="mobileIsClose" @show-search="switchSearchShow"></my-header>
 
         <main style="overflow: hidden;">
             <!-- Content -->
             <section class="row mb-0 mt-5">
-                <div class="col col-12 col-md-6 pl-1 pl-md-5">
-                    <h1 class="t-display mt-0 mt-md-5 mb-2">色々な色</br>
-                        イラスト</br>
-                        アート X Web Design</br>
-                        デーザイン
-                    </h1>
+                <div class="col-12 pl-1 pl-md-5">
+                    <h1 class="t-display mt-0 mt-md-5 mb-2 mb-lg-1">About</h1>
                 </div>
-                <!-- Grid -->
-                <div class="row w-100">
-                    <cover-enter-point
-                        class="col-12 col-md-6"
-                        v-for="work of works"
-                        :url="work.url"
-                        :cover-img="work.img"
-                        :cover-title="work.name"
-                        :cover-des="work.date"
-                        :key="work.name">
-                    </cover-enter-point>
-                </div>
+                <main class="px-1 px-md-5">
+                    <!-- Layouts -->
+                    <!-- 文齊左 -->
+                    <section class="row mb-1">
+                        <div class="col-12 col-md-6">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, iusto, pariatur amet cum assumenda ipsa dolores dolorem odio vero ad debitis odit, cumque quisquam! Consectetur ipsa aperiam dicta incidunt deleniti.</p>
+                        </div>
+                    </section>
+                    <!-- 左圖右文 -->
+                    <section class="row aic mb-1">
+                        <div class="col-12 col-md-6">
+                            <figure>
+                                <img src="./assets/img/banner.png" alt="">
+                                <figcaption>画像について説明してください</figcaption>
+                            </figure>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <p class="pt-1 pt-md-0 pl-md-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, quia sed est officia assumenda asperiores vero excepturi esse inventore doloribus aliquid, at deserunt aspernatur nostrum odit cumque ab deleniti obcaecati.</p>
+                        </div>
+                    </section>
+                </main>
             </section>
-
-            <!-- CTA -->
+            <!-- Back to All -->
             <section class="d-flex jcc">
-                <cta :large="true" url="works.html" class="por" title="All projects" style="width: unset; min-width: unset;"></cta>
+                <cta :large="true" url="works.html" class="por" title="To all projects" style="width: unset; min-width: unset;"></cta>
             </section>
         </main>
 
@@ -63,44 +63,6 @@
                 isScrollDown: false,
                 lastScrollTop: 0,
                 mobileMenuOpen: false,
-                works: [
-                    {
-                        name: "p1",
-                        date: "2023",
-                        img: "./assets/img/banner.png",
-                        url: "",
-                        tags: ['design', 'code']
-                    },{
-                        name: "p2",
-                        date: "2023",
-                        img: "./assets/img/banner.png",
-                        url: "",
-                        tags: ['design']
-                    },{
-                        name: "p3",
-                        date: "2023",
-                        img: "./assets/img/banner.png",
-                        url: "",
-                        tags: ['code']
-                    },{
-                        name: "p4",
-                        date: "2023",
-                        img: "./assets/img/banner.png",
-                        url: "",
-                        tags: ['painting']
-                    }
-                ]
-            },
-            mounted(){
-                let tl = gsap.timeline()
-                let clipLogo = TweenMax.from(".enter-animation img", 1, {
-                    scale: 1.2
-                })
-                let clip = TweenMax.to(".enter-animation", .5, {
-                    opacity: 0,
-                })
-                tl.add(clipLogo, .5)
-                tl.add(clip, 1.8)
             },
             methods: {
                 scrollDirect(){
@@ -127,6 +89,9 @@
                 },
                 switchSearchShow(){
                     this.searchShow = !this.searchShow
+                },
+                switchGate(el){
+                    this.nowCate = el
                 }
             },
             created(){
