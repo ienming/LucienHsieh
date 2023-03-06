@@ -11,13 +11,14 @@ const CoverEnterPoint = {
                 <img class="w-100" :src="coverImg" alt="">
             </figure>
             <p class="description">
-                <span class="t-z-5 t-w-6">{{coverTitle}}</span>
-                <span>{{coverDes}}</span>
+                <span class="t-z-6 t-w-6">{{coverTitle}}</span>
+                <span class="t-z-2 t-w-6" v-for="hashtag of coverHashtags">#{{hashtag}} </span>
+                <span class="d-inline-block mt-1">{{coverDes}}</span>
             </p>
         </a>
     </div>
     `,
-    props: ['coverImg', 'coverTitle', 'coverDes', 'url', 'newTab'],
+    props: ['coverImg', 'coverTitle', 'coverDes', 'url', 'newTab', 'coverHashtags'],
     data(){
         return {}
     }
@@ -307,6 +308,137 @@ const Header = {
     }
 }
 Vue.component("my-header", Header)
+// 
+// 
+// 
+// Layout Components for pages
+const LayoutText = {
+    template: `
+    <section class="row mb-1 jcc">
+        <div class="col-12 col-md-8">
+            <h3 class="mb-1" v-if="title">{{title}}</h3>
+            <h4 class="mb-1" v-if="subTitle">{{subTitle}}</h4>
+            <p class="t-a-j" v-for="par of pars">{{par}}</p>
+        </div>
+    </section>
+    `,
+    props: {
+        title: {
+            default: ""
+        },
+        subTitle: {
+            default: ""
+        },
+        pars: {
+            type: Array,
+            default: ['par1', 'par2']
+        }
+    },
+    data(){
+        return {}
+    }
+}
+Vue.component('layout-t', LayoutText)
+
+const LayoutImg = {
+    template: `
+    <section class="row aic jcc mb-1">
+        <div class="col-12" :class="colNumber" v-for="img of imgs">
+            <figure>
+                <img :src="img.url" alt="">
+                <figcaption>{{img.figcaption}}</figcaption>
+            </figure>
+        </div>
+    </section>
+    `,
+    props: {
+        imgs: {
+            type: Array,
+            default: [
+                {
+                    url: "./assets/img/banner.png",
+                    figcaption: "画像について説明してください"
+                }
+            ]
+        },
+    },
+    computed: {
+        colNumber(){
+            if (this.imgs.length == 1){
+                return "col-md-8"
+            }else return "col-md-"+12/this.imgs.length
+        }
+    },
+    data(){
+        return {}
+    }
+}
+Vue.component('layout-i', LayoutImg)
+
+const LayoutLI = {
+    template: `
+    <section class="row flex-column-r flex-md-row aic mb-1">
+        <div class="col-12 col-md-6">
+            <figure>
+                <img :src="imgUrl" alt="">
+                <figcaption>{{figcaption}}</figcaption>
+            </figure>
+        </div>
+        <div class="col-12 col-md-6">
+            <p class="pb-1 pb-md-0 pr-md-1" v-for="par of pars">{{par}}</p>
+        </div>
+    </section>
+    `,
+    props: {
+        pars: {
+            type: Array,
+            default: ["par"]
+        },
+        imgUrl: {
+            default: "./assets/img/banner.png"
+        },
+        figcaption: {
+            default: "画像について説明してください"
+        }
+    },
+    data(){
+        return {}
+    }
+}
+Vue.component('layout-li', LayoutLI)
+
+const LayoutLT = {
+    template: `
+    <section class="row aic mb-1">
+        <div class="col-12 col-md-6">
+            <p class="pb-1 pb-md-0 pr-md-1" v-for="par of pars">{{par}}</p>
+        </div>
+        <div class="col-12 col-md-6">
+            <figure>
+                <img :src="imgUrl" alt="">
+                <figcaption>{{figcaption}}</figcaption>
+            </figure>
+        </div>
+    </section>
+    `,
+    props: {
+        pars: {
+            type: Array,
+            default: ["par"]
+        },
+        imgUrl: {
+            default: "./assets/img/banner.png"
+        },
+        figcaption: {
+            default: "画像について説明してください"
+        }
+    },
+    data(){
+        return {}
+    }
+}
+Vue.component('layout-lt', LayoutLT)
+
 // 
 // 
 // 

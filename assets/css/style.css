@@ -761,6 +761,10 @@ p, span, a, ul {
   flex-direction: column;
 }
 
+.flex-column-r {
+  flex-direction: column-reverse;
+}
+
 @media (min-width: 768px) {
   .flex-md-row {
     flex-direction: row;
@@ -4464,6 +4468,9 @@ footer .sns > a:hover {
   opacity: 1;
   transform: scaleX(100%);
 }
+.cover-enter-point img {
+  aspect-ratio: 6/4;
+}
 
 /* table  */
 .my-table-container {
@@ -5053,12 +5060,25 @@ footer .sns > a:hover {
 
 .list-info {
   margin: 1rem 0;
-  padding: 6px 0 10px 0;
+  padding: 6px 0 10px 10px;
+  border-left: 3px solid #000;
 }
 .list-info li {
   margin-bottom: 8px;
   padding-bottom: 4px;
   border-bottom: 1px solid #C8C8C8;
+}
+
+.pj-cover {
+  height: 60vh;
+  background-size: cover;
+  background-position: center;
+  margin: 30px 0;
+}
+@media (min-width: 768px) {
+  .pj-cover {
+    margin: 30px 0 60px 0;
+  }
 }
 
 html, body {

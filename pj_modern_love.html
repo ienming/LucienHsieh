@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PTFLO: Page</title>
+    <title>PTFLO: Modern Love</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -14,12 +14,10 @@
         <main style="overflow: hidden;">
             <!-- Content -->
             <section class="row mb-0 mt-5">
-                <div class="col-12 pl-1 pl-md-5">
-                    <h1 class="t-display mt-0 mt-md-5 mb-lg-1">Project Namee</h1>
-                </div>
-                <main class="px-1 px-md-5">
+                <div class="col-12">
+                    <h1 class="t-display mt-0 mt-md-5 mb-lg-1 t-a-c">Modern Love</h1>
                     <!-- Description -->
-                    <section class="row jce">
+                    <section class="row jcc">
                         <div class="col-12 col-md-6">
                             <ul class="list-info">
                                 <li>{{project.info.for}}</li>
@@ -31,6 +29,9 @@
                             </ul>
                         </div>
                     </section>
+                    <div class="pj-cover" style="background-image: url('./assets/img/pj_modern_love/cover.png')"></div>
+                </div>
+                <main class="px-1 px-md-5">
                     <!-- Layouts -->
                     <!-- 文單欄 -->
                     <layout-t :title="project.paragraphs[0].title" :pars="project.paragraphs[0].pars"></layout-t>
@@ -46,10 +47,6 @@
                     <layout-li :pars="project.paragraphs[3].pars" :img-url="project.figures[2].url" :figcaption="project.figures[2].figcaption"></layout-li>
                     <!-- 左文右圖 -->
                     <layout-lt :pars="project.paragraphs[4].pars" :img-url="project.figures[3].url" :figcaption="project.figures[3].figcaption"></layout-lt>
-                    <!-- 兩張圖 -->
-                    <layout-i :imgs="project.figures.slice(4,6)"></layout-i>
-                    <!-- 三張圖 -->
-                    <layout-i :imgs="project.figures.slice(6,9)"></layout-i>
                 </main>
             </section>
             <!-- Back to All -->
@@ -134,21 +131,6 @@
                             figcaption: undefined
                         },{
                             url: "./assets/img/pj_modern_love/legends.png",
-                            figcaption: undefined
-                        },{
-                            url: "./assets/img/banner.png",
-                            figcaption: undefined
-                        },{
-                            url: "./assets/img/banner.png",
-                            figcaption: undefined
-                        },{
-                            url: "./assets/img/banner.png",
-                            figcaption: undefined
-                        },{
-                            url: "./assets/img/banner.png",
-                            figcaption: undefined
-                        },{
-                            url: "./assets/img/banner.png",
                             figcaption: undefined
                         }
                     ]
