@@ -180,13 +180,13 @@ const Footer = {
             </div>
             <div class="col-md-4">
                 <a :href="links.about" class="d-block mb-1 t-z-3">關於 About</a>
-                <a :href="links.about" class="d-block mb-1 t-z-3">設計 Design</a>
-                <a :href="links.about" class="d-block mb-1 t-z-3">程式 Code</a>
-                <a :href="links.about" class="d-block mb-1 t-z-3">繪畫 Painting</a>
+                <a :href="links.design" class="d-block mb-1 t-z-3">設計 Design</a>
+                <a :href="links.code" class="d-block mb-1 t-z-3">程式 Code</a>
+                <a :href="links.painting" class="d-block mb-1 t-z-3">繪畫 Painting</a>
             </div>
             <div class="col-md-4">
                 <div>
-                    <basic-link title="あるリンク" :url="links.sinica" :has-icon="true" :full="true" :highlight="false" class="mb-2 mb-md-1 d-block"></basic-link>
+                    <basic-link title="Behance" :url="links.behance" :has-icon="true" :full="true" :highlight="false" class="mb-2 mb-md-1 d-block"></basic-link>
                 </div>
                 <span class="t-z-1 mt-5">Copyrights©2023</br>Lucien Hsieh</span>
             </div>
@@ -197,9 +197,10 @@ const Footer = {
             links: {
                 home: "index.html",
                 about: "about.html",
-                design: "",
-                code: "",
-                painting: ""
+                design: "works.html",
+                code: "works.html",
+                painting: "works.html",
+                behance: "https://www.behance.net/Lucienming"
             }
         }
     }
@@ -231,7 +232,7 @@ const Header = {
                     <button><img src="./assets/img/icons/close_dark.svg" alt="Close" @click="closeMobile" class="icon"/></button>
                 </div>
             </header>
-            <div style="overflow: scroll;">
+            <div>
                 <div class="row w-100 mt-md-3">
                     <figure class="col-12 col-md-6 px-md-1">
                         <img src="./assets/img/banner.png" />
@@ -314,8 +315,8 @@ Vue.component("my-header", Header)
 // Layout Components for pages
 const LayoutText = {
     template: `
-    <section class="row mb-1 jcc">
-        <div class="col-12 col-md-8">
+    <section class="row mb-1" :class="computedAlign">
+        <div class="col-12 col-md-8" :class="computedCol">
             <h3 class="mb-1" v-if="title">{{title}}</h3>
             <h4 class="mb-1" v-if="subTitle">{{subTitle}}</h4>
             <p class="t-a-j" v-for="par of pars">{{par}}</p>
@@ -332,6 +333,26 @@ const LayoutText = {
         pars: {
             type: Array,
             default: ['par1', 'par2']
+        },
+        alignTo: {
+            type: String,
+            default: "center"
+        }
+    },
+    computed: {
+        computedAlign(){
+            if (this.alignTo == 'left'){
+                return
+            }else if (this.alignTo == 'center'){
+                return 'jcc'
+            }else if (this.alignTo == 'right'){
+                return 'jce'
+            }
+        },
+        computedCol(){
+            if (this.alignTo == 'left' || this.alignTo == 'right'){
+                return 'col-lg-6'
+            }else return
         }
     },
     data(){
@@ -342,9 +363,9 @@ Vue.component('layout-t', LayoutText)
 
 const LayoutImg = {
     template: `
-    <section class="row aic jcc mb-1">
+    <section class="row aic mb-1" :class="computedAlign">
         <div class="col-12" :class="colNumber" v-for="img of imgs">
-            <figure>
+            <figure  :id="idIs">
                 <img :src="img.url" alt="">
                 <figcaption>{{img.figcaption}}</figcaption>
             </figure>
@@ -361,12 +382,29 @@ const LayoutImg = {
                 }
             ]
         },
+        alignTo: {
+            type: String,
+            default: "center"
+        },
+        idIs: {
+            type: String,
+            default: null
+        }
     },
     computed: {
         colNumber(){
             if (this.imgs.length == 1){
                 return "col-md-8"
             }else return "col-md-"+12/this.imgs.length
+        },
+        computedAlign(){
+            if (this.alignTo == 'left'){
+                return
+            }else if (this.alignTo == 'center'){
+                return 'jcc'
+            }else if (this.alignTo == 'right'){
+                return 'jce'
+            }
         }
     },
     data(){

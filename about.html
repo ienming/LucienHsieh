@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PTFLO: about</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        #me{
+            max-width: 300px
+        }
+    </style>
 </head>
 <body>
     <main id="app">
@@ -19,24 +24,10 @@
                 </div>
                 <main class="px-1 px-md-5">
                     <!-- Layouts -->
-                    <!-- 文齊左 -->
-                    <section class="row mb-1">
-                        <div class="col-12 col-md-6">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, iusto, pariatur amet cum assumenda ipsa dolores dolorem odio vero ad debitis odit, cumque quisquam! Consectetur ipsa aperiam dicta incidunt deleniti.</p>
-                        </div>
-                    </section>
-                    <!-- 左圖右文 -->
-                    <section class="row aic mb-1">
-                        <div class="col-12 col-md-6">
-                            <figure>
-                                <img src="./assets/img/banner.png" alt="">
-                                <figcaption>画像について説明してください</figcaption>
-                            </figure>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <p class="pt-1 pt-md-0 pl-md-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, quia sed est officia assumenda asperiores vero excepturi esse inventore doloribus aliquid, at deserunt aspernatur nostrum odit cumque ab deleniti obcaecati.</p>
-                        </div>
-                    </section>
+                    <!-- 文單欄 -->
+                    <layout-t :title="content.paragraphs[0].title" :pars="content.paragraphs[0].pars" align-to="left"></layout-t>
+                    <!-- 圖片單欄 -->
+                    <layout-i :imgs="content.figures.slice(0,1)" align-to="left" id-is="me"></layout-i>
                 </main>
             </section>
             <!-- Back to All -->
@@ -63,6 +54,40 @@
                 isScrollDown: false,
                 lastScrollTop: 0,
                 mobileMenuOpen: false,
+                content: {
+                    name: "Alishan Pamphlet Design",
+                    nameCh: "阿里山摺頁設計",
+                    info: {
+                        for: "Thesis project: Gamification Design as a way to Digital Placemaking",
+                        media: "PIXI.js, Vue.js on web",
+                        link: {
+                            title: "Go to the project",
+                            url: "https://ienming.github.io/snail-journey/"
+                        },
+                        date: "2022"
+                    },
+                    paragraphs: [
+                        {
+                            pars: ["This project aims for revealing the attitude changes in Chinese Popular Romantic Song  during 2005 to 2020 by using data visualization. Ideally, I want to show the main message that in  the past, love songs which talks about heart-broken will usually show more negative attitudes in  the lyrics. However, in recent years, lyrics with lots of positive/aggressive attitudes have also  appeared even though the story is heart-broken.",
+                                    ]
+                        },{
+                            title: "Data Collection & Parsing",
+                            pars: [`In order to assert that those data could be seen as an evidence to identify the attitudes of
+                                    whole society, I chose the most popular Chinese song every year based on KKBOX Music Chart
+                                    (KKBOX 風雲榜) from 2005 to 2020. Since the theme of these songs are all relating to
+                                    romance/love, it is no need for me to select second or third one and thus good for me to keep the
+                                    baseline of comparison.`,
+                                    `In data parsing phase, the difficulties I faced is that first I have to separate the lyrics into  pieces which has the same meaning to the original song in order to display those sentences as a  unit of data.`
+                                ]
+                        }
+                    ],
+                    figures: [
+                        {
+                            url: "./assets/img/me.jpg",
+                            figcaption: 'test'
+                        }
+                    ]
+                }
             },
             methods: {
                 scrollDirect(){
