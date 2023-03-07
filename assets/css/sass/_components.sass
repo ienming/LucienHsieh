@@ -478,8 +478,16 @@ footer
                 width: 170%
 
 /* Cover Enter Point*/
+.cover-container
+    aspect-ratio: 1/1
+    overflow: hidden
+    background-size: cover
+    background-position: center center
+
 .cover-enter-point
     position: relative
+    display: inline-block
+    +size(100%)
     &::after
         display: block
         position: absolute
@@ -502,6 +510,7 @@ footer
         align-items: center
         color: $black
         opacity: 0
+        text-align: center
         +basicTransition()
         z-index: 2
     &:hover
@@ -511,8 +520,6 @@ footer
     &:hover::after
         opacity: 1
         transform: scaleX(100%)
-    img
-        aspect-ratio: 6/4
 
 /* table  */
 $tableWidth: 600px

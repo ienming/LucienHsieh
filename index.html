@@ -13,7 +13,7 @@
         <div class="enter-animation">
             <img src="/assets/img/logo.png" alt="">
         </div>
-        <my-header :is-scroll-down="isScrollDown" @mobile-is-open="mobileIsOpen" @mobile-is-close="mobileIsClose" @show-search="switchSearchShow"></my-header>
+        <my-header :is-scroll-down="isScrollDown" @mobile-is-open="mobileIsOpen" @mobile-is-close="mobileIsClose"></my-header>
 
         <main style="overflow: hidden;">
             <!-- Content -->
@@ -115,9 +115,6 @@
                 },
                 mobileIsClose(){
                     this.mobileMenuOpen = false
-                },
-                switchSearchShow(){
-                    this.searchShow = !this.searchShow
                 }
             },
             created(){

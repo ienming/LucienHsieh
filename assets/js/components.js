@@ -5,11 +5,8 @@
 // 今回使ったcomponentたち
 const CoverEnterPoint = {
     template: `
-    <div>
+    <div class="cover-container" :style="{backgroundImage: styleUrl}">
         <a :href="url" target="newTab ? '_blank' : ''" class="cover-enter-point">
-            <figure>
-                <img class="w-100" :src="coverImg" alt="">
-            </figure>
             <p class="description">
                 <span class="t-z-6 t-w-6">{{coverTitle}}</span>
                 <span class="t-z-2 t-w-6" v-for="hashtag of coverHashtags">#{{hashtag}} </span>
@@ -19,6 +16,11 @@ const CoverEnterPoint = {
     </div>
     `,
     props: ['coverImg', 'coverTitle', 'coverDes', 'url', 'newTab', 'coverHashtags'],
+    computed: {
+        styleUrl(){
+            return `url(${this.coverImg})`
+        }
+    },
     data(){
         return {}
     }

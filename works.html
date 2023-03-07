@@ -9,7 +9,7 @@
 </head>
 <body>
     <main id="app">
-        <my-header :is-scroll-down="isScrollDown" @mobile-is-open="mobileIsOpen" @mobile-is-close="mobileIsClose" @show-search="switchSearchShow"></my-header>
+        <my-header :is-scroll-down="isScrollDown" @mobile-is-open="mobileIsOpen" @mobile-is-close="mobileIsClose"></my-header>
 
         <main style="overflow: hidden;">
             <!-- Content -->
@@ -19,11 +19,11 @@
                 </div>
                 <!-- All works -->
                 <div class="col-12 mb-2 px-1 px-md-5">
-                    <drop-down :lists="cate" :title="nowCate" @drop-click="switchGate" class="w-100 w-md-50"></drop-down>
+                    <drop-down :lists="cate" :title="nowCate" @drop-click="switchCate" class="w-100 w-md-50"></drop-down>
                 </div>
                 <transition-group class="col-12 row" name="fade">
                     <cover-enter-point
-                        class="col-12 col-md-4"
+                        class="col-12 col-sm-6 col-md-4 col-xxl-3"
                         v-for="work of filteredWorks"
                         newTab="false"
                         :url="work.url"
@@ -83,15 +83,17 @@
                         url: "pj_snail_oasis.html",
                         tags: ['design', 'code']
                     },{
-                        name: "p3",
-                        date: "2023",
-                        img: "./assets/img/banner.png",
+                        name: "阿里山摺頁設計",
+                        hashtags: ["graphic design", "pamphlet"],
+                        date: "2021",
+                        img: "./assets/img/pj_alishan_pamphlet_design/cover.png",
                         url: "",
-                        tags: ['code']
+                        tags: ['design']
                     },{
-                        name: "p4",
-                        date: "2023",
-                        img: "./assets/img/banner.png",
+                        name: "Sushillustration",
+                        hashtags: ["illustration"],
+                        date: "2019",
+                        img: "./assets/img/pj_sushillustration/cover.png",
                         url: "",
                         tags: ['painting']
                     }
@@ -130,10 +132,7 @@
                 mobileIsClose(){
                     this.mobileMenuOpen = false
                 },
-                switchSearchShow(){
-                    this.searchShow = !this.searchShow
-                },
-                switchGate(el){
+                switchCate(el){
                     this.nowCate = el
                 }
             },

@@ -9,13 +9,14 @@
 </head>
 <body>
     <main id="app">
-        <my-header :is-scroll-down="isScrollDown" @mobile-is-open="mobileIsOpen" @mobile-is-close="mobileIsClose" @show-search="switchSearchShow"></my-header>
+        <my-header :is-scroll-down="isScrollDown" @mobile-is-open="mobileIsOpen" @mobile-is-close="mobileIsClose"></my-header>
 
         <main style="overflow: hidden;">
             <!-- Content -->
             <section class="row mb-0 mt-5">
                 <div class="col-12">
-                    <h1 class="t-display mt-0 mt-md-5 mb-lg-1 t-a-c">{{project.name}}</h1>
+                    <h1 class="t-display mt-0 mt-md-5 mb-lg-1 t-a-c">{{project.nameCh}}</h1>
+                    <h3 class="t-z-6 mt-0 mb-lg-1 t-a-c">{{project.name}}</h3>
                     <!-- Description -->
                     <section class="row jcc">
                         <div class="col-12 col-md-6">
@@ -30,7 +31,6 @@
                         </div>
                     </section>
                     <project-cover :project-name="project.name"></project-cover>
-                    <!-- <div class="pj-cover" style="background-image: url('./assets/img/pj_modern_love/cover.png')"></div> -->
                 </div>
                 <main class="px-1 px-md-5">
                     <!-- Layouts -->
@@ -76,6 +76,7 @@
                 mobileMenuOpen: false,
                 project: {
                     name: "Modern Love",
+                    nameCh: "「現代愛情」",
                     info: {
                         for: "A Data Visualization Project on Creative Digital Design (Master Program in NCKU)",
                         media: "p5.js on web",
@@ -159,12 +160,6 @@
                 },
                 mobileIsClose(){
                     this.mobileMenuOpen = false
-                },
-                switchSearchShow(){
-                    this.searchShow = !this.searchShow
-                },
-                switchGate(el){
-                    this.nowCate = el
                 }
             },
             created(){
