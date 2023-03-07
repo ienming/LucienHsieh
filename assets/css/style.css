@@ -5464,12 +5464,12 @@ footer .sns > a:hover {
   width: 250px;
 }
 
-.list-info {
+.list-info, .list {
   margin: 1rem 0;
   padding: 6px 0 10px 10px;
   border-left: 3px solid #000;
 }
-.list-info li {
+.list-info li, .list li {
   margin-bottom: 8px;
   padding-bottom: 4px;
   border-bottom: 1px solid #C8C8C8;
@@ -5485,6 +5485,11 @@ footer .sns > a:hover {
   .pj-cover {
     margin: 30px 0 60px 0;
   }
+}
+
+.list {
+  border: none;
+  padding: 6px 12px 6px 0;
 }
 
 html, body {

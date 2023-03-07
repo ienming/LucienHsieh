@@ -28,6 +28,39 @@
                     <layout-t :title="content.paragraphs[0].title" :pars="content.paragraphs[0].pars" align-to="left"></layout-t>
                     <!-- 圖片單欄 -->
                     <layout-i :imgs="content.figures.slice(0,1)" align-to="left" id-is="me"></layout-i>
+                    <!-- Description -->
+                    <section class="row">
+                        <section class="col-12 my-1">
+                            <h3 class="t-z-5">工作經驗</h3>
+                            <ul class="list">
+                                <li v-for="work of content.works">
+                                    <div class="d-flex flex-column flex-md-row jcb mb-1">
+                                        <span class="t-w-6">{{work.title}}</span>
+                                        <span class="t-c-g">{{work.year}}</span>
+                                    </div>
+                                    <p v-html="work.description"></p>
+                                </li>
+                            </ul>
+                        </section>
+                        <div class="col-12 col-md-6">
+                            <h3 class="t-z-5">獎項與合作</h3>
+                            <ul class="list">
+                                <li class="d-flex jcb" v-for="award of content.awards">
+                                    <span>{{award.title}}</span>
+                                    <span class="t-c-g">{{award.year}}</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <h3 class="t-z-5">教育背景</h3>
+                            <ul class="list">
+                                <li class="d-flex jcb" v-for="edu of content.education">
+                                    <span>{{edu.title}}</span>
+                                    <span class="t-c-g">{{edu.year}}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
                 </main>
             </section>
             <!-- Back to All -->
@@ -55,21 +88,42 @@
                 lastScrollTop: 0,
                 mobileMenuOpen: false,
                 content: {
-                    name: "Alishan Pamphlet Design",
-                    nameCh: "阿里山摺頁設計",
-                    info: {
-                        for: "Thesis project: Gamification Design as a way to Digital Placemaking",
-                        media: "PIXI.js, Vue.js on web",
-                        link: {
-                            title: "Go to the project",
-                            url: "https://ienming.github.io/snail-journey/"
+                    education: {
+                        ma: {
+                            title: "國立成功大學 創意產業設計研究所 媒體與互動設計組",
+                            year: "2023"
                         },
-                        date: "2022"
+                        ba: {
+                            title: "國立政治大學 數位內容與科技學士",
+                            year: "2018"
+                        }
                     },
+                    awards: [
+                        {
+                            title: "台南三井 Outlet + UNIQLO",
+                            year: "2022",
+                        },
+                        {
+                            title: "台南設計獎 首獎",
+                            year: "2021"
+                        }
+                    ],
+                    works: [
+                        {
+                            title: "國家高速網路與計算中心 專案助理研究員",
+                            year: "2019-2020",
+                            description: `在團隊中負責繪製 UI 介面，並完成前端切版，與專案經理、工程師合作討論需求，主要負責：</br>
+                                > 前端獨立切版、響應式（ＲＷＤ）設計</br>
+                                > Vue.js 元件設計與製作</br>
+                                > 繪製 UI 介面與流程以便溝通</br>
+                                > 整理專案需求，繪製網頁架構圖`
+                        }
+                    ],
                     paragraphs: [
                         {
-                            pars: ["This project aims for revealing the attitude changes in Chinese Popular Romantic Song  during 2005 to 2020 by using data visualization. Ideally, I want to show the main message that in  the past, love songs which talks about heart-broken will usually show more negative attitudes in  the lyrics. However, in recent years, lyrics with lots of positive/aggressive attitudes have also  appeared even though the story is heart-broken.",
-                                    ]
+                            pars: [`畢業於成大創意產業設計研究所（媒體與互動設計），前端網頁設計與製作經驗約2年半，熟悉以成品的需求從設計開始直到完成前端可互動作品。
+                                    碩士畢業作品「蝸牛綠洲 Snail Oasis」包含從對設計結果的想像，到美術製作、前端實作，並進行使用者訪談 5 位使用者，以了解設計成效。
+                                    我擅長組織資訊並將之圖像化，便於和團隊討論，未來期望能更著重設計與前端互動，替產品加分。`]
                         },{
                             title: "Data Collection & Parsing",
                             pars: [`In order to assert that those data could be seen as an evidence to identify the attitudes of
@@ -84,7 +138,6 @@
                     figures: [
                         {
                             url: "./assets/img/me.jpg",
-                            figcaption: 'test'
                         }
                     ]
                 }
