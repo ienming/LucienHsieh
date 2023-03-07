@@ -4677,16 +4677,19 @@ footer .sns > a:hover {
   }
 }
 .my-header > div:not(.search-container) {
+  background: rgba(254, 254, 254, 0.8);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding: 0.25rem 25px;
-  margin-top: 20px;
+  padding-top: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 @media (min-width: 992px) {
   .my-header > div:not(.search-container) {
-    padding: 0.75rem 60px;
-    margin-top: 50px;
+    padding: 40px 60px 30px 60px;
   }
 }
 .my-header > .my-btn {
@@ -4701,6 +4704,9 @@ footer .sns > a:hover {
 }
 .my-header.out {
   transform: translateY(calc(-100% - 25px));
+}
+.my-header .mobile-menu .icon {
+  width: 24px;
 }
 .my-header .mobile-menu .menu {
   opacity: 0;

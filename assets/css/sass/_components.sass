@@ -393,11 +393,13 @@ footer
         +rwd(lg)
             margin-right: 80px
     >div:not(.search-container)
+        background: transparentize($base, .2)
+        backdrop-filter: blur(10px)
+        border-bottom: 1px solid rgba(0,0,0,.1)
         padding: .25rem 25px
-        margin-top: 20px
+        padding-top: 20px
         +rwd(lg)
-            padding: .75rem 60px
-            margin-top: 50px
+            padding: 40px 60px 30px 60px
         display: flex
         justify-content: space-between
         align-items: center
@@ -410,6 +412,8 @@ footer
     &.out
         transform: translateY(calc(-100% - 25px))
     .mobile-menu
+        .icon
+            width: 24px
         .menu
             opacity: 0
             pointer-events: none
