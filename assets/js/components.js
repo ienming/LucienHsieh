@@ -7,7 +7,16 @@ const CoverEnterPoint = {
     template: `
     <div class="cover-container" :style="{backgroundImage: styleUrl}">
         <a :href="url" target="newTab ? '_blank' : ''" class="cover-enter-point">
-            <p class="description">
+            <div class="btm-container">
+                <div class="btm-descrip">
+                    <h3 class="t-z-3">{{coverTitle}}</h3>
+                    <p class="t-z-2">
+                        <span v-for="hashtag of coverHashtags">#{{hashtag}} </span>
+                    </p>
+                    <img src="./assets/img/icons/arrow_rightTop.svg" class="icon" />
+                </div>
+            </div>
+            <p class="hover-descrip">
                 <span class="t-z-6 t-w-6">{{coverTitle}}</span>
                 <span class="t-z-2 t-w-6" v-for="hashtag of coverHashtags">#{{hashtag}} </span>
                 <span class="d-inline-block mt-1">{{coverDes}}</span>

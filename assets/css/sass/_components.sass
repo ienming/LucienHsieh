@@ -519,7 +519,25 @@ footer
         transition-duration: 0.7s
         transform-origin: left
         transform: scaleX(0)
-    .description
+    .btm-container
+        position: absolute
+        left: 0
+        bottom: 0
+        +size(100%, unset)
+        padding: 16px
+        +rwd(md)
+            display: none
+        .icon
+            position: absolute
+            right: 8px
+            top: 8px
+    .btm-descrip
+        margin: 0
+        padding: 8px 12px
+        border-left: 2px solid $black
+        background-color: transparentize($base, .1)
+        backdrop-filter: blur(10px)
+    .hover-descrip
         +poa(50%, 50%)
         transform: translate(-50%, -50%)
         display: flex
@@ -533,7 +551,7 @@ footer
         z-index: 2
     &:hover
         opacity: unset
-        .description
+        .hover-descrip
             opacity: 1
     &:hover::after
         opacity: 1
