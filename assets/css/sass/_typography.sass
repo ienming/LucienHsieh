@@ -39,10 +39,8 @@ $txtStep: 2px
     $fontLevel: 8
     font-family: 'Noto Sans TC', sans-serif
     font-weight: 700
-    writing-mode: horizontal-tb
     +rwd(md)
         letter-spacing: 4px
-        writing-mode: vertical-lr
     >span
         +typography($fontLevel+($fontLevel - 5))
         position: relative
@@ -70,10 +68,6 @@ $txtStep: 2px
         font-size: 36px
     +rwd(xl)
         font-size: 45px
-
-.sec-title-sticky
-    position: sticky
-    top: 120px
 
 .t-c
     color: $main

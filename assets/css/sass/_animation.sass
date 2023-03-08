@@ -10,17 +10,6 @@
     opacity: 0
     transform: translateY(10px)
 
-.list-complete-item
-    transition: all 1s
-    display: inline-block
-
-.list-complete-enter, .list-complete-leave-to
-    opacity: 0
-    transform: translateY(30px)
-
-.list-complete-leave-active
-    position: absolute
-
 .fade-right-enter-active, .fade-right-leave-active
     transition: all 1s
 
@@ -28,73 +17,43 @@
     opacity: 0
     transform: translateX(20px)
 
-.vue-transition
-    +poa()
+// highlight animation
+.anim-highlight
+    overflow: hidden
+    margin-bottom: 1rem
+    >span
+        position: relative
+        display: inline-block
+        animation: downFlyIn 1s forwards
+        color: $base
+        &::after
+            position: absolute
+            left: 0
+            top: 0
+            content: ""
+            +size(100%)
+            transform: scaleX(0)
+            animation: highlight 1s .3s forwards ease-in-out
 
 // scrolling
 .scroll
     position: relative
 
-// marquee
-.marquee
-    overflow: hidden
-    position: relative
-    padding: 80px 0
-    display: flex
-    justify-content: center
-    align-items: center
-    .mq_txt
-        font-size: 220px
-        font-family: 'EB Garamond', serif
-        font-weight: normal
-        opacity: 0.5
-        display: inline
-        position: absolute
-        top: -50%
-        white-space: nowrap
-        padding: 0 32px
-        background-image: linear-gradient(to right, $main, $accent)
-        -webkit-background-clip: text
-        -webkit-text-fill-color: transparent
-        &:nth-child(1)
-            animation: marqueeFirst 60s linear 0s 1, marquee 60s linear 30s infinite
-        &:nth-child(2)
-            animation: marquee 60s linear 0s infinite
-            transform: translateX(100%)
-
-@keyframes marqueeFirst
+@keyframes highlight
     0%
-        transform: translateX(0%)
-    50%
-        transform: translateX(-100%)
-        opacity: 1
-    51%
-        transform: translateX(100%)
-        opacity: 0
-    52%
-        opacity: 1
-    100%
-        transform: translateX(0%)
-
-@keyframes marquee
-    0%
-        transform: translateX(100%)
-    100%
-        transform: translateX(-100%)
-
-@keyframes flyAway
-    0%
-        transform: scaleX(1)
-        transform-origin: bottom right
-    50%
-        transform: scaleX(0)
-        transform-origin: bottom right
-    51%
         transform: scaleX(0)
         transform-origin: bottom left
-    100%
+        background-color: $black
+    50%
         transform: scaleX(1)
         transform-origin: bottom left
+    51%
+        transform: scaleX(1)
+        transform-origin: bottom right
+    100%
+        transform: scaleX(0)
+        transform-origin: bottom right
+        background-color: $base
 
 @keyframes scrolling
     0%
@@ -128,36 +87,24 @@
         opacity: 1
         top: 0
 
+@keyframes downFlyIn
+    from
+        top: 100px
+        color: $black
+    to
+        top: 0
+        color: $black
 
-// stageCarousel
-@keyframes stage-marquee-first
+@keyframes loadingRightMove
     0%
-        transform: translateX(0%)
+        transform: scaleX(0)
+        transform-origin: bottom left
     50%
-        transform: translateX(-100%)
-        opacity: 1
+        transform: scaleX(1)
+        transform-origin: bottom left
     51%
-        transform: translateX(100%)
-        opacity: 0
-    52%
-        opacity: 1
+        transform: scaleX(1)
+        transform-origin: bottom right
     100%
-        transform: translateX(0%)
-
-@keyframes stage-marquee
-    0%
-        transform: translateX(0%)
-    100%
-        transform: translateX(-200%)
-
-@keyframes bounce-x
-    0%
-        transform: translateX(0%)
-    100%
-        transform: translateX(20%)
-
-@keyframes bounce-y
-    0%
-        transform: translateY(0%)
-    100%
-        transform: translateY(10%)
+        transform: scaleX(0)
+        transform-origin: bottom right

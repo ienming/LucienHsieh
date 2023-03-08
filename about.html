@@ -20,7 +20,12 @@
             <!-- Content -->
             <section class="row mb-0 mt-5">
                 <div class="col-12 pl-1 pl-md-5">
-                    <h1 class="t-display mt-0 mt-md-5 mb-2 mb-lg-1">About</h1>
+                    <h1 class="mt-0 mt-md-5 mb-2">
+                        <div class="anim-highlight">
+                            <span class="t-title-2">About</span></br>
+                            <span class="t-title-1">關於作者</span>
+                        </div>
+                    </h1>
                 </div>
                 <main class="px-1 px-md-5">
                     <!-- Layouts -->
@@ -55,7 +60,10 @@
                             <h3 class="t-z-5">教育背景</h3>
                             <ul class="list">
                                 <li class="d-flex jcb" v-for="edu of content.education">
-                                    <span>{{edu.title}}</span>
+                                    <span>
+                                        <b>{{edu.title}}</b>
+                                        <span class="t-c-g" v-if="edu.sub">{{edu.sub}}</span>
+                                    </span>
                                     <span class="t-c-g">{{edu.year}}</span>
                                 </li>
                             </ul>
@@ -65,7 +73,7 @@
             </section>
             <!-- Back to All -->
             <section class="d-flex jcc">
-                <cta :large="true" url="works.html" class="por" title="To all projects" style="width: unset; min-width: unset;"></cta>
+                <cta :large="true" url="works.html" class="por" title="To All Works" style="width: unset; min-width: unset;"></cta>
             </section>
         </main>
 
@@ -90,13 +98,23 @@
                 content: {
                     education: {
                         ma: {
-                            title: "國立成功大學 創意產業設計研究所 媒體與互動設計組",
+                            title: "（就讀中）國立成功大學 創意產業設計研究所碩士",
+                            sub: "媒體與互動設計組",
                             year: "2023"
                         },
-                        ba: {
+                        ex: {
+                            title: "日本神戶大學 人文學部研究科",
+                            sub: "交換學生",
+                            year: "2023"
+                        },
+                        ba1: {
                             title: "國立政治大學 數位內容與科技學士",
                             year: "2018"
-                        }
+                        },
+                        ba2: {
+                            title: "國立政治大學 新聞學系",
+                            year: "2018"
+                        },
                     },
                     awards: [
                         {
@@ -121,18 +139,8 @@
                     ],
                     paragraphs: [
                         {
-                            pars: [`畢業於成大創意產業設計研究所（媒體與互動設計），前端網頁設計與製作經驗約2年半，熟悉以成品的需求從設計開始直到完成前端可互動作品。
-                                    碩士畢業作品「蝸牛綠洲 Snail Oasis」包含從對設計結果的想像，到美術製作、前端實作，並進行使用者訪談 5 位使用者，以了解設計成效。
-                                    我擅長組織資訊並將之圖像化，便於和團隊討論，未來期望能更著重設計與前端互動，替產品加分。`]
-                        },{
-                            title: "Data Collection & Parsing",
-                            pars: [`In order to assert that those data could be seen as an evidence to identify the attitudes of
-                                    whole society, I chose the most popular Chinese song every year based on KKBOX Music Chart
-                                    (KKBOX 風雲榜) from 2005 to 2020. Since the theme of these songs are all relating to
-                                    romance/love, it is no need for me to select second or third one and thus good for me to keep the
-                                    baseline of comparison.`,
-                                    `In data parsing phase, the difficulties I faced is that first I have to separate the lyrics into  pieces which has the same meaning to the original song in order to display those sentences as a  unit of data.`
-                                ]
+                            pars: [`畢業於政大DCT和成大ICID（媒體與互動設計），從大學開始做網頁，喜歡實現畫面和小動態。
+                                    興趣是把日常生活見到的畫面畫下來，偏好不透明顏料。`]
                         }
                     ],
                     figures: [

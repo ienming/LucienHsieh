@@ -51,7 +51,7 @@ const CTA = {
     props: {
         title: {
             title: String,
-            default: "Prev"
+            default: "Back To All"
         },
         large: {
             type: Boolean, 
@@ -188,14 +188,11 @@ const Footer = {
                 </div>
             </div>
             <div class="col-md-4">
-                <a :href="links.about" class="d-block mb-1 t-z-3">關於 About</a>
-                <a :href="links.design" class="d-block mb-1 t-z-3">設計 Design</a>
-                <a :href="links.code" class="d-block mb-1 t-z-3">程式 Code</a>
-                <a :href="links.painting" class="d-block mb-1 t-z-3">繪畫 Painting</a>
+                <a v-for="link of links" :href="link.url" class="d-block mb-1 t-z-3">{{link.title}}</a>
             </div>
             <div class="col-md-4">
                 <div>
-                    <basic-link title="Behance" :url="links.behance" :has-icon="true" :full="true" :highlight="false" class="mb-2 mb-md-1 d-block"></basic-link>
+                    <basic-link v-for="outer of outers" :title="outer.title" :url="outer.url" :has-icon="true" :full="true" :highlight="false" class="mb-2 mb-md-1 d-block"></basic-link>
                 </div>
                 <span class="t-z-1 mt-5">Copyrights©2023</br>Lucien Hsieh</span>
             </div>
@@ -204,12 +201,32 @@ const Footer = {
     data(){
         return{
             links: {
-                home: "index.html",
-                about: "about.html",
-                design: "works.html",
-                code: "works.html",
-                painting: "works.html",
-                behance: "https://www.behance.net/Lucienming"
+                about: {
+                    title: "關於 About",
+                    url: "about.html"
+                },
+                design: {
+                    title: "設計 Design",
+                    url: "works.html"
+                },
+                code: {
+                    title: "程式 Code",
+                    url: "works.html"
+                },
+                painting: {
+                    title: "繪畫 Painting",
+                    url: "works.html"
+                }
+            },
+            outers: {
+                behance: {
+                    title: "Behance",
+                    url: "https://www.behance.net/Lucienming"
+                },
+                ig: {
+                    title: "Instagram",
+                    url: "https://www.instagram.com/luclucxn/"
+                }
             }
         }
     }
@@ -250,11 +267,11 @@ const Header = {
                         <a v-for="page of pages" class="mobile-nav" :href="page.worksCate ? 'works.html#'+page.worksCate : page.url">
                             <span class="heading">{{ page.heading }}</span>
                         </a>
-                        <div class="sns">
+                        <!--<div class="sns">
                             <p>SNS</p>
                             <a href=""><img src="./assets/img/icons/fb.svg" alt="Facebook" class="icon mr-1"></a>
                             <a href=""><img src="./assets/img/icons/yt.svg" alt="Youtube" class="icon"></a>
-                        </div>
+                        </div>-->
                     </nav>
                 </div>
             </div>
@@ -325,7 +342,7 @@ Vue.component("my-header", Header)
 const LayoutText = {
     template: `
     <section class="row mb-1" :class="computedAlign">
-        <div class="col-12 col-md-8" :class="computedCol">
+        <div class="col-12 col-md-6">
             <h3 class="mb-1" v-if="title">{{title}}</h3>
             <h4 class="mb-1" v-if="subTitle">{{subTitle}}</h4>
             <p class="t-a-j" v-for="par of pars">{{par}}</p>
@@ -357,11 +374,6 @@ const LayoutText = {
             }else if (this.alignTo == 'right'){
                 return 'jce'
             }
-        },
-        computedCol(){
-            if (this.alignTo == 'left' || this.alignTo == 'right'){
-                return 'col-lg-6'
-            }else return
         }
     },
     data(){
@@ -403,7 +415,7 @@ const LayoutImg = {
     computed: {
         colNumber(){
             if (this.imgs.length == 1){
-                return "col-md-8"
+                return "col-md-6"
             }else return "col-md-"+12/this.imgs.length
         },
         computedAlign(){

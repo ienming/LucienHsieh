@@ -1,3 +1,5 @@
+@import './_animation'
+
 .enter-animation
     display: flex
     justify-content: center
@@ -8,16 +10,34 @@
     +size(100vw, 100vh)
     pointer-events: none
     transform-origin: left
-    >img
-        width: 250px
+    div
+        position: relative
+    span
+        display: inline-block
+        +size(25vw, 8px)
+        max-width: 100px
+        position: relative
+        animation: loadingRightMove 1.2s infinite
+        &:nth-child(1)
+            left: 75px
+            background-color: $tertiaryGrey
+        &:nth-child(2)
+            background-color: $mainDark
+            animation-delay: .1s
+        &:nth-child(3)
+            left: -75px
+            background-color: $darkGrey
+            animation-delay: .2s
 
 .list-info
-    margin: 1rem 0
+    margin: 12px
     padding: 6px 0 10px 10px
     border-left: 3px solid #000
+    +rwd(md)
+        margin: 1rem 0
     li
         margin-bottom: 8px
-        padding-bottom: 4px
+        padding-bottom: 8px
         border-bottom: 1px solid $tertiaryGrey
 
 .pj-cover

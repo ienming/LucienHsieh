@@ -6,12 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PTFLO: 工事中</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .anim-highlight>span{
+            animation-delay: 1.7s;
+        }
+        .anim-highlight>span::after{
+            animation-delay: 2s;
+        }
+    </style>
 </head>
 <body>
     <main id="app">
         <!-- Enter Animation-->
         <div class="enter-animation">
-            <img src="/assets/img/logo.png" alt="">
+            <div>
+                <span v-for="el of 3"></span>
+            </div>
         </div>
         <my-header :is-scroll-down="isScrollDown" @mobile-is-open="mobileIsOpen" @mobile-is-close="mobileIsClose"></my-header>
 
@@ -19,10 +29,10 @@
             <!-- Content -->
             <section class="row mb-0 mt-5">
                 <div class="col col-12 col-md-6 pl-1 pl-md-5">
-                    <h1 class="t-display mt-0 mt-md-5 mb-2">色々な色</br>
-                        イラスト</br>
-                        アート X Web Design</br>
-                        デーザイン
+                    <h1 class="mt-0 mt-md-5 mb-2">
+                        <div v-for="title of titles" class="anim-highlight">
+                            <span class="t-display">{{title}}</span>
+                        </div>
                     </h1>
                 </div>
                 <!-- Grid -->
@@ -64,6 +74,7 @@
                 isScrollDown: false,
                 lastScrollTop: 0,
                 mobileMenuOpen: false,
+                titles: ['色々な色', '222222', 'sannomiya'],
                 works: [
                     {
                         name: "Modern Love",
@@ -84,14 +95,10 @@
             },
             mounted(){
                 let tl = gsap.timeline()
-                let clipLogo = TweenMax.from(".enter-animation img", 1, {
-                    scale: 1.2
-                })
                 let clip = TweenMax.to(".enter-animation", .5, {
                     opacity: 0,
                 })
-                tl.add(clipLogo, .5)
-                tl.add(clip, 1.8)
+                tl.add(clip, 2)
             },
             methods: {
                 scrollDirect(){
