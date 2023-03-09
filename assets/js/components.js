@@ -382,7 +382,7 @@ const LayoutImg = {
         <div class="col-12" :class="colNumber" v-for="img of imgs">
             <figure class="mb-1 m-md-1 layout-i" :id="idIs" @click="$emit('popup-img', img.url)">
                 <img :src="img.url" alt="" :style="{width: img.mxw+'px'}">
-                <figcaption class="mt-1 t-w-2 t-a-l col-6">{{img.figcaption}}</figcaption>
+                <figcaption class="mt-1 t-w-2 t-a-l col-md-6">{{img.figcaption}}</figcaption>
             </figure>
         </div>
     </section>
