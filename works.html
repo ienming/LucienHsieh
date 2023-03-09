@@ -106,16 +106,30 @@
                         img: "./assets/img/pj_sushillustration/cover.png",
                         url: "pj_sushillustration.html",
                         cates: ['painting']
+                    },{
+                        name: "Digital Illustration",
+                        des: "電繪作品集結",
+                        hashtags: ["illustration"],
+                        date: "2022",
+                        img: "./assets/img/pj_digital_illustration/cover.png",
+                        url: "pj_digital_illustration.html",
+                        cates: ['painting']
                     }
                 ]
             },
             computed: {
+                orderWorks(){
+                    let arr = this.works.sort(function(a, b){
+                        return new Date(b.date) - new Date(a.date)
+                    })
+                    return arr
+                },
                 filteredWorks(){
                     let nowFilter = this.nowCate.split(' ')[1].toLowerCase()
                     if (nowFilter !== 'all'){
-                        return this.works.filter(work => work.cates.includes(nowFilter) )
+                        return this.orderWorks.filter(work => work.cates.includes(nowFilter) )
                     }else {
-                        return this.works
+                        return this.orderWorks
                     }
                 }
             },

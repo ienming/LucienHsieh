@@ -8,7 +8,7 @@ figcaption
     display: flex
     justify-content: center
     align-items: center
-    background-color: $base
+    background-color: $black
     z-index: 99
     position: fixed
     +size(100vw, 100vh)
@@ -24,13 +24,13 @@ figcaption
         animation: loadingRightMove 1.2s infinite
         &:nth-child(1)
             left: 75px
-            background-color: $tertiaryGrey
+            background-color: $mainTer
         &:nth-child(2)
             background-color: $mainDark
             animation-delay: .1s
         &:nth-child(3)
             left: -75px
-            background-color: $darkGrey
+            background-color: $base
             animation-delay: .2s
 
 .list-info

@@ -5554,7 +5554,7 @@ figcaption {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fefefe;
+  background-color: #000000;
   z-index: 99;
   position: fixed;
   width: 100vw;
@@ -5576,7 +5576,7 @@ figcaption {
 }
 .enter-animation span:nth-child(1) {
   left: 75px;
-  background-color: #C8C8C8;
+  background-color: #413d35;
 }
 .enter-animation span:nth-child(2) {
   background-color: #a0a0a0;
@@ -5585,7 +5585,7 @@ figcaption {
 }
 .enter-animation span:nth-child(3) {
   left: -75px;
-  background-color: #333333;
+  background-color: #fefefe;
   -webkit-animation-delay: 0.2s;
           animation-delay: 0.2s;
 }
