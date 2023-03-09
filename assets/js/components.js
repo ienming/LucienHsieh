@@ -204,16 +204,8 @@ const Footer = {
                     title: "關於 About",
                     url: "about.html"
                 },
-                design: {
-                    title: "設計 Design",
-                    url: "works.html"
-                },
-                code: {
-                    title: "程式 Code",
-                    url: "works.html"
-                },
-                painting: {
-                    title: "繪畫 Painting",
+                works: {
+                    title: "作品 Works",
                     url: "works.html"
                 }
             },
@@ -291,14 +283,8 @@ const Header = {
                 heading: '關於 About',
                 url: 'about.html'
             },{
-                heading: '設計 Design',
-                worksCate: 'design',
-            },{
-                heading: '程式 Code',
-                worksCate: 'code',
-            },{
-                heading: '繪畫 Painting',
-                worksCate: 'painting',
+                heading: '作品 Works',
+                url: 'works.html'
             }
         ]
         return {
