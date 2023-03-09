@@ -14,31 +14,43 @@
         <main style="overflow: hidden;">
             <!-- Content -->
             <section class="row mb-0 mt-5">
-                <div class="col-12 mt-3 mt-md-0">
-                    <h1 class="t-display mt-0 mt-md-5 mb-lg-1 t-a-c">{{project.nameCh}}</h1>
-                    <h3 class="t-z-6 mt-0 mb-lg-1 t-a-c">{{project.name}}</h3>
-                    <!-- Description -->
-                    <section class="row jcc">
-                        <div class="col-12 col-md-6">
-                            <ul class="list-info">
-                                <li>{{project.info.for}}</li>
-                                <li>{{project.info.media}}</li>
-                                <li v-if="project.info.link">
-                                    <basic-link :title="project.info.link.title" :url="project.info.link.url" :highlight="false"></basic-link>
-                                </li>
-                                <li>{{project.info.date}}</li>
-                            </ul>
-                        </div>
-                    </section>
+                <div class="col-12">
                     <project-cover :project-name="project.name"></project-cover>
                 </div>
                 <main class="px-1 px-md-5">
+                    <div class="mb-2 mb-md-1 layout-t">
+                        <h1 class="t-title-1 mb-lg-1">{{project.nameCh}}</h1>
+                        <h3 class="t-z-6 mt-0 mb-lg-1">{{project.name}}</h3>
+                    </div>
                     <!-- Layouts -->
-                    <!-- 文單欄 -->
-                    <layout-t :title="project.paragraphs[0].title" :pars="project.paragraphs[0].pars"></layout-t>
-                    <!-- 圖片單欄 -->
-                    <layout-i :imgs="project.figures.slice(0,1)"></layout-i>
+                    <section class="layout-t">
+                        <!-- 文單欄 -->
+                        <layout-t :pars-num="project.paragraphs[0]"></layout-t>
+                        <!-- 圖片單欄 -->
+                        <layout-i @popup-img="popup" :imgs="project.figures.slice(0,1)"></layout-i>
+                        <layout-i @popup-img="popup" :imgs="project.figures.slice(1,2)"></layout-i>
+                        <layout-i @popup-img="popup" :imgs="project.figures.slice(2,3)"></layout-i>
+                    </section>
                 </main>
+            </section>
+            <!-- Credits -->
+            <section class="row jcc">
+                <div class="col-12 col-md-6">
+                    <ul class="list-info">
+                        <li>{{project.info.for}}</li>
+                        <li>{{project.info.media}}</li>
+                        <li v-if="project.info.link">
+                            <basic-link :title="project.info.link.title" :url="project.info.link.url" :highlight="false"></basic-link>
+                        </li>
+                        <li>{{project.info.date}}</li>
+                    </ul>
+                </div>
+            </section>
+            <!-- Popup -->
+            <section>
+                <div class="popup" v-if="popupShow" @click="popupShow = !popupShow">
+                    <img :src="popupShowImg" alt="">
+                </div>
             </section>
             <!-- Back to All -->
             <section class="d-flex jcc">
@@ -64,53 +76,33 @@
                 isScrollDown: false,
                 lastScrollTop: 0,
                 mobileMenuOpen: false,
+                popupShow: false,
+                popupShowImg: undefined,
                 project: {
                     name: "Alishan Pamphlet Design",
                     nameCh: "阿里山摺頁設計",
                     info: {
                         for: "合作對象：阿里山林業鐵路局",
+                        link: {
+                            title: "Go to the project!",
+                            url: "https://www.behance.net/gallery/139774659/Editorial-Design-for-Alishan-Forest-Railway-Pahmphlet"
+                        },
                         media: "工具：Adobe Illustrator",
                         date: "2022"
                     },
                     paragraphs: [
                         {
-                            title: "Idea",
-                            pars: ["This project aims for revealing the attitude changes in Chinese Popular Romantic Song  during 2005 to 2020 by using data visualization. Ideally, I want to show the main message that in  the past, love songs which talks about heart-broken will usually show more negative attitudes in  the lyrics. However, in recent years, lyrics with lots of positive/aggressive attitudes have also  appeared even though the story is heart-broken.", "Thus, I made up three hypothesis which I will try to verify on the visualization. First, the  attitudes of lyrics have changed according to different themes of romantic songs during 15 years.  Second, certain usage of “subject” usually appears with certain attitude. Third, certain usage of  “love”(this word) usually comes up with certain subject or attitude, and also, there is a pattern of  usage of “love” in Chinese Popular Romantic Song."]
-                        },{
-                            title: "Data Collection & Parsing",
-                            pars: [`In order to assert that those data could be seen as an evidence to identify the attitudes of
-                                    whole society, I chose the most popular Chinese song every year based on KKBOX Music Chart
-                                    (KKBOX 風雲榜) from 2005 to 2020. Since the theme of these songs are all relating to
-                                    romance/love, it is no need for me to select second or third one and thus good for me to keep the
-                                    baseline of comparison.`,
-                                    `In data parsing phase, the difficulties I faced is that first I have to separate the lyrics into  pieces which has the same meaning to the original song in order to display those sentences as a  unit of data.`
-                                ]
-                        },{
-                            title: "Visual Design to show the emotions",
-                            pars: [`In visual design, I decided to use color for conveying my message, showing the trend by
-                                    attitudes. In terms of other micro messages, I designed some symbol to convey the story behind
-                                    those data. Here is the brief overview of whole visual display.`
-                                ]
-                        },{
-                            pars: [`I decided to colorize data based on two groups of attitudes: aggressive/negative. The
-                                data in aggressive group will be colorized in reddish tone. On the other hand, data with emotions
-                                in negative group will be colorized in bluish tone. Which corresponds to the common reaction
-                                what people feel when seeing the color. The images below show some prototypes I’ve tried during
-                                designing the visual look of this project.`]
-                        },{
-                            pars: [`For legend design, I think more on the symbol of “subject” since I tried to let the symbol
-                                itself has some relationship to the meaning. Thus, I combined “dot” and “line” to distinguish
-                                different usage of “subject”. As the outside usually connects to upside on physically spatial feeling
-                                of human beings, I designed the symbol combined with dot and the line on top to signify the
-                                meaning of “you”. On the other hand, inner side connects to downside means “I/me”. A little
-                                special thing is that I designed “We” as the dot surrounded by another circle so as to convey the
-                                feeling of “coming together, becoming the one.`]
+                            pars: ["與阿里山林業鐵路及文化資產管理處合作的阿里山林鐵觀光手冊，負責手冊設計、編排與內容的插圖繪製。被使用在車站處和機場等地方，推廣阿里山林鐵的美！"]
                         }
                     ],
                     figures: [
                         {
-                            url: "./assets/img/pj_snail_oasis/cover.png",
-                            figcaption: 'test'
+                            url: './assets/img/pj_alishan_pamphlet_design/1.jpeg',
+                        },{
+                            url: './assets/img/pj_alishan_pamphlet_design/2.png',
+                            figcaption: "跨頁展示了阿里山林鐵從平地起站到終點祝山站的沿路各站介紹。線路從左下到右上延伸呈現出鐵路攀爬、海拔起伏的過程。背景畫上台灣在不同海拔氣候帶中著名的代表性植物。"
+                        },{
+                            url: './assets/img/pj_alishan_pamphlet_design/3.jpg',
                         }
                     ]
                 }
@@ -137,6 +129,10 @@
                 },
                 mobileIsClose(){
                     this.mobileMenuOpen = false
+                },
+                popup(el){
+                    this.popupShow = true
+                    this.popupShowImg = el
                 }
             },
             created(){

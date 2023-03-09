@@ -14,61 +14,71 @@
         <main style="overflow: hidden;">
             <!-- Content -->
             <section class="row mb-0 mt-5">
-                <div class="col-12 mt-3 mt-md-0">
-                    <h1 class="t-display mt-0 mt-md-5 mb-lg-1 t-a-c">{{project.nameCh}}</h1>
-                    <h3 class="t-z-6 mt-0 mb-lg-1 t-a-c">{{project.name}}</h3>
-                    <!-- Description -->
-                    <section class="row jcc">
-                        <div class="col-12 col-md-6">
-                            <ul class="list-info">
-                                <li>{{project.info.for}}</li>
-                                <li>{{project.info.media}}</li>
-                                <li v-if="project.info.link">
-                                    <basic-link :title="project.info.link.title" :url="project.info.link.url" :highlight="false"></basic-link>
-                                </li>
-                                <li>{{project.info.date}}</li>
-                            </ul>
-                        </div>
-                    </section>
+                <div class="col-12">
                     <project-cover :project-name="project.name"></project-cover>
                 </div>
                 <main class="px-1 px-md-5">
+                    <div class="mb-2 mb-md-1 layout-t">
+                        <h1 class="t-title-1 mb-lg-1">{{project.nameCh}}</h1>
+                        <h3 class="t-z-6 mt-0 mb-lg-1">{{project.name}}</h3>
+                    </div>
                     <!-- Layouts -->
-                    <!-- 創作背景 -->
-                    <layout-t :pars-num="project.paragraphs[0]"></layout-t>
-                    <!-- 設計說明 -->
-                    <layout-t :pars-num="project.paragraphs[1]"></layout-t>
-                    <!-- 圖片單欄 -->
-                    <layout-i :imgs="project.figures.slice(0,1)"></layout-i>
-                    <!-- 收集家具 -->
-                    <layout-t :pars-num="project.paragraphs[2]"></layout-t>
-                    <!-- 圖片單欄 -->
-                    <layout-i :imgs="project.figures.slice(1,2)"></layout-i>
-                    <!-- 圖片單欄 -->
-                    <layout-i :imgs="project.figures.slice(2,3)"></layout-i>
-                    <!-- 文單欄 -->
-                    <layout-t :pars-num="project.paragraphs[3]"></layout-t>
-                    <!-- 圖片單欄 -->
-                    <layout-i :imgs="project.figures.slice(3,4)"></layout-i>
-                    <!-- 文單欄 -->
-                    <layout-t :pars-num="project.paragraphs[4]"></layout-t>
-                    <!-- 圖片單欄 -->
-                    <layout-i :imgs="project.figures.slice(4,5)"></layout-i>
-                    <!-- 文單欄 -->
-                    <layout-t :pars-num="project.paragraphs[5]"></layout-t>
-                    <!-- 圖片單欄 -->
-                    <layout-i :imgs="project.figures.slice(5,6)"></layout-i>
-                    <!-- 圖片單欄 -->
-                    <layout-i :imgs="project.figures.slice(6,7)"></layout-i>
-                    <!-- 文單欄 -->
-                    <layout-t :pars-num="project.paragraphs[6]"></layout-t>
-                    <!-- 圖片單欄 -->
-                    <layout-i :imgs="project.figures.slice(7,9)"></layout-i>
-                    <!-- 文單欄 -->
-                    <layout-t :pars-num="project.paragraphs[7]"></layout-t>
-                    <!-- 圖片單欄 -->
-                    <layout-i :imgs="project.figures.slice(9,10)"></layout-i>
+                    <section class="layout-t">
+                        <!-- 創作背景 -->
+                        <layout-t :pars-num="project.paragraphs[0]"></layout-t>
+                        <!-- 設計說明 -->
+                        <layout-t :pars-num="project.paragraphs[1]"></layout-t>
+                        <!-- 圖片單欄 -->
+                        <layout-i @popup-img="popup" :imgs="project.figures.slice(0,1)"></layout-i>
+                        <!-- 收集家具 -->
+                        <layout-t :pars-num="project.paragraphs[2]"></layout-t>
+                        <!-- 圖片單欄 -->
+                        <layout-i @popup-img="popup" :imgs="project.figures.slice(1,2)"></layout-i>
+                        <!-- 圖片單欄 -->
+                        <layout-i @popup-img="popup" :imgs="project.figures.slice(2,3)"></layout-i>
+                        <!-- 文單欄 -->
+                        <layout-t :pars-num="project.paragraphs[3]"></layout-t>
+                        <!-- 圖片單欄 -->
+                        <layout-i @popup-img="popup" :imgs="project.figures.slice(3,4)"></layout-i>
+                        <!-- 文單欄 -->
+                        <layout-t :pars-num="project.paragraphs[4]"></layout-t>
+                        <!-- 圖片單欄 -->
+                        <layout-i @popup-img="popup" :imgs="project.figures.slice(4,5)"></layout-i>
+                        <!-- 文單欄 -->
+                        <layout-t :pars-num="project.paragraphs[5]"></layout-t>
+                        <!-- 圖片單欄 -->
+                        <layout-i @popup-img="popup" :imgs="project.figures.slice(5,6)"></layout-i>
+                        <!-- 圖片單欄 -->
+                        <layout-i @popup-img="popup" :imgs="project.figures.slice(6,7)"></layout-i>
+                        <!-- 文單欄 -->
+                        <layout-t :pars-num="project.paragraphs[6]"></layout-t>
+                        <!-- 圖片單欄 -->
+                        <layout-i @popup-img="popup" :imgs="project.figures.slice(7,9)"></layout-i>
+                        <!-- 文單欄 -->
+                        <layout-t :pars-num="project.paragraphs[7]"></layout-t>
+                        <!-- 圖片單欄 -->
+                        <layout-i @popup-img="popup" :imgs="project.figures.slice(9,10)"></layout-i>
+                    </section>
                 </main>
+            </section>
+            <!-- Credits -->
+            <section class="row jcc">
+                <div class="col-12 col-md-6">
+                    <ul class="list-info">
+                        <li>{{project.info.for}}</li>
+                        <li>{{project.info.media}}</li>
+                        <li v-if="project.info.link">
+                            <basic-link :title="project.info.link.title" :url="project.info.link.url" :highlight="false"></basic-link>
+                        </li>
+                        <li>{{project.info.date}}</li>
+                    </ul>
+                </div>
+            </section>
+            <!-- Popup -->
+            <section>
+                <div class="popup" v-if="popupShow" @click="popupShow = !popupShow">
+                    <img :src="popupShowImg" alt="">
+                </div>
             </section>
             <!-- Back to All -->
             <section class="d-flex jcc">
@@ -94,6 +104,8 @@
                 isScrollDown: false,
                 lastScrollTop: 0,
                 mobileMenuOpen: false,
+                popupShow: false,
+                popupShowImg: undefined,
                 project: {
                     name: "Snail Oasis",
                     nameCh: "蝸牛綠洲",
@@ -197,6 +209,10 @@
                 },
                 mobileIsClose(){
                     this.mobileMenuOpen = false
+                },
+                popup(el){
+                    this.popupShow = true
+                    this.popupShowImg = el
                 }
             },
             created(){

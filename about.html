@@ -18,24 +18,20 @@
 
         <main style="overflow: hidden;">
             <!-- Content -->
-            <section class="row mb-0 mt-5">
-                <div class="col-12 pl-1 pl-md-5">
+            <section class="row mb-0 mt-5 layout-t">
+                <main class="px-1 px-md-5">
                     <h1 class="mt-0 mt-md-5 mb-2">
                         <div class="anim-highlight">
                             <span class="t-title-2">About</span></br>
                             <span class="t-title-1">關於作者</span>
                         </div>
                     </h1>
-                </div>
-                <main class="px-1 px-md-5">
                     <!-- Layouts -->
-                    <!-- 文單欄 -->
-                    <layout-t :title="content.paragraphs[0].title" :pars="content.paragraphs[0].pars" align-to="left"></layout-t>
-                    <!-- 圖片單欄 -->
-                    <layout-i :imgs="content.figures.slice(0,1)" align-to="left" id-is="me"></layout-i>
+                    <layout-t :pars-num="content.paragraphs[0]"></layout-t>
+                    <layout-i :imgs="content.figures.slice(0,1)" id-is="me"></layout-i>
                     <!-- Description -->
                     <section class="row">
-                        <section class="col-12 my-1">
+                        <section class="col-12 col-md-10 my-1">
                             <h3 class="t-z-5">工作經驗</h3>
                             <ul class="list">
                                 <li v-for="work of content.works">
@@ -47,7 +43,7 @@
                                 </li>
                             </ul>
                         </section>
-                        <div class="col-12 col-md-6">
+                        <div class="col-12 col-md-10">
                             <h3 class="t-z-5">獎項與合作</h3>
                             <ul class="list">
                                 <li class="d-flex jcb" v-for="award of content.awards">
@@ -56,7 +52,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="col-12 col-md-6">
+                        <div class="col-12 col-md-10">
                             <h3 class="t-z-5">教育背景</h3>
                             <ul class="list">
                                 <li class="d-flex jcb" v-for="edu of content.education">

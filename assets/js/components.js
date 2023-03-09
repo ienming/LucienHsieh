@@ -357,19 +357,9 @@ const LayoutText = {
                 pars: ['par1', 'par2']
             }
         },
-        // title: {
-        //     default: ""
-        // },
-        // subTitle: {
-        //     default: ""
-        // },
-        // pars: {
-        //     type: Array,
-        //     default: ['par1', 'par2']
-        // },
         alignTo: {
             type: String,
-            default: "center"
+            default: "left"
         }
     },
     computed: {
@@ -393,9 +383,9 @@ const LayoutImg = {
     template: `
     <section class="row aic mb-1" :class="computedAlign">
         <div class="col-12" :class="colNumber" v-for="img of imgs">
-            <figure class="t-a-c mb-1 m-md-1" :id="idIs">
+            <figure class="mb-1 m-md-1 layout-i" :id="idIs" @click="$emit('popup-img', img.url)">
                 <img :src="img.url" alt="" :style="{width: img.mxw+'px'}">
-                <figcaption class="mt-1 t-w-2 t-a-l">{{img.figcaption}}</figcaption>
+                <figcaption class="mt-1 t-w-2 t-a-l col-6">{{img.figcaption}}</figcaption>
             </figure>
         </div>
     </section>
@@ -405,7 +395,7 @@ const LayoutImg = {
             type: Array,
             default: [
                 {
-                    url: "./assets/img/banner.png",
+                    url: "./assets/img/no_img.jpg",
                     figcaption: "画像について説明してください",
                     mxw: "initial"
                 }
@@ -413,7 +403,7 @@ const LayoutImg = {
         },
         alignTo: {
             type: String,
-            default: "center"
+            default: "left"
         },
         idIs: {
             type: String,
@@ -423,8 +413,8 @@ const LayoutImg = {
     computed: {
         colNumber(){
             if (this.imgs.length == 1){
-                return "col-md-6"
-            }else return "col-md-"+6/this.imgs.length
+                return "col-md-10"
+            }else return "col-md-"+10/this.imgs.length
         },
         computedAlign(){
             if (this.alignTo == 'left'){
@@ -442,69 +432,6 @@ const LayoutImg = {
 }
 Vue.component('layout-i', LayoutImg)
 
-const LayoutLI = {
-    template: `
-    <section class="row flex-column-r flex-md-row aic mb-1">
-        <div class="col-12 col-md-6">
-            <figure>
-                <img :src="imgUrl" alt="">
-                <figcaption>{{figcaption}}</figcaption>
-            </figure>
-        </div>
-        <div class="col-12 col-md-6">
-            <p class="pb-1 pb-md-0 pr-md-1" v-for="par of pars">{{par}}</p>
-        </div>
-    </section>
-    `,
-    props: {
-        pars: {
-            type: Array,
-            default: ["par"]
-        },
-        imgUrl: {
-            default: "./assets/img/banner.png"
-        },
-        figcaption: {
-            default: "画像について説明してください"
-        }
-    },
-    data(){
-        return {}
-    }
-}
-Vue.component('layout-li', LayoutLI)
-
-const LayoutLT = {
-    template: `
-    <section class="row aic mb-1">
-        <div class="col-12 col-md-6">
-            <p class="pb-1 pb-md-0 pr-md-1" v-for="par of pars">{{par}}</p>
-        </div>
-        <div class="col-12 col-md-6">
-            <figure>
-                <img :src="imgUrl" alt="">
-                <figcaption>{{figcaption}}</figcaption>
-            </figure>
-        </div>
-    </section>
-    `,
-    props: {
-        pars: {
-            type: Array,
-            default: ["par"]
-        },
-        imgUrl: {
-            default: "./assets/img/banner.png"
-        },
-        figcaption: {
-            default: "画像について説明してください"
-        }
-    },
-    data(){
-        return {}
-    }
-}
-Vue.component('layout-lt', LayoutLT)
 
 // 
 // 

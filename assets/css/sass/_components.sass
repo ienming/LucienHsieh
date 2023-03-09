@@ -558,6 +558,40 @@ footer
         opacity: 1
         transform: scaleX(100%)
 
+/* layout */
+.layout-t
+    +rwd(md)
+        padding-left: calc(100vw/12)
+
+.layout-i
+    cursor: pointer
+    +basicTransition()
+    &:hover
+        opacity: 0.8
+
+/* modal popup */
+.popup
+    cursor: pointer
+    position: fixed
+    top: 0
+    left: 0
+    +size(100%)
+    background-color: rgba(0,0,0,.8)
+    z-index: 99
+    img
+        position: absolute
+        left: 50%
+        top: 50%
+        transform: translate(-50%, -50%)
+        max-width: 80vw
+        +rwd(md)
+            max-height: 80vh
+    button
+        position: absolute
+        right: 30px
+        top: 30px
+        background-color: $base
+
 /* table  */
 $tableWidth: 600px
 .my-table-container

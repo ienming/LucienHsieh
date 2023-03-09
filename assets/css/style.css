@@ -187,12 +187,12 @@ button:disabled {
 .t-title-1 {
   font-family: "Noto Serif TC", serif;
   font-weight: 700;
-  font-size: 36px;
+  font-size: 28px;
   line-height: 1.5;
 }
 @media (min-width: 768px) {
   .t-title-1 {
-    font-size: 38px;
+    font-size: 30px;
   }
 }
 
@@ -206,13 +206,13 @@ button:disabled {
   }
 }
 .t-title-2 > span {
-  font-size: 32px;
+  font-size: 24px;
   line-height: 1.5;
   position: relative;
 }
 @media (min-width: 768px) {
   .t-title-2 > span {
-    font-size: 34px;
+    font-size: 26px;
   }
 }
 .t-title-2 > span::after {
@@ -4788,6 +4788,51 @@ footer .sns > a:hover {
 .cover-enter-point:hover::after {
   opacity: 1;
   transform: scaleX(100%);
+}
+
+/* layout */
+@media (min-width: 768px) {
+  .layout-t {
+    padding-left: 8.3333333333vw;
+  }
+}
+
+.layout-i {
+  cursor: pointer;
+  transition: 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.layout-i:hover {
+  opacity: 0.8;
+}
+
+/* modal popup */
+.popup {
+  cursor: pointer;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 99;
+}
+.popup img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 80vw;
+}
+@media (min-width: 768px) {
+  .popup img {
+    max-height: 80vh;
+  }
+}
+.popup button {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  background-color: #fefefe;
 }
 
 /* table  */
