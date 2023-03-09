@@ -368,7 +368,7 @@ const LayoutImg = {
         <div class="col-12" :class="colNumber" v-for="img of imgs">
             <figure class="mb-1 m-md-1 layout-i" :id="idIs" @click="$emit('popup-img', img.url)">
                 <img :src="img.url" alt="" :style="{width: img.mxw+'px'}">
-                <figcaption class="mt-1 t-w-2 t-a-l col-md-6">{{img.figcaption}}</figcaption>
+                <figcaption class="mt-1 t-w-2 t-a-l" :class="captionCol">{{img.figcaption}}</figcaption>
             </figure>
         </div>
     </section>
@@ -397,7 +397,12 @@ const LayoutImg = {
         colNumber(){
             if (this.imgs.length == 1){
                 return "col-md-10"
-            }else return "col-md-"+10/this.imgs.length
+            }else return "col-md-"+Math.floor(10/this.imgs.length)
+        },
+        captionCol(){
+            if (this.imgs.length > 1){
+                return "col-md-12"
+            }else return "col-md-6"
         },
         computedAlign(){
             if (this.alignTo == 'left'){

@@ -24,15 +24,15 @@
                     </div>
                     <!-- Layouts -->
                     <section class="layout-t">
-                        <!-- 文單欄 -->
                         <layout-t :pars-num="project.paragraphs[0]"></layout-t>
-                        <!-- 圖片單欄 -->
-                        <layout-i @popup-img="popup" :imgs="project.figures.slice(0,1)"></layout-i>
-                        <layout-i @popup-img="popup" :imgs="project.figures.slice(1,2)"></layout-i>
-                        <layout-i @popup-img="popup" :imgs="project.figures.slice(2,3)"></layout-i>
-                        <layout-i @popup-img="popup" :imgs="project.figures.slice(3,4)"></layout-i>
-                        <layout-i @popup-img="popup" :imgs="project.figures.slice(4,5)"></layout-i>
-                        <layout-i @popup-img="popup" :imgs="project.figures.slice(5,6)"></layout-i>
+                        <layout-i @popup-img="popup" :imgs="project.figures.slice(0,2)"></layout-i>
+                        <layout-i @popup-img="popup" :imgs="project.figures.slice(2,4)" align-to="center"></layout-i>
+                        <layout-i @popup-img="popup" :imgs="project.figures.slice(4,6)" align-to="right"></layout-i>
+                        <layout-i @popup-img="popup" :imgs="project.figures.slice(6,8)"></layout-i>
+                        <layout-i @popup-img="popup" :imgs="project.figures.slice(8,10)"></layout-i>
+                        <layout-i @popup-img="popup" :imgs="project.figures.slice(10,13)" align-to="right"></layout-i>
+                        <layout-i @popup-img="popup" :imgs="project.figures.slice(13,15)" align-to="center"></layout-i>
+                        <layout-i @popup-img="popup" :imgs="project.figures.slice(15,17)"></layout-i>
                     </section>
                 </main>
             </section>
@@ -87,30 +87,59 @@
                     info: {
                         for: "Personal Side Project",
                         media: "Digital Painting (PHOTOSHOP)",
-                        link: {
-                            title: "View on Behance",
-                            url: "https://www.behance.net/gallery/85191807/-Sushillustration-no-0115"
-                        },
                         date: "Till 2022"
                     },
                     paragraphs: [
                         {
-                            pars: ["いらっしゃいませ！這是我下班後回家的畫圖小活動，用photoshop一天畫一個壽司，持續了十五天。ごゆっくりどうぞ〜"]
+                            pars: ["至2022年創作的電繪作品，包含用於商業出版的作品和個人的隨意小畫。"]
                         }
                     ],
                     figures: [
                         {
-                            url: "./assets/img/pj_sushillustration/sushis_1.jpg",
+                            url: "./assets/img/pj_digital_illustration/us.jpg",
+                            figcaption: "US"
                         },{
-                            url: "./assets/img/pj_sushillustration/sushis_2.jpg",
+                            url: "./assets/img/pj_digital_illustration/time.jpg",
+                            figcaption: "Time"
                         },{
-                            url: "./assets/img/pj_sushillustration/sushis_3.jpg",
+                            url: "./assets/img/pj_digital_illustration/love.jpg",
+                            figcaption: "Finding Love"
                         },{
-                            url: "./assets/img/pj_sushillustration/sushis_4.jpg",
+                            url: "./assets/img/pj_digital_illustration/aki.jpg",
+                            figcaption: "Aki"
                         },{
-                            url: "./assets/img/pj_sushillustration/sushis_5.jpg",
+                            url: "./assets/img/pj_digital_illustration/wait.jpg",
+                            figcaption: "等待回聲 Waiting for Echo"
                         },{
-                            url: "./assets/img/pj_sushillustration/all.jpg",
+                            url: "./assets/img/pj_digital_illustration/萬中選一的青年.jpg",
+                            figcaption: "萬中選一的青年（靈感來自昏鴉的歌曲）"
+                        },{
+                            url: "./assets/img/pj_digital_illustration/南下.jpg",
+                            figcaption: "南下。從高鐵望向的風景。"
+                        },{
+                            url: "./assets/img/pj_digital_illustration/新湖一路口.jpg",
+                            figcaption: "新湖一路口。Bei Fern「擠在城市角落」個人音樂專場主視覺。"
+                        },{
+                            url: "./assets/img/pj_digital_illustration/0331.jpg",
+                        },{
+                            url: "./assets/img/pj_digital_illustration/0125.jpg",
+                        },{
+                            url: "./assets/img/pj_digital_illustration/dennsya_study.jpg",
+                        },{
+                            url: "./assets/img/pj_digital_illustration/sanpo2.jpg",
+                            figcaption: "放課後"
+                        },{
+                            url: "./assets/img/pj_digital_illustration/sanpo3.jpg",
+                            figcaption: "交大竹湖"
+                        },{
+                            url: "./assets/img/pj_digital_illustration/when_night_falls_down.jpg",
+                            figcaption: "When Night Falls Down"
+                        },{
+                            url: "./assets/img/pj_digital_illustration/youwanesouzai.jpg",
+                            figcaption: "遙遠的所在（靈感來自廖士賢的歌曲）"
+                        },{
+                            url: "./assets/img/pj_digital_illustration/demachiyanagi.jpg",
+                            figcaption: "書籍「出町柳」封面插畫。"
                         }
                     ]
                 }
