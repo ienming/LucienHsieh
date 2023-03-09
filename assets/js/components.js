@@ -259,9 +259,6 @@ const Header = {
             </header>
             <div>
                 <div class="row w-100 mt-md-3">
-                    <figure class="col-12 col-md-6 px-md-1">
-                        <img src="./assets/img/banner.png" />
-                    </figure>
                     <nav class="col-12 col-md-6 px-md-1">
                         <a v-for="page of pages" class="mobile-nav" :href="page.worksCate ? 'works.html#'+page.worksCate : page.url">
                             <span class="heading">{{ page.heading }}</span>
