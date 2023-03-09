@@ -828,6 +828,10 @@ p, span, a, ul {
   text-align: center;
 }
 
+.t-a-l {
+  text-align: left;
+}
+
 .t-a-j {
   text-align: justify;
 }
@@ -5496,6 +5500,11 @@ footer .sns > a:hover {
     transform-origin: bottom right;
   }
 }
+figcaption {
+  border-left: 1.5px solid #000;
+  padding-left: 8px;
+}
+
 .enter-animation {
   display: flex;
   justify-content: center;

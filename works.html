@@ -35,7 +35,8 @@
                         :cover-img="work.img"
                         :cover-title="work.name"
                         :cover-hashtags="work.hashtags"
-                        :cover-des="work.date"
+                        :cover-des="work.des"
+                        :date="work.date"
                         :key="work.name">
                     </cover-enter-point>
                 </transition-group>
@@ -75,32 +76,36 @@
                 works: [
                     {
                         name: "Modern Love",
+                        des: "將中文愛情歌詞做成的互動式資料視覺化",
                         hashtags: ["data visualization", "p5.js"],
                         date: "2021",
                         img: "./assets/img/pj_modern_love/cover.png",
                         url: "pj_modern_love.html",
-                        tags: ['design', 'code']
+                        cates: ['design', 'code']
                     },{
                         name: "Snail Oasis",
+                        des: "基於「台南蝸牛巷」的遊戲化設計",
                         hashtags: ["gamification", "PIXI.js"],
                         date: "2022",
                         img: "./assets/img/pj_snail_oasis/cover.png",
                         url: "pj_snail_oasis.html",
-                        tags: ['design', 'code']
+                        cates: ['design', 'code']
                     },{
                         name: "阿里山摺頁設計",
+                        des: "阿里山林業鐵路觀光摺頁",
                         hashtags: ["graphic design", "pamphlet"],
                         date: "2021",
                         img: "./assets/img/pj_alishan_pamphlet_design/cover.png",
                         url: "pj_alishan.html",
-                        tags: ['design']
+                        cates: ['design']
                     },{
                         name: "Sushillustration",
+                        des: "壽司插畫集注文中",
                         hashtags: ["illustration"],
                         date: "2019",
                         img: "./assets/img/pj_sushillustration/cover.png",
                         url: "pj_sushillustration.html",
-                        tags: ['painting']
+                        cates: ['painting']
                     }
                 ]
             },
@@ -108,7 +113,7 @@
                 filteredWorks(){
                     let nowFilter = this.nowCate.split(' ')[1].toLowerCase()
                     if (nowFilter !== 'all'){
-                        return this.works.filter(work => work.tags.includes(nowFilter) )
+                        return this.works.filter(work => work.cates.includes(nowFilter) )
                     }else {
                         return this.works
                     }

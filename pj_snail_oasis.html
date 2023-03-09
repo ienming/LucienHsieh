@@ -34,10 +34,40 @@
                 </div>
                 <main class="px-1 px-md-5">
                     <!-- Layouts -->
-                    <!-- 文單欄 -->
-                    <layout-t :title="project.paragraphs[0].title" :pars="project.paragraphs[0].pars"></layout-t>
+                    <!-- 創作背景 -->
+                    <layout-t :pars-num="project.paragraphs[0]"></layout-t>
+                    <!-- 設計說明 -->
+                    <layout-t :pars-num="project.paragraphs[1]"></layout-t>
                     <!-- 圖片單欄 -->
                     <layout-i :imgs="project.figures.slice(0,1)"></layout-i>
+                    <!-- 收集家具 -->
+                    <layout-t :pars-num="project.paragraphs[2]"></layout-t>
+                    <!-- 圖片單欄 -->
+                    <layout-i :imgs="project.figures.slice(1,2)"></layout-i>
+                    <!-- 圖片單欄 -->
+                    <layout-i :imgs="project.figures.slice(2,3)"></layout-i>
+                    <!-- 文單欄 -->
+                    <layout-t :pars-num="project.paragraphs[3]"></layout-t>
+                    <!-- 圖片單欄 -->
+                    <layout-i :imgs="project.figures.slice(3,4)"></layout-i>
+                    <!-- 文單欄 -->
+                    <layout-t :pars-num="project.paragraphs[4]"></layout-t>
+                    <!-- 圖片單欄 -->
+                    <layout-i :imgs="project.figures.slice(4,5)"></layout-i>
+                    <!-- 文單欄 -->
+                    <layout-t :pars-num="project.paragraphs[5]"></layout-t>
+                    <!-- 圖片單欄 -->
+                    <layout-i :imgs="project.figures.slice(5,6)"></layout-i>
+                    <!-- 圖片單欄 -->
+                    <layout-i :imgs="project.figures.slice(6,7)"></layout-i>
+                    <!-- 文單欄 -->
+                    <layout-t :pars-num="project.paragraphs[6]"></layout-t>
+                    <!-- 圖片單欄 -->
+                    <layout-i :imgs="project.figures.slice(7,9)"></layout-i>
+                    <!-- 文單欄 -->
+                    <layout-t :pars-num="project.paragraphs[7]"></layout-t>
+                    <!-- 圖片單欄 -->
+                    <layout-i :imgs="project.figures.slice(9,10)"></layout-i>
                 </main>
             </section>
             <!-- Back to All -->
@@ -78,43 +108,69 @@
                     },
                     paragraphs: [
                         {
-                            title: "Idea",
-                            pars: ["This project aims for revealing the attitude changes in Chinese Popular Romantic Song  during 2005 to 2020 by using data visualization. Ideally, I want to show the main message that in  the past, love songs which talks about heart-broken will usually show more negative attitudes in  the lyrics. However, in recent years, lyrics with lots of positive/aggressive attitudes have also  appeared even though the story is heart-broken.", "Thus, I made up three hypothesis which I will try to verify on the visualization. First, the  attitudes of lyrics have changed according to different themes of romantic songs during 15 years.  Second, certain usage of “subject” usually appears with certain attitude. Third, certain usage of  “love”(this word) usually comes up with certain subject or attitude, and also, there is a pattern of  usage of “love” in Chinese Popular Romantic Song."]
+                            title: "創作背景",
+                            pars: ["碩士論文畢業作品「蝸牛綠洲 Snail Oasis」。以「台南蝸牛巷」作為背景，以遊戲化設計將巷弄的人事物串連，討論以地方店家出發的認養行動，並吸引外地遊客、或與地方有親近關係的人能夠拉近與地方的聯繫、提升對地方的關注。",
+                                    "設計以 PIXI.js和 Vue 做成，發佈在網路上後進行使用者問卷調查與訪談，最後訪談五位受訪者，整理遊戲化效果和用遊戲化設計進行社造的可能與挑戰，撰寫於論文中。"]
                         },{
-                            title: "Data Collection & Parsing",
-                            pars: [`In order to assert that those data could be seen as an evidence to identify the attitudes of
-                                    whole society, I chose the most popular Chinese song every year based on KKBOX Music Chart
-                                    (KKBOX 風雲榜) from 2005 to 2020. Since the theme of these songs are all relating to
-                                    romance/love, it is no need for me to select second or third one and thus good for me to keep the
-                                    baseline of comparison.`,
-                                    `In data parsing phase, the difficulties I faced is that first I have to separate the lyrics into  pieces which has the same meaning to the original song in order to display those sentences as a  unit of data.`
+                            title: "設計說明",
+                            pars: ["「蝸牛綠洲 Snail Oasis」是一個在網頁上（主要是電腦）用滑鼠進行操作的遊戲化設計，主要任務是透過遊戲化提升使用者對地方的興趣。",
+                            "玩家在進入網頁時，按照遊戲敘事被設定成即將入住綠洲的新居民，並要在綠洲內和居民聊天、探索地方、解決任務，並收集家具打造自己的小窩。"
                                 ]
                         },{
-                            title: "Visual Design to show the emotions",
-                            pars: [`In visual design, I decided to use color for conveying my message, showing the trend by
-                                    attitudes. In terms of other micro messages, I designed some symbol to convey the story behind
-                                    those data. Here is the brief overview of whole visual display.`
+                            subTitle: "收集家具",
+                            pars: ["玩家主要的任務是佈置自己在綠洲中的小屋，透過和居民聊天、解鎖綠洲中的不同區域，可以解鎖特定的家具，並可獲得「蝸牛幣」購買需要的家具。",
+                            "設計中，這些「蝸牛幣」也可以用於和巷弄中的實體店家合作，給予玩家折扣等，輔以其他社造活動。"
                                 ]
                         },{
-                            pars: [`I decided to colorize data based on two groups of attitudes: aggressive/negative. The
-                                data in aggressive group will be colorized in reddish tone. On the other hand, data with emotions
-                                in negative group will be colorized in bluish tone. Which corresponds to the common reaction
-                                what people feel when seeing the color. The images below show some prototypes I’ve tried during
-                                designing the visual look of this project.`]
+                            subTitle: "探索區域",
+                            pars: ["為了要解鎖全部傢俱，玩家需要和居民對話以解鎖不同區域。「蝸牛綠洲」中有三個區域，依照蝸牛巷的特色區分為「文學」、「甜點」與「傳統職人」。",
+                                ]
                         },{
-                            pars: [`For legend design, I think more on the symbol of “subject” since I tried to let the symbol
-                                itself has some relationship to the meaning. Thus, I combined “dot” and “line” to distinguish
-                                different usage of “subject”. As the outside usually connects to upside on physically spatial feeling
-                                of human beings, I designed the symbol combined with dot and the line on top to signify the
-                                meaning of “you”. On the other hand, inner side connects to downside means “I/me”. A little
-                                special thing is that I designed “We” as the dot surrounded by another circle so as to convey the
-                                feeling of “coming together, becoming the one.`]
+                            pars: ["透過用滑鼠和居民互動，玩家可以了解地方的歷史和故事，同時也能回答一些小問答。有興趣的人，可以透過超連結再前往更專業的文史調查資料網站。"]
+                        },{
+                            title: "製作背景",
+                            subTitle: "角色美術設計",
+                            pars: ["綠洲中的所有角色都是蝸牛，在一個蝸牛居住的世界，角色們基於台南蝸牛巷的特色，設計出不同的造型，以呼應地方。",
+                                ]
+                        },{
+                            subTitle: "架構設計",
+                            pars: ["在開始設計前，運用卡片排列方法整理遊戲化設計想要達成的目標，並依照不同子類別進行分類，釐清整個設計所需功能與架構。",
+                                ]
+                        },{
+                            title: "結語",
+                            pars: ["設計完成後以遊戲化八角理論進行使用者訪談，並依序檢驗遊戲化設計的成效，透過訪談整理使用者認為此設計對於地方社造可能產生的衝擊，並撰寫於論文中。",
+                                ]
                         }
                     ],
                     figures: [
                         {
-                            url: "./assets/img/pj_snail_oasis/cover.png",
-                            figcaption: 'test'
+                            url: "./assets/img/pj_snail_oasis/map.png",
+                            figcaption: '「蝸牛綠洲」將使用者設定成即將入住綠洲的新居民，此為綠洲的全貌。'
+                        },{
+                            url: "./assets/img/pj_snail_oasis/coin.png",
+                            figcaption: '遊戲設計中的「蝸牛幣」',
+                            mxw: 140
+                        },{
+                            url: "./assets/img/pj_snail_oasis/home_full.png",
+                            figcaption: '獲得蝸牛幣後可以在小屋裡換取家具，其中也有蝸牛造型的特殊設計。'
+                        },{
+                            url: "./assets/img/pj_snail_oasis/badges.png",
+                            figcaption: '蝸牛綠洲中依照蝸牛巷的特色分為三個區域。'
+                        },{
+                            url: "./assets/img/pj_snail_oasis/quiz_2.png",
+                            figcaption: '與居民對話可以得到和地方相關的文史小知識和問答活動。'
+                        },{
+                            url: "./assets/img/pj_snail_oasis/characters.png",
+                            figcaption: '綠洲中的角色們，呼應台南蝸牛巷的特色有不同的造型設計。'
+                        },{
+                            url: "./assets/img/pj_snail_oasis/houses.png",
+                            figcaption: '根據巷弄中的特色與店家所設計的綠洲中的房子。'
+                        },{
+                            url: "./assets/img/pj_snail_oasis/idea_1.jpeg",
+                            figcaption: '發想過程中針對「成就」所想的可能呈現。'
+                        },{
+                            url: "./assets/img/pj_snail_oasis/idea_2.jpeg",
+                            figcaption: '發想過程中討論要如何呈現「地方」相關的文史內容。'
                         }
                     ]
                 }

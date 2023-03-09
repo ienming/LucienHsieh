@@ -43,8 +43,8 @@
                         :url="work.url"
                         :cover-img="work.img"
                         :cover-title="work.name"
-                        :cover-hashtags="work.hashtags"
-                        :cover-des="work.date"
+                        :cover-des="work.des"
+                        :date="work.date"
                         :key="work.name">
                     </cover-enter-point>
                 </div>
@@ -78,18 +78,18 @@
                 works: [
                     {
                         name: "Modern Love",
-                        hashtags: ["data visualization", "p5.js"],
+                        des: "將中文愛情歌詞做成的互動式資料視覺化",
                         date: "2021",
                         img: "./assets/img/pj_modern_love/cover.png",
                         url: "pj_modern_love.html",
-                        tags: ['design', 'code']
+                        hashtags: ['design', 'code']
                     },{
                         name: "Snail Oasis",
-                        hashtags: ["gamification", "PIXI.js"],
+                        des: "基於「台南蝸牛巷」的遊戲化設計",
                         date: "2022",
                         img: "./assets/img/pj_snail_oasis/cover.png",
                         url: "pj_snail_oasis.html",
-                        tags: ['design', 'code']
+                        hashtags: ['design', 'code']
                     }
                 ]
             },

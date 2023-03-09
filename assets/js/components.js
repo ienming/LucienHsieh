@@ -10,21 +10,20 @@ const CoverEnterPoint = {
             <div class="btm-container">
                 <div class="btm-descrip">
                     <h3 class="t-z-3">{{coverTitle}}</h3>
-                    <p class="t-z-2">
-                        <span v-for="hashtag of coverHashtags">#{{hashtag}} </span>
-                    </p>
+                    <p class="t-z-2">{{coverDes}}</p>
                     <img src="./assets/img/icons/arrow_rightTop.svg" class="icon" />
                 </div>
             </div>
             <p class="hover-descrip">
                 <span class="t-z-6 t-w-6">{{coverTitle}}</span>
-                <span class="t-z-2 t-w-6" v-for="hashtag of coverHashtags">#{{hashtag}} </span>
                 <span class="d-inline-block mt-1">{{coverDes}}</span>
+                <span class="t-z-2 t-w-6" v-for="hashtag of coverHashtags">#{{hashtag}} </span>
+                <span class="d-inline-block mt-1">{{date}}</span>
             </p>
         </a>
     </div>
     `,
-    props: ['coverImg', 'coverTitle', 'coverDes', 'url', 'newTab', 'coverHashtags'],
+    props: ['coverImg', 'coverTitle', 'coverDes', 'date', 'url', 'newTab', 'coverHashtags'],
     computed: {
         styleUrl(){
             return `url(${this.coverImg})`
@@ -341,25 +340,33 @@ Vue.component("my-header", Header)
 // Layout Components for pages
 const LayoutText = {
     template: `
-    <section class="row mb-1" :class="computedAlign">
+    <section class="row" :class="computedAlign">
         <div class="col-12 col-md-6">
-            <h3 class="mb-1" v-if="title">{{title}}</h3>
-            <h4 class="mb-1" v-if="subTitle">{{subTitle}}</h4>
-            <p class="t-a-j" v-for="par of pars">{{par}}</p>
+            <h3 class="mb-1" v-if="parsNum.title">{{parsNum.title}}</h3>
+            <h4 class="mb-1" v-if="parsNum.subTitle">{{parsNum.subTitle}}</h4>
+            <p class="t-a-j mb-1" v-for="par of parsNum.pars">{{par}}</p>
         </div>
     </section>
     `,
     props: {
-        title: {
-            default: ""
+        parsNum: {
+            type: Object,
+            default: {
+                title: "段落標題",
+                subTitle: "段落小標題",
+                pars: ['par1', 'par2']
+            }
         },
-        subTitle: {
-            default: ""
-        },
-        pars: {
-            type: Array,
-            default: ['par1', 'par2']
-        },
+        // title: {
+        //     default: ""
+        // },
+        // subTitle: {
+        //     default: ""
+        // },
+        // pars: {
+        //     type: Array,
+        //     default: ['par1', 'par2']
+        // },
         alignTo: {
             type: String,
             default: "center"
@@ -386,9 +393,9 @@ const LayoutImg = {
     template: `
     <section class="row aic mb-1" :class="computedAlign">
         <div class="col-12" :class="colNumber" v-for="img of imgs">
-            <figure  :id="idIs">
-                <img :src="img.url" alt="">
-                <figcaption>{{img.figcaption}}</figcaption>
+            <figure class="t-a-c mb-1 m-md-1" :id="idIs">
+                <img :src="img.url" alt="" :style="{width: img.mxw+'px'}">
+                <figcaption class="mt-1 t-w-2 t-a-l">{{img.figcaption}}</figcaption>
             </figure>
         </div>
     </section>
@@ -399,7 +406,8 @@ const LayoutImg = {
             default: [
                 {
                     url: "./assets/img/banner.png",
-                    figcaption: "画像について説明してください"
+                    figcaption: "画像について説明してください",
+                    mxw: "initial"
                 }
             ]
         },
@@ -416,7 +424,7 @@ const LayoutImg = {
         colNumber(){
             if (this.imgs.length == 1){
                 return "col-md-6"
-            }else return "col-md-"+12/this.imgs.length
+            }else return "col-md-"+6/this.imgs.length
         },
         computedAlign(){
             if (this.alignTo == 'left'){
