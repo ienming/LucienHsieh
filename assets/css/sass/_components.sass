@@ -1,3 +1,5 @@
+@import './_animation'
+
 //Buttons
 .my-btn
     +typography($typographyBase - 1)
@@ -492,8 +494,9 @@ footer
             display: inline-block
             background-color: $black
             margin: 3px 0
-            &:nth-child(1)
-                width: 30px
+            animation: moveWithDelay 5s 3s infinite
+            &:nth-child(3)
+                width: 70%
 
 /* Cover Enter Point*/
 .cover-container

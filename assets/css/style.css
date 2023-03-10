@@ -4008,6 +4008,224 @@ section.container {
     transform-origin: bottom right;
   }
 }
+@-webkit-keyframes moveWithDelay {
+  0% {
+    transform: scaleX(0);
+    transform-origin: bottom left;
+  }
+  10% {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+  11% {
+    transform: scaleX(1);
+    transform-origin: bottom right;
+  }
+  20% {
+    transform: scaleX(0);
+    transform-origin: bottom right;
+  }
+  21% {
+    transform: scaleX(0);
+    transform-origin: bottom left;
+  }
+  30%, 100% {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+}
+@keyframes moveWithDelay {
+  0% {
+    transform: scaleX(0);
+    transform-origin: bottom left;
+  }
+  10% {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+  11% {
+    transform: scaleX(1);
+    transform-origin: bottom right;
+  }
+  20% {
+    transform: scaleX(0);
+    transform-origin: bottom right;
+  }
+  21% {
+    transform: scaleX(0);
+    transform-origin: bottom left;
+  }
+  30%, 100% {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+}
+.fade-enter-active {
+  transition: all 1s;
+}
+
+.fade-leave-active {
+  position: absolute;
+  opacity: 0;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.fade-right-enter-active, .fade-right-leave-active {
+  transition: all 1s;
+}
+
+.fade-right-enter, .fade-right-leave-to {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.anim-highlight {
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+.anim-highlight > span {
+  position: relative;
+  display: inline-block;
+  -webkit-animation: downFlyIn 1s forwards;
+          animation: downFlyIn 1s forwards;
+  color: #fefefe;
+}
+.anim-highlight > span::after {
+  position: absolute;
+  left: 0;
+  top: 0;
+  content: "";
+  width: 100%;
+  height: 100%;
+  transform: scaleX(0);
+  -webkit-animation: highlight 1s 0.3s forwards ease-in-out;
+          animation: highlight 1s 0.3s forwards ease-in-out;
+}
+
+.scroll {
+  position: relative;
+}
+
+@keyframes highlight {
+  0% {
+    transform: scaleX(0);
+    transform-origin: bottom left;
+    background-color: #000000;
+  }
+  50% {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+  51% {
+    transform: scaleX(1);
+    transform-origin: bottom right;
+  }
+  100% {
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    background-color: #fefefe;
+  }
+}
+@keyframes scrolling {
+  0% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  50% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+  51% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  100% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+}
+@keyframes scale-easeOutElastic {
+  0% {
+    transform: scale(1);
+  }
+  16% {
+    transform: scale(0.88);
+  }
+  40% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(0.9);
+  }
+}
+@keyframes textFadeIn {
+  from {
+    opacity: 0;
+    top: 10px;
+  }
+  to {
+    opacity: 1;
+    top: 0;
+  }
+}
+@keyframes downFlyIn {
+  from {
+    top: 100px;
+    color: #000000;
+  }
+  to {
+    top: 0;
+    color: #000000;
+  }
+}
+@keyframes loadingRightMove {
+  0% {
+    transform: scaleX(0);
+    transform-origin: bottom left;
+  }
+  50% {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+  51% {
+    transform: scaleX(1);
+    transform-origin: bottom right;
+  }
+  100% {
+    transform: scaleX(0);
+    transform-origin: bottom right;
+  }
+}
+@keyframes moveWithDelay {
+  0% {
+    transform: scaleX(0);
+    transform-origin: bottom left;
+  }
+  10% {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+  11% {
+    transform: scaleX(1);
+    transform-origin: bottom right;
+  }
+  20% {
+    transform: scaleX(0);
+    transform-origin: bottom right;
+  }
+  21% {
+    transform: scaleX(0);
+    transform-origin: bottom left;
+  }
+  30%, 100% {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+}
 .my-btn {
   font-size: 14px;
   line-height: 1.5;
@@ -4703,9 +4921,11 @@ footer .sns > a:hover {
   display: inline-block;
   background-color: #000000;
   margin: 3px 0;
+  -webkit-animation: moveWithDelay 5s 3s infinite;
+          animation: moveWithDelay 5s 3s infinite;
 }
-.my-header .hamburger span:nth-child(1) {
-  width: 30px;
+.my-header .hamburger span:nth-child(3) {
+  width: 70%;
 }
 
 /* Cover Enter Point*/
@@ -5543,6 +5763,32 @@ footer .sns > a:hover {
   100% {
     transform: scaleX(0);
     transform-origin: bottom right;
+  }
+}
+@keyframes moveWithDelay {
+  0% {
+    transform: scaleX(0);
+    transform-origin: bottom left;
+  }
+  10% {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+  11% {
+    transform: scaleX(1);
+    transform-origin: bottom right;
+  }
+  20% {
+    transform: scaleX(0);
+    transform-origin: bottom right;
+  }
+  21% {
+    transform: scaleX(0);
+    transform-origin: bottom left;
+  }
+  30%, 100% {
+    transform: scaleX(1);
+    transform-origin: bottom left;
   }
 }
 figcaption {
