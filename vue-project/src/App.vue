@@ -1,20 +1,17 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
+  <div class="shrink-0">
+    <img class="h-12 w-12" src="/img/logo.svg" alt="ChitChat Logo">
+  </div>
+  <div>
+    <div class="text-xl font-medium text-black">ChitChat</div>
+    <p class="text-slate-500">You have a new message!</p>
+  </div>
+</div>
 </template>
 
 <style scoped>
