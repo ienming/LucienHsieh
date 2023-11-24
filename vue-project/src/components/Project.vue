@@ -40,9 +40,9 @@ masking.x = app.screen.width / 2;
 masking.y = app.screen.height / 2;
 masking.lineStyle(0);
 
-// container.mask = masking;
+container.mask = masking;
 let count = 0;
-let randomDis = Math.floor(Math.random()*10)
+let randomDis = Math.floor(Math.random()*50)
 masking.beginFill(0x8bc5ff, 0.4);
 masking.moveTo(-1*180 + Math.sin(count) * randomDis, -1*180 + Math.cos(count) * randomDis);
 masking.lineTo(180 + Math.cos(count) * randomDis, -1*180 + Math.sin(count) * randomDis);
@@ -71,9 +71,9 @@ onMounted(()=>{
 
 <template>
     <section class="relative">
-        <a href="">
+        <!-- <a href=""> -->
             <div @mouseover="emits('hover')" @mouseleave="emits('leave')" ref="canvas"></div>
-        </a>
+        <!-- </a> -->
         <div class="absolute -bottom-4">
             {{ info.name }}
         </div>
