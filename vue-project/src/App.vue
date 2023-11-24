@@ -1,5 +1,11 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
+import * as PIXI from "pixi.js";
+import { gsap } from "gsap";
+import { PixiPlugin } from "gsap/PixiPlugin";
+gsap.registerPlugin(PixiPlugin);
+console.log(gsap)
+console.log(PIXI)
 </script>
 
 <template>

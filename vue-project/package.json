@@ -8,6 +8,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "gsap": "^3.12.2",
+    "pixi.js": "^7.3.2",
     "vue": "^3.3.4"
   },
   "devDependencies": {
