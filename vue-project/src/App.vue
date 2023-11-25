@@ -1,5 +1,8 @@
 <script setup>
-import { ref, provide } from 'vue';
+import { ref, provide, computed } from 'vue';
+import TopHeader from '@/components/TopHeader.vue'
+import Avatar from '@/components/Avatar.vue'
+import Contact from '@/components/Contact.vue'
 import Project from '@/components/Project.vue'
 import Mouse from '@/components/Mouse.vue'
 import Controller from '@/components/Controller.vue'
@@ -7,8 +10,24 @@ import projects from '@/assets/projects.json'
 import { gsap } from 'gsap';
 import * as PIXI from "pixi.js";
 
-const lang = "zh"
+const lang = ref("zh")
 provide("lang", lang)
+
+const currentTab = ref("all")
+function switchTab(tab){
+  currentTab.value = tab
+}
+
+const projectsFiltered = computed(()=>{
+  if (projects){
+    if (currentTab.value === 'all'){
+      return projects
+    }else{
+      return projects.filter(pj => pj.cate.includes(currentTab.value))
+    }
+  }
+})
+
 const mouseHoverPj = ref(false)
 
 const showCase = ref(null)
@@ -61,16 +80,21 @@ function scrollShowCase(type) {
 
 <template>
   <main class="relative text-dark border-2 border-dark h-full">
-    <TopHeader />
-    <h6 class="absolute bottom-0 left-1/2 font-display text-slate-200 tracking-wide opacity-50 -translate-x-1/2"
+    <TopHeader class="absolute top-0" :current-tab="currentTab"
+    @switch-tab="switchTab"/>
+    <Avatar class="absolute top-20 left-10"/>
+    <h6 class="absolute bottom-0 left-1/2 font-display text-slate-200 tracking-wide opacity-50 -translate-x-1/2 pointer-events-none -z-2"
     style="font-size: 200px;">
-      <span>Project</span>
+      <p>Project</p>
+      <p>Project</p>
+      <p>Project</p>
     </h6>
     <section class="fixed top-1/2 left-0 w-screen"
+    v-if="projectsFiltered"
     style="transform: translateY(-50%)" @wheel="wheelShowCase"
     >
     <div class="flex gap-20 ps-40" ref="showCase">
-      <Project v-for="pj of projects"
+      <Project v-for="pj of projectsFiltered"
       :key="pj.title"
       :title="pj.title"
       :info="{
@@ -83,6 +107,7 @@ function scrollShowCase(type) {
     </div>
     </section>
     <Controller @show-prev="scrollShowCase('backward')" @show-next="scrollShowCase('forward')"/>
+    <Contact class="absolute bottom-0 right-0"/>
   </main>
   <Mouse :hover-pj="mouseHoverPj"/>
 </template>

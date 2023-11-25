@@ -1,6 +1,96 @@
 <script setup>
+import iconUrl from "@/assets/diamond.png";
+
+const props = defineProps(['currentTab'])
+const emits = defineEmits(['switch-tab'])
+
+const tabs = ["all", "code", "illustration"];
+const link_behance = {
+  text: "VIEW ALL ON BEHANCE",
+  url: "https://www.behance.net/Lucienming",
+};
 </script>
 
 <template>
-
+  <section class="border-b-2 border-dark w-full grid">
+    <div class="font-serif text-4xl flex overflow-hidden">
+      <span class="marquee inline-block whitespace-nowrap" v-for="n of 3">
+        <span class="flex gap-2 ps-3 leading-normal">
+          <!-- <img :src="iconUrl" alt="" /> -->
+          <span>Portfolio Lucien Hsieh 2023 WEB & ILLUSTRATION</span>
+        </span>
+      </span>
+    </div>
+    <nav class="flex flex-col border-l-2 border-dark">
+      <div class="grid grid-cols-3 border-b-2 border-dark">
+        <button
+          v-for="(tab, id) of tabs"
+          :key="tab"
+          class="hov-el text-center hover:text-light font-semibold border-dark"
+          :class="{ 'border-l-2': id !== 0, 'active': tab === props.currentTab }"
+          @click="emits('switch-tab', tab)"
+        >
+          {{ tab.toUpperCase() }}
+        </button>
+      </div>
+      <a
+        :href="link_behance.url"
+        target="_blank"
+        class="hov-el px-2 py-1 hover:text-light flex gap-1 items-center"
+      >
+        <span class="font-semibold">
+          {{ link_behance.text }}
+        </span>
+        <span class="material-symbols-outlined"> open_in_new </span>
+      </a>
+    </nav>
+  </section>
 </template>
+
+<style scoped>
+section {
+  grid-template-columns: auto 35%;
+}
+
+.marquee {
+  animation: marquee 20s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.hov-el {
+  position: relative;
+}
+
+.hov-el.active {
+  color: var(--luc-light);
+}
+
+.hov-el.active::after {
+  width: 100%;
+}
+
+.hov-el:hover::after {
+  width: 100%;
+}
+
+.hov-el::after {
+  content: "";
+  z-index: -1;
+  display: block;
+  background-color: var(--luc-dark);
+  position: absolute;
+  width: 0%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  transition: 0.3s ease;
+}
+</style>
