@@ -6,7 +6,7 @@ const props = defineProps(['hoverPj'])
 
 // Change mouse appearnce while hovering on Project
 watch(() => props.hoverPj, (newValue, oldValue) => {
-    const color = getComputedStyle(mouseOuter).getPropertyValue('--bg-color')
+    const color = getComputedStyle(mouseOuter).getPropertyValue('--luc-dark')
     const size = parseInt(getComputedStyle(mouseOuter).getPropertyValue('--size'), 10)
     if (newValue){
         gsap.to(mouseOuter, {
@@ -78,19 +78,17 @@ onMounted(()=>{
 <style scoped>
 .mouse-outer {
     --size: 35px;
-    --text-color: #FCFAF4;
-    --bg-color: #244d69;
     pointer-events: none;
     width: var(--size);
     height: var(--size);
     border-radius: 50%;
     position: absolute;
     z-index: 999;
-    border: 2px solid var(--bg-color);
+    border: 2px solid var(--luc-dark);
 }
 
 p{
-    color: var(--text-color);
+    color: var(--luc-light);
 }
 
 .mouse-inner {
@@ -98,6 +96,6 @@ p{
     height: 8px;
     border-radius: 50%;
     position: absolute;
-    background-color: var(--bg-color);
+    background-color: var(--luc-dark);
 }
 </style>

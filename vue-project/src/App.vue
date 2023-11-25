@@ -2,6 +2,7 @@
 import { ref, provide, computed } from 'vue';
 import TopHeader from '@/components/TopHeader.vue'
 import Avatar from '@/components/Avatar.vue'
+import CoverLetter from '@/components/CoverLetter.vue'
 import Contact from '@/components/Contact.vue'
 import Project from '@/components/Project.vue'
 import Mouse from '@/components/Mouse.vue'
@@ -16,6 +17,14 @@ provide("lang", lang)
 const currentTab = ref("all")
 function switchTab(tab){
   currentTab.value = tab
+  // if (deltaX !== 0){
+  //   const dom = showCase.value;
+  //   gsap.to(dom, {
+  //     x: 0,
+  //     duration: 1,
+  //     ease: 'power3.out'
+  //   })
+  // }
 }
 
 const projectsFiltered = computed(()=>{
@@ -27,6 +36,8 @@ const projectsFiltered = computed(()=>{
     }
   }
 })
+
+const coverLetterShowing = ref(false)
 
 const mouseHoverPj = ref(false)
 
@@ -79,11 +90,11 @@ function scrollShowCase(type) {
 </script>
 
 <template>
-  <main class="relative text-dark border-2 border-dark h-full">
+  <main class="relative text-dark border-8 border-dark h-full">
     <TopHeader class="absolute top-0" :current-tab="currentTab"
     @switch-tab="switchTab"/>
-    <Avatar class="absolute top-20 left-10"/>
-    <h6 class="absolute bottom-0 left-1/2 font-display text-slate-200 tracking-wide opacity-50 -translate-x-1/2 pointer-events-none -z-2"
+    <Avatar @click="coverLetterShowing = true" class="absolute top-20 left-10 z-10"/>
+    <h6 class="absolute bottom-0 left-1/2 font-display tracking-wide opacity-50 -translate-x-1/2 pointer-events-none -z-2 text-dark opacity-5"
     style="font-size: 200px;">
       <p>Project</p>
       <p>Project</p>
@@ -94,20 +105,23 @@ function scrollShowCase(type) {
     style="transform: translateY(-50%)" @wheel="wheelShowCase"
     >
     <div class="flex gap-20 ps-40" ref="showCase">
-      <Project v-for="pj of projectsFiltered"
-      :key="pj.title"
-      :title="pj.title"
-      :info="{
-        'name': pj.name,
-        'intro': pj.intro,
-        'tags': pj.tags
-      }"
-      @hover="mouseHoverPj = true"
-      @leave="mouseHoverPj = false"/>
+      <transition-group name="fade">
+        <Project v-for="pj of projectsFiltered"
+        :key="pj.title"
+        :title="pj.title"
+        :info="{
+          'name': pj.name,
+          'intro': pj.intro,
+          'tags': pj.tags
+        }"
+        @hover="mouseHoverPj = true"
+        @leave="mouseHoverPj = false"/>
+      </transition-group>
     </div>
     </section>
     <Controller @show-prev="scrollShowCase('backward')" @show-next="scrollShowCase('forward')"/>
     <Contact class="absolute bottom-0 right-0"/>
   </main>
   <Mouse :hover-pj="mouseHoverPj"/>
+  <CoverLetter v-if="coverLetterShowing" class="fixed top-0 right-0" @close="coverLetterShowing = false"/>
 </template>
