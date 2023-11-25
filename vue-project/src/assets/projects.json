@@ -1,6 +1,7 @@
 [
     {
         "title": "iroironairo",
+        "cate": ["code"],
         "name": "色々な色　iroironairo",
         "tags": ["Web", "Data visualization", "Vue", "GSAP"],
         "intro": {
@@ -9,6 +10,7 @@
     },
     {
         "title": "modernLove",
+        "cate": ["code"],
         "name": "現代愛情 Modern Love",
         "tags": ["Web", "Data visualization", "p5"],
         "intro": {
@@ -17,6 +19,7 @@
     },
     {
         "title": "sushillustration",
+        "cate": ["illust"],
         "name": "壽司插畫集 Sushillustration",
         "tags": ["Illustration", "Photoshop"],
         "intro": {

@@ -11,7 +11,7 @@ const props = defineProps(['title', 'info'])
 const emits = defineEmits(['hover', 'leave'])
 const coverImg = new URL(`../assets/cover_${props.title}.png`, import.meta.url).href
 
-const [canvasWidth, canvasHeight] = [500, 600]
+const [canvasWidth, canvasHeight] = [600, 600]
 
 const app = new PIXI.Application({
     backgroundAlpha: 0,
@@ -23,6 +23,58 @@ const app = new PIXI.Application({
 const container = new PIXI.Container();
 container.x = app.screen.width / 2;
 container.y = app.screen.height / 2;
+container.onmousemove = (evt) => {
+    const [mouseX, mouseY] = [evt.screenX, evt.screenY]
+    const [spriteOriX, spriteOriY] = [sprite.x+canvasWidth/2, sprite.y+canvasHeight/2]
+    const attractionRadius = 200
+    const dist = Math.sqrt(Math.pow(mouseX - spriteOriX, 2) + Math.pow(mouseY - spriteOriY, 2))
+    if (dist < attractionRadius){
+        let [skew_x, skew_y] = [.1, .1]
+        if (mouseX > spriteOriX){
+            skew_x = -0.1
+        }
+        if (mouseY < spriteOriY){
+            skew_y = -0.1
+        }
+        gsap.to(maskGraphic, {
+            skewX: skew_x,
+            skewY: skew_y,
+            duration: 1,
+            onUpdate: () => {
+                maskGraphic.skew.x = gsap.getProperty(maskGraphic, 'skewX');
+                maskGraphic.skew.y = gsap.getProperty(maskGraphic, 'skewY');
+            }
+        });
+        gsap.to(shadow, {
+            skewX: skew_x,
+            skewY: skew_y,
+            duration: 1,
+            onUpdate: () => {
+                shadow.skew.x = gsap.getProperty(shadow, 'skewX');
+                shadow.skew.y = gsap.getProperty(shadow, 'skewY');
+            }
+        });
+    }else{
+        gsap.to(maskGraphic, {
+            skewX: 0,
+            skewY: 0,
+            duration: 1,
+            onUpdate: () => {
+                maskGraphic.skew.x = gsap.getProperty(maskGraphic, 'skewX');
+                maskGraphic.skew.y = gsap.getProperty(maskGraphic, 'skewY');
+            }
+        });
+        gsap.to(shadow, {
+            skewX: 0,
+            skewY: 0,
+            duration: 1,
+            onUpdate: () => {
+                shadow.skew.x = gsap.getProperty(shadow, 'skewX');
+                shadow.skew.y = gsap.getProperty(shadow, 'skewY');
+            }
+        });
+    }
+}
 app.stage.addChild(container);
 
 // Mask
@@ -37,19 +89,20 @@ maskGraphic.beginFill(0x8bc5ff, 0.4);
 drawShape(maskGraphic)
 
 function drawShape(el, offsetX=0, offsetY=0){
-    el.moveTo(-1*180 + offsetX + Math.sin(count) * randomDis, -1*180 + offsetY + Math.cos(count) * randomDis);
-    el.lineTo(180 + offsetX + Math.cos(count) * randomDis, -1*180 + offsetY + Math.sin(count) * randomDis);
-    el.lineTo(180 + offsetX + Math.sin(count) * randomDis, 180 + offsetY + Math.cos(count) * randomDis);
-    el.lineTo(-1*180 + offsetX + Math.cos(count) * randomDis, 180 + offsetY + Math.sin(count) * randomDis);
+    const [imgW, imgH] = [200, 150]
+    el.moveTo(-imgW + offsetX , -imgH + offsetY);
+    el.lineTo(imgW + offsetX, -imgH + offsetY );
+    el.lineTo(imgW + offsetX , imgH + offsetY);
+    el.lineTo(-imgW + offsetX, imgH + offsetY );
 }
 
 // Noise shadow
 let noiseFilter = new PIXI.NoiseFilter(0.9)
 let blurFilter = new PIXI.BlurFilter(32, 6)
 const shadow = new PIXI.Graphics();
-let [offsetX, offsetY] = [40, 35]
-shadow.beginFill('0x000000');
-shadow.alpha = 0.2;
+let [offsetX, offsetY] = [-25, 40]
+shadow.beginFill('0x244d69');
+shadow.alpha = 0.3;
 drawShape(shadow, offsetX, offsetY)
 shadow.endFill();
 shadow.filters = [blurFilter, noiseFilter]
@@ -75,16 +128,6 @@ sprite
         emits('leave')
     })
 container.addChild(sprite);
-
-// app.ticker.add(()=>{
-//     maskGraphic.clear()
-//     shadow.clear()
-
-//     count += 0.01;
-
-//     drawShape(maskGraphic)
-//     drawShape(shadow, offsetY, offsetY)
-// })
 
 const canvas = ref(null)
 onMounted(()=>{
