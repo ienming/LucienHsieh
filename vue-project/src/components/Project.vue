@@ -1,11 +1,11 @@
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted, ref, inject } from "vue";
 import * as PIXI from "pixi.js";
 import { gsap } from "gsap";
 import { PixiPlugin } from "gsap/PixiPlugin";
 gsap.registerPlugin(PixiPlugin);
 
-const lang = "zh"
+const lang = inject("lang")
 
 const props = defineProps(['title', 'info'])
 const emits = defineEmits(['hover', 'leave'])
@@ -138,13 +138,13 @@ onMounted(()=>{
 <template>
     <section class="relative">
         <div ref="canvas"></div>
-        <div class="absolute bottom-5 flex flex-col gap-3">
-            <h2 class="text-3xl font-serif bg-light p-2 px-3 border border-cyan-800 font-bold">
+        <div class="absolute bottom-24 flex flex-col gap-3">
+            <h2 class="text-3xl font-serif bg-light p-2 px-3 border border-dark font-bold">
                 {{ info.name }}
             </h2>
             <div class="flex gap-2">
                 <div v-for="tag of info.tags" :key="tag"
-                class="p-2 border border-cyan-800 bg-light rounded-full">
+                class="p-2 border border-dark bg-light rounded-full">
                     {{ tag }}
                 </div>
             </div>

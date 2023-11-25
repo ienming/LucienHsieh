@@ -7,12 +7,13 @@ export default {
   theme: {
     fontFamily: {
       'serif': ['Noto Serif TC', 'ui-serif', 'Georgia', 'Cambria', 'Times New Roman', 'Times', 'serif'],
-      'display': ['Noto Serif TC']
+      'display': ['Taviraj', 'Noto Serif TC'],
     },
     extend: {
-      backgroundColor: {
+      colors: {
         'light': '#FCFAF4',
-      },
+        'dark': '#244d69'
+      }
     },
   },
   plugins: [],
