@@ -94,14 +94,14 @@ function scrollShowCase(type) {
     <TopHeader class="absolute top-0" :current-tab="currentTab"
     @switch-tab="switchTab"/>
     <Avatar @click="coverLetterShowing = true" class="absolute top-20 left-10 z-10"/>
-    <h6 class="absolute bottom-0 left-1/2 font-display tracking-wide opacity-50 -translate-x-1/2 pointer-events-none -z-2 text-dark opacity-5"
+    <h6 class="absolute bottom-0 left-1/2 font-display tracking-wide -translate-x-1/2 pointer-events-none -z-2 text-dark opacity-5"
     style="font-size: 200px;">
       <p>Project</p>
       <p>Project</p>
       <p>Project</p>
     </h6>
     <section class="fixed top-1/2 left-0 w-screen"
-    v-if="projectsFiltered"
+    v-show="projectsFiltered"
     style="transform: translateY(-50%)" @wheel="wheelShowCase"
     >
     <div class="flex gap-20 ps-40" ref="showCase">

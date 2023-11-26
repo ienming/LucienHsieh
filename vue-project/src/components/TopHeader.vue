@@ -13,7 +13,7 @@ const link_behance = {
 
 <template>
   <section class="border-b-2 border-dark w-full grid z-10">
-    <div class="font-serif text-4xl flex overflow-hidden opacity-70">
+    <div class="font-display text-4xl flex overflow-hidden opacity-70">
       <span class="marquee inline-block whitespace-nowrap" v-for="n of 3">
         <span class="flex gap-2 ps-3 leading-normal">
           <span>Portfolio Lucien Hsieh 2023 WEB & ILLUSTRATION</span>
