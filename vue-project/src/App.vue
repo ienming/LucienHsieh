@@ -1,5 +1,5 @@
 <script setup>
-import { ref, provide, computed } from 'vue';
+import { ref, provide, computed, onMounted } from 'vue';
 import TopHeader from '@/components/TopHeader.vue'
 import Avatar from '@/components/Avatar.vue'
 import CoverLetter from '@/components/CoverLetter.vue'
@@ -87,41 +87,84 @@ function scrollShowCase(type) {
       })
   }
 }
+
+// Gravity grabbing UI
+function animateTarget(target, mouseX, mouseY) {
+  const { top, left, width, height } = target.getBoundingClientRect();
+  const centerX = left + width / 2;
+  const centerY = top + height / 2;
+
+  const deltaX = mouseX - centerX;
+  const deltaY = mouseY - centerY;
+
+  // 設定吸引區域
+  const attractionRadius = Math.sqrt((width / 2) ** 2 + (height / 2) ** 2);
+
+  if (
+    Math.abs(deltaX) < attractionRadius &&
+    Math.abs(deltaY) < attractionRadius
+  ) {
+    const displacementX = (deltaX / attractionRadius) * 20;
+    const displacementY = (deltaY / attractionRadius) * 20;
+    const skewVolumn = Math.abs(Math.sqrt(deltaX/100))
+
+    gsap.to(target, {
+      x: displacementX,
+      y: displacementY,
+      duration: 0.3,
+      ease: "power2.out",
+    });
+  } else {
+    gsap.to(target, { x: 0, y: 0, duration: 0.3, ease: "power2.out" });
+  }
+}
+
+onMounted(()=>{
+  const targets = document.querySelectorAll(".toucher");
+  document.addEventListener("mousemove", function (e) {
+    const mouseX = e.clientX;
+    const mouseY = e.clientY;
+    Array.from(targets).forEach(target => {
+      animateTarget(target, mouseX, mouseY);
+    })
+  })
+})
 </script>
 
 <template>
   <main class="relative text-dark border-8 border-dark h-full">
-    <TopHeader class="absolute top-0" :current-tab="currentTab"
-    @switch-tab="switchTab"/>
-    <Avatar @click="coverLetterShowing = true" class="absolute top-20 left-10 z-10"/>
+    <Avatar @click="coverLetterShowing = true" class="toucher absolute top-20 left-10 z-10"/>
     <h6 class="absolute bottom-0 left-1/2 font-display tracking-wide -translate-x-1/2 pointer-events-none -z-2 text-dark opacity-5"
     style="font-size: 200px;">
       <p>Project</p>
       <p>Project</p>
       <p>Project</p>
     </h6>
-    <section class="fixed top-1/2 left-0 w-screen"
-    v-show="projectsFiltered"
-    style="transform: translateY(-50%)" @wheel="wheelShowCase"
-    >
-    <div class="flex gap-20 ps-40" ref="showCase">
-      <transition-group name="fade">
-        <Project v-for="pj of projectsFiltered"
-        :key="pj.title"
-        :title="pj.title"
-        :info="{
-          'name': pj.name,
-          'intro': pj.intro,
-          'tags': pj.tags
-        }"
-        @hover="mouseHoverPj = true"
-        @leave="mouseHoverPj = false"/>
-      </transition-group>
+    <TopHeader :current-tab="currentTab" @switch-tab="switchTab"/>
+    <div>
+      <section class="fixed top-1/2 left-0 w-screen"
+      v-show="projectsFiltered && !coverLetterShowing"
+      style="transform: translateY(-50%)" @wheel="wheelShowCase"
+      >
+      <div class="flex gap-20 ps-40" ref="showCase">
+        <transition-group name="fade">
+          <Project v-for="pj of projectsFiltered"
+          :key="pj.title"
+          :title="pj.title"
+          :info="{
+            'name': pj.name,
+            'intro': pj.intro,
+            'tags': pj.tags
+          }"
+          @hover="mouseHoverPj = true"
+          @leave="mouseHoverPj = false"/>
+        </transition-group>
+      </div>
+      </section>
+      <CoverLetter v-if="coverLetterShowing" class="absolute top-0 right-0" @close="coverLetterShowing = false"/>
     </div>
-    </section>
     <Controller @show-prev="scrollShowCase('backward')" @show-next="scrollShowCase('forward')"/>
-    <Contact class="absolute bottom-0 right-0"/>
+    <Contact class="toucher absolute bottom-0 right-0"/>
   </main>
   <Mouse :hover-pj="mouseHoverPj"/>
-  <CoverLetter v-if="coverLetterShowing" class="fixed top-0 right-0" @close="coverLetterShowing = false"/>
 </template>

@@ -83,17 +83,37 @@ app.stage.addChild(maskGraphic);
 maskGraphic.x = app.screen.width / 2;
 maskGraphic.y = app.screen.height / 2;
 maskGraphic.lineStyle(0);
-let randomDis = Math.floor(Math.random()*20)
+let randomDis = Math.floor(Math.random()*50)
 let count = 0
 maskGraphic.beginFill(0x8bc5ff, 0.4);
 drawShape(maskGraphic)
 
 function drawShape(el, offsetX=0, offsetY=0){
-    const [imgW, imgH] = [200, 150]
-    el.moveTo(-imgW + offsetX , -imgH + offsetY);
-    el.lineTo(imgW + offsetX, -imgH + offsetY );
-    el.lineTo(imgW + offsetX , imgH + offsetY);
-    el.lineTo(-imgW + offsetX, imgH + offsetY );
+    const p1 = {
+        x: -200+randomDis,
+        y: -100+randomDis
+    }
+    const p2 = {
+        x: 0+randomDis,
+        y: -200+randomDis
+    }
+    const p3 = {
+        x: 200+randomDis,
+        y: -140+randomDis
+    }
+    const p4 = {
+        x: 160+randomDis,
+        y: 150+randomDis
+    }
+    const p5 = {
+        x: -180+randomDis,
+        y: 120+randomDis
+    }
+    el.moveTo(p1.x + offsetX , p1.y + offsetY);
+    el.lineTo(p2.x + offsetX, p2.y + offsetY );
+    el.lineTo(p3.x + offsetX , p3.y + offsetY);
+    el.lineTo(p4.x + offsetX, p4.y + offsetY );
+    el.lineTo(p5.x + offsetX, p5.y + offsetY );
 }
 
 // Noise shadow

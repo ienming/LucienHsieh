@@ -12,7 +12,7 @@ const link_behance = {
 </script>
 
 <template>
-  <section class="border-b-2 border-dark w-full grid z-10">
+  <section class="border-b-2 border-dark w-full grid relative z-10">
     <div class="font-display text-4xl flex overflow-hidden opacity-70">
       <span class="marquee inline-block whitespace-nowrap" v-for="n of 3">
         <span class="flex gap-2 ps-3 leading-normal">
@@ -20,7 +20,7 @@ const link_behance = {
         </span>
       </span>
     </div>
-    <nav class="border-l-2 border-dark">
+    <nav class="border-l-2 border-dark flex flex-col">
       <div class="grid grid-cols-3 border-b-2 border-dark">
         <button
           v-for="(tab, id) of tabs"
@@ -32,18 +32,17 @@ const link_behance = {
           {{ tab.toUpperCase() }}
         </button>
       </div>
-      <div>
-        <a
-          :href="link_behance.url"
-          target="_blank"
-          class="hov-el px-2 py-1 hover:text-light flex gap-1 items-center"
-        >
-          <span class="font-semibold">
-            {{ link_behance.text }}
-          </span>
-          <span class="material-symbols-outlined"> open_in_new </span>
-        </a>
-      </div>
+      <a
+        :href="link_behance.url"
+        target="_blank"
+        class="hov-el px-2 py-1 hover:text-light flex gap-1 items-center flex-shrink-0"
+        style="line-height: 1.5;"
+      >
+        <span class="font-semibold">
+          {{ link_behance.text }}
+        </span>
+        <span class="material-symbols-outlined"> open_in_new </span>
+      </a>
     </nav>
   </section>
 </template>

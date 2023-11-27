@@ -11,13 +11,13 @@ const controllerEl = ref(null)
         <div class="flex flex-row lg:flex-column px-2 py-2 py-lg-0 gap-4 lg:gap-3">
             <div class="flex gap-3 items-center">
                 <span>Backward</span>
-                <button class="border border-dark hover:bg-dark hover:text-light p-4 rounded-full flex items-center"
+                <button class="toucher border border-dark hover:bg-dark hover:text-light p-4 rounded-full flex items-center"
                 @click="emits('show-prev')">
                     <span class="material-symbols-outlined">arrow_back</span>
                 </button>
             </div>
             <div class="flex gap-3 items-center">
-                <button class="border border-dark hover:bg-dark hover:text-light p-4 rounded-full flex items-center"
+                <button class="toucher border border-dark hover:bg-dark hover:text-light p-4 rounded-full flex items-center"
                 @click="emits('show-next')">
                     <span class="material-symbols-outlined">arrow_forward</span>
                 </button>
