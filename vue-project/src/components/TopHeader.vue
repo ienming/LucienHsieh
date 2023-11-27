@@ -4,7 +4,7 @@ import iconUrl from "@/assets/diamond.png";
 const props = defineProps(['currentTab'])
 const emits = defineEmits(['switch-tab'])
 
-const tabs = ["all", "code", "illustration"];
+const tabs = ["all", "code", "design"];
 const link_behance = {
   text: "VIEW ALL PROJECTS ON BEHANCE",
   url: "https://www.behance.net/Lucienming",
@@ -13,10 +13,10 @@ const link_behance = {
 
 <template>
   <section class="border-b-2 border-dark w-full grid relative z-10">
-    <div class="font-display text-4xl flex overflow-hidden opacity-70">
+    <div class="font-display text-4xl flex overflow-hidden opacity-70 border-b-2 border-dark lg:border-b-0">
       <span class="marquee inline-block whitespace-nowrap" v-for="n of 3">
         <span class="flex gap-2 ps-3 leading-normal">
-          <span>Portfolio Lucien Hsieh 2023 WEB & ILLUSTRATION</span>
+          <span>Portfolio Lucien Hsieh 2023 WEB & DESIGN</span>
         </span>
       </span>
     </div>
@@ -48,8 +48,10 @@ const link_behance = {
 </template>
 
 <style scoped>
-section {
-  grid-template-columns: auto 35%;
+@media screen and (min-width: 992px) {
+  section {
+    grid-template-columns: auto 35%;
+  }
 }
 
 .marquee {

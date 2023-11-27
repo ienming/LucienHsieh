@@ -9,6 +9,15 @@
         }
     },
     {
+        "title": "snailOasis",
+        "cate": ["code"],
+        "name": "蝸牛綠洲 Snail Oasis",
+        "tags": ["Web", "PIXI", "Vue", "Digital design"],
+        "intro": {
+            "zh": "基於「台南蝸牛巷」的遊戲化設計"
+        }
+    },
+    {
         "title": "modernLove",
         "cate": ["code"],
         "name": "現代愛情 Modern Love",
@@ -19,7 +28,7 @@
     },
     {
         "title": "sushillustration",
-        "cate": ["illustration"],
+        "cate": ["design"],
         "name": "壽司插畫集 Sushillustration",
         "tags": ["Illustration", "Photoshop"],
         "intro": {

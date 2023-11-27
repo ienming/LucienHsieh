@@ -11,7 +11,7 @@ const props = defineProps(['title', 'info'])
 const emits = defineEmits(['hover', 'leave'])
 const coverImg = new URL(`../assets/cover_${props.title}.png`, import.meta.url).href
 
-const [canvasWidth, canvasHeight] = [600, 600]
+const [canvasWidth, canvasHeight] = [600, 800]
 
 const app = new PIXI.Application({
     backgroundAlpha: 0,
@@ -89,38 +89,38 @@ maskGraphic.beginFill(0x8bc5ff, 0.4);
 drawShape(maskGraphic)
 
 function drawShape(el, offsetX=0, offsetY=0){
-    const p1 = {
-        x: -200+randomDis,
-        y: -100+randomDis
+    const points = [
+        {
+            x: -200+randomDis,
+            y: -150+randomDis
+        },
+        {
+            x: 200+randomDis,
+            y: -200+randomDis
+        },
+        {
+            x: 200+randomDis,
+            y: 100+randomDis
+        },
+        {
+            x: -200+randomDis,
+            y: 150+randomDis
+        }
+    ]
+    for(let i=0; i<points.length; i++){
+        if (i==0){
+            el.moveTo(points[i].x + offsetX , points[i].y + offsetY);
+        }else{
+            el.lineTo(points[i].x + offsetX , points[i].y + offsetY);
+        }
     }
-    const p2 = {
-        x: 0+randomDis,
-        y: -200+randomDis
-    }
-    const p3 = {
-        x: 200+randomDis,
-        y: -140+randomDis
-    }
-    const p4 = {
-        x: 160+randomDis,
-        y: 150+randomDis
-    }
-    const p5 = {
-        x: -180+randomDis,
-        y: 120+randomDis
-    }
-    el.moveTo(p1.x + offsetX , p1.y + offsetY);
-    el.lineTo(p2.x + offsetX, p2.y + offsetY );
-    el.lineTo(p3.x + offsetX , p3.y + offsetY);
-    el.lineTo(p4.x + offsetX, p4.y + offsetY );
-    el.lineTo(p5.x + offsetX, p5.y + offsetY );
 }
 
 // Noise shadow
 let noiseFilter = new PIXI.NoiseFilter(0.9)
 let blurFilter = new PIXI.BlurFilter(32, 6)
 const shadow = new PIXI.Graphics();
-let [offsetX, offsetY] = [-25, 40]
+let [offsetX, offsetY] = [25, 40]
 shadow.beginFill('0x244d69');
 shadow.alpha = 0.3;
 drawShape(shadow, offsetX, offsetY)
@@ -133,21 +133,24 @@ setInterval(() => {
   }, 50); 
 
 // Project cover
-const sprite = PIXI.Sprite.from(coverImg)
-// sprite.scale.set(canvasWidth / sprite.width)
-sprite.scale.set(0.4)
-sprite.anchor.set(0.5);
-sprite.mask = maskGraphic;
-sprite.eventMode = 'static'
-sprite
-    .on('click', ()=>{window.alert(`Go to behance view ${props.title}`)})
-    .on('pointerover', () => {
-        emits('hover')
-    })
-    .on('pointerout', () => {
-        emits('leave')
-    })
-container.addChild(sprite);
+let sprite
+const texturePromise = PIXI.Assets.load(coverImg)
+texturePromise.then((resolvedTexture) => {
+    sprite = PIXI.Sprite.from(resolvedTexture)
+    sprite.anchor.set(0.5);
+    sprite.scale.set(canvasWidth / sprite.width)
+    sprite.mask = maskGraphic;
+    sprite.eventMode = 'static'
+    sprite
+        .on('click', ()=>{window.alert(`Go to behance view ${props.title}`)})
+        .on('pointerover', () => {
+            emits('hover')
+        })
+        .on('pointerout', () => {
+            emits('leave')
+        })
+    container.addChild(sprite);
+})
 
 const canvas = ref(null)
 onMounted(()=>{
@@ -158,8 +161,8 @@ onMounted(()=>{
 <template>
     <section class="relative">
         <div ref="canvas"></div>
-        <div class="absolute bottom-24 flex flex-col gap-3">
-            <h2 class="text-3xl font-serif bg-light p-2 px-3 border border-dark font-bold">
+        <div class="absolute bottom-52 flex flex-col gap-3">
+            <h2 class="toucher text-3xl font-serif bg-light p-2 px-3 border border-dark font-bold">
                 {{ info.name }}
             </h2>
             <div class="flex gap-2">

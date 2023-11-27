@@ -62,13 +62,15 @@ function wheelShowCase(evt){
 function scrollShowCase(type) {
   const dom = showCase.value;
   const domWidth = dom.getBoundingClientRect().width
-  const step = window.innerWidth/3
+  const step = 500
   switch (type) {
     case "forward":
       gsap.to(dom, {
         x: ()=>{
           if (deltaX*-1 < domWidth){
-            return deltaX -= step
+            if (deltaX-step < domWidth*-1){
+              return deltaX -= (domWidth-(deltaX*-1)-170)
+            }else return deltaX -= step
           }else return deltaX
         },
         duration: 1,
@@ -128,25 +130,34 @@ onMounted(()=>{
       animateTarget(target, mouseX, mouseY);
     })
   })
+
+  const dom = showCase.value;
+  gsap.fromTo(dom, {
+    x: -1000
+  }, {
+    x: 0,
+    duration: 1.5,
+    ease: "power3.inOut"
+  })
 })
 </script>
 
 <template>
-  <main class="relative text-dark border-8 border-dark h-full">
-    <Avatar @click="coverLetterShowing = true" class="toucher absolute top-20 left-10 z-10"/>
-    <h6 class="absolute bottom-0 left-1/2 font-display tracking-wide -translate-x-1/2 pointer-events-none -z-2 text-dark opacity-5"
-    style="font-size: 200px;">
+  <main class="relative text-dark border-4 lg:border-8 border-dark h-full">
+    <Avatar @click="coverLetterShowing = true" class="toucher absolute top-32 left-5 lg:top-20 lg:left-10 z-10"/>
+    <h6 class="absolute bottom-0 left-1/2 font-display tracking-wide -translate-x-1/2 pointer-events-none -z-2 text-dark opacity-5
+    text-5xl">
       <p>Project</p>
       <p>Project</p>
       <p>Project</p>
     </h6>
     <TopHeader :current-tab="currentTab" @switch-tab="switchTab"/>
     <div>
-      <section class="fixed top-1/2 left-0 w-screen"
+      <section class="fixed top-1/2 left-0"
       v-show="projectsFiltered && !coverLetterShowing"
       style="transform: translateY(-50%)" @wheel="wheelShowCase"
       >
-      <div class="flex gap-20 ps-40" ref="showCase">
+      <div class="flex gap-20 ps-10 lg:ps-40" ref="showCase">
         <transition-group name="fade">
           <Project v-for="pj of projectsFiltered"
           :key="pj.title"
