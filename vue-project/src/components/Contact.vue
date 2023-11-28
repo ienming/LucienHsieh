@@ -1,15 +1,15 @@
-<script>
-import { ref } from 'vue';
+<script setup>
 import dashImg from '../assets/dash.png'
-const dashImgUrl = ref(dashImg)
 </script>
 
 <template>
     <section class="p-2 txt-slot-hover">
         <div class="p-2">
-            <h4 class="font-sans text-xl font-semibold txt-slot-container">
-                <span v-for="n of 2" class="txt-slot">Contact</span>
-                <img :src="dashImgUrl" alt="">
+            <h4 class="font-sans text-xl font-semibold flex gap-2 items-center">
+                <div class="txt-slot-container">
+                    <span v-for="n of 2" class="txt-slot">Contact</span>
+                </div>
+                <img :src="dashImg" alt="">
             </h4>
             <div class="flex gap-1 mt-1">
                 <span class="underline underline-offset-2">hsieh.alan.0726@gmail.com</span>

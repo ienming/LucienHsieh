@@ -162,7 +162,7 @@ onMounted(()=>{
 <template>
     <section class="relative">
         <div ref="canvas"></div>
-        <div class="absolute bottom-52 flex flex-col items-baseline gap-3 txt-slot-hover" style="--slot-offset: -165%;">
+        <div class="absolute bottom-52 flex flex-col items-baseline gap-2 txt-slot-hover" style="--slot-offset: -165%;">
             <h2 class="text-3xl p-5 txt-slot-container">
                 <div v-for="n of 2" class="txt-slot flex gap-3 items-center">
                     <span class="font-serif font-bold">{{ info.name.zh }}</span>
@@ -175,7 +175,7 @@ onMounted(()=>{
                     {{ tag }}
                 </div>
             </div>
-            <p class="text-black">{{ info.intro[lang] }}</p>
+            <p class="text-black mt-3">{{ info.intro[lang] }}</p>
         </div>
     </section>
 </template>

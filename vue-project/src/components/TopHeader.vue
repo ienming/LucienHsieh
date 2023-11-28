@@ -18,7 +18,7 @@ const link_behance = {
         </span>
       </span>
     </div>
-    <nav class="border-l-2 border-dark flex flex-col">
+    <nav class="lg:border-l-2 border-dark flex flex-col">
       <div class="grid grid-cols-3 border-b-2 border-dark">
         <button
           v-for="(tab, id) of tabs"

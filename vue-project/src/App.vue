@@ -2,6 +2,7 @@
 import { ref, provide, computed, onMounted } from 'vue';
 import TopHeader from '@/components/TopHeader.vue'
 import Avatar from '@/components/Avatar.vue'
+import Stage from './components/Stage.vue';
 import CoverLetter from '@/components/CoverLetter.vue'
 import Contact from '@/components/Contact.vue'
 import Project from '@/components/Project.vue'
@@ -105,6 +106,7 @@ onMounted(()=>{
   <main class="relative text-dark border-4 lg:border-8 border-dark h-full">
     <Avatar @click="coverLetterShowing = true" class="toucher absolute top-32 left-5 lg:top-20 lg:left-10 z-10"/>
     <TopHeader :current-tab="currentTab" @switch-tab="switchTab"/>
+    <Stage class="absolute top-0 left-0"/>
     <div>
       <section class="fixed top-1/2 left-0"
       v-show="projectsFiltered && !coverLetterShowing"
