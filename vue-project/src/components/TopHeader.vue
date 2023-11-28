@@ -1,6 +1,4 @@
 <script setup>
-import iconUrl from "@/assets/diamond.png";
-
 const props = defineProps(['currentTab'])
 const emits = defineEmits(['switch-tab'])
 
@@ -13,7 +11,7 @@ const link_behance = {
 
 <template>
   <section class="border-b-2 border-dark w-full grid relative z-10">
-    <div class="font-display text-4xl flex overflow-hidden opacity-70 border-b-2 border-dark lg:border-b-0">
+    <div class="font-display font-thin text-4xl flex overflow-hidden opacity-70 border-b-2 border-dark lg:border-b-0">
       <span class="marquee inline-block whitespace-nowrap" v-for="n of 3">
         <span class="flex gap-2 ps-3 leading-normal">
           <span>Portfolio Lucien Hsieh 2023 WEB & DESIGN</span>
@@ -25,7 +23,7 @@ const link_behance = {
         <button
           v-for="(tab, id) of tabs"
           :key="tab"
-          class="hov-el text-center hover:text-light font-semibold border-dark"
+          class="hov-el text-center hover:text-light font-semibold border-dark py-2 lg:py-1"
           :class="{ 'border-l-2': id !== 0, 'active': tab === props.currentTab }"
           @click="emits('switch-tab', tab)"
         >
@@ -35,7 +33,7 @@ const link_behance = {
       <a
         :href="link_behance.url"
         target="_blank"
-        class="hov-el px-2 py-1 hover:text-light flex gap-1 items-center flex-shrink-0"
+        class="hov-el px-2 hover:text-light flex gap-1 items-center flex-shrink-0 py-2 lg:py-1"
         style="line-height: 1.5;"
       >
         <span class="font-semibold">

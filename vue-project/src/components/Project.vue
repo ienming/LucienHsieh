@@ -29,12 +29,12 @@ container.onmousemove = (evt) => {
     const attractionRadius = 200
     const dist = Math.sqrt(Math.pow(mouseX - spriteOriX, 2) + Math.pow(mouseY - spriteOriY, 2))
     if (dist < attractionRadius){
-        let [skew_x, skew_y] = [.1, .1]
+        let [skew_x, skew_y] = [.03, .03]
         if (mouseX > spriteOriX){
-            skew_x = -0.1
+            skew_x = skew_x*-1
         }
         if (mouseY < spriteOriY){
-            skew_y = -0.1
+            skew_y = skew_y*-1
         }
         gsap.to(maskGraphic, {
             skewX: skew_x,
@@ -83,7 +83,8 @@ app.stage.addChild(maskGraphic);
 maskGraphic.x = app.screen.width / 2;
 maskGraphic.y = app.screen.height / 2;
 maskGraphic.lineStyle(0);
-let randomDis = Math.floor(Math.random()*50)
+// let randomDis = Math.floor(Math.random()*50)
+let randomDis = 0
 let count = 0
 maskGraphic.beginFill(0x8bc5ff, 0.4);
 drawShape(maskGraphic)
@@ -96,11 +97,11 @@ function drawShape(el, offsetX=0, offsetY=0){
         },
         {
             x: 200+randomDis,
-            y: -200+randomDis
+            y: -180+randomDis
         },
         {
             x: 200+randomDis,
-            y: 100+randomDis
+            y: 120+randomDis
         },
         {
             x: -200+randomDis,
@@ -138,11 +139,11 @@ const texturePromise = PIXI.Assets.load(coverImg)
 texturePromise.then((resolvedTexture) => {
     sprite = PIXI.Sprite.from(resolvedTexture)
     sprite.anchor.set(0.5);
-    sprite.scale.set(canvasWidth / sprite.width)
+    sprite.scale.set(canvasWidth / (sprite.width - 200))
     sprite.mask = maskGraphic;
     sprite.eventMode = 'static'
     sprite
-        .on('click', ()=>{window.alert(`Go to behance view ${props.title}`)})
+        .on('pointerdown', ()=>{window.alert(`Go to behance view ${props.title}`)})
         .on('pointerover', () => {
             emits('hover')
         })
@@ -159,11 +160,14 @@ onMounted(()=>{
 </script>
 
 <template>
-    <section class="relative">
+    <section class="relative txt-slot-hover">
         <div ref="canvas"></div>
-        <div class="absolute bottom-52 flex flex-col gap-3">
-            <h2 class="toucher text-3xl font-serif bg-light p-2 px-3 border border-dark font-bold">
-                {{ info.name }}
+        <div class="absolute bottom-52 flex flex-col items-baseline gap-3">
+            <h2 class="text-3xl bg-light p-2 px-3 border border-dark txt-slot-container">
+                <div v-for="n of 2" class="txt-slot flex gap-3 items-center">
+                    <span class="font-serif font-bold">{{ info.name.zh }}</span>
+                    <span class="font-light">{{ info.name.en }}</span>
+                </div>
             </h2>
             <div class="flex gap-2">
                 <div v-for="tag of info.tags" :key="tag"

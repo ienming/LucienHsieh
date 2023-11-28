@@ -9,7 +9,6 @@ import Mouse from '@/components/Mouse.vue'
 import Controller from '@/components/Controller.vue'
 import projects from '@/assets/projects.json'
 import { gsap } from 'gsap';
-import * as PIXI from "pixi.js";
 
 const lang = ref("zh")
 provide("lang", lang)
@@ -90,47 +89,7 @@ function scrollShowCase(type) {
   }
 }
 
-// Gravity grabbing UI
-function animateTarget(target, mouseX, mouseY) {
-  const { top, left, width, height } = target.getBoundingClientRect();
-  const centerX = left + width / 2;
-  const centerY = top + height / 2;
-
-  const deltaX = mouseX - centerX;
-  const deltaY = mouseY - centerY;
-
-  // 設定吸引區域
-  const attractionRadius = Math.sqrt((width / 2) ** 2 + (height / 2) ** 2);
-
-  if (
-    Math.abs(deltaX) < attractionRadius &&
-    Math.abs(deltaY) < attractionRadius
-  ) {
-    const displacementX = (deltaX / attractionRadius) * 20;
-    const displacementY = (deltaY / attractionRadius) * 20;
-    const skewVolumn = Math.abs(Math.sqrt(deltaX/100))
-
-    gsap.to(target, {
-      x: displacementX,
-      y: displacementY,
-      duration: 0.3,
-      ease: "power2.out",
-    });
-  } else {
-    gsap.to(target, { x: 0, y: 0, duration: 0.3, ease: "power2.out" });
-  }
-}
-
 onMounted(()=>{
-  const targets = document.querySelectorAll(".toucher");
-  document.addEventListener("mousemove", function (e) {
-    const mouseX = e.clientX;
-    const mouseY = e.clientY;
-    Array.from(targets).forEach(target => {
-      animateTarget(target, mouseX, mouseY);
-    })
-  })
-
   const dom = showCase.value;
   gsap.fromTo(dom, {
     x: -1000
@@ -145,12 +104,6 @@ onMounted(()=>{
 <template>
   <main class="relative text-dark border-4 lg:border-8 border-dark h-full">
     <Avatar @click="coverLetterShowing = true" class="toucher absolute top-32 left-5 lg:top-20 lg:left-10 z-10"/>
-    <h6 class="absolute bottom-0 left-1/2 font-display tracking-wide -translate-x-1/2 pointer-events-none -z-2 text-dark opacity-5
-    text-5xl">
-      <p>Project</p>
-      <p>Project</p>
-      <p>Project</p>
-    </h6>
     <TopHeader :current-tab="currentTab" @switch-tab="switchTab"/>
     <div>
       <section class="fixed top-1/2 left-0"
@@ -172,10 +125,20 @@ onMounted(()=>{
         </transition-group>
       </div>
       </section>
-      <CoverLetter v-if="coverLetterShowing" class="absolute top-0 right-0" @close="coverLetterShowing = false"/>
+      <CoverLetter v-show="coverLetterShowing" class="absolute top-0 right-0" @close="coverLetterShowing = false"/>
     </div>
     <Controller @show-prev="scrollShowCase('backward')" @show-next="scrollShowCase('forward')"/>
     <Contact class="toucher absolute bottom-0 right-0"/>
   </main>
   <Mouse :hover-pj="mouseHoverPj"/>
 </template>
+
+<style scoped>
+main {
+  background-image: url("./assets/bg.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-y: bottom;
+  background-blend-mode: multiply;
+}
+</style>

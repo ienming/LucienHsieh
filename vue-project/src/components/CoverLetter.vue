@@ -3,7 +3,8 @@ const emits = defineEmits(['close'])
 </script>
 
 <template>
-    <section class="w-full h-full z-20 bg-dark p-5 text-light">
+    <section class="w-full h-full z-20 bg-dark p-5 text-light invert-target"
+    ref="coverLetter">
         <div class="border-2 border-light h-full p-2">
             Cover Letter
             <button class="bg-light text-dark p-2 rounded-lg"

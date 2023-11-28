@@ -6,13 +6,14 @@ export default {
   ],
   theme: {
     fontFamily: {
+      'sans': ['Raleway', 'Noto Sans JP', 'ui-sans', 'sans'],
       'serif': ['Noto Serif TC', 'ui-serif', 'Georgia', 'Cambria', 'Times New Roman', 'Times', 'serif'],
-      'display': ['Taviraj', 'Noto Serif TC'],
+      'display': ['Raleway', 'Noto Serif TC'],
     },
     extend: {
       colors: {
         'light': '#FCFAF4',
-        'dark': '#294743'
+        'dark': '#292929'
       }
     },
   },

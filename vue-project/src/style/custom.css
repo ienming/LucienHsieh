@@ -1,0 +1,21 @@
+/* Custom */
+.txt-slot-container{
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
+    position: relative;
+}
+
+.txt-slot-container .txt-slot:nth-child(2){
+    position: absolute;
+    top: 100%;
+    width: max-content;
+}
+
+.txt-slot{
+    transition: .2s ease-out;
+}
+
+.txt-slot-hover:hover .txt-slot{
+    transform: translateY(-115%);
+}

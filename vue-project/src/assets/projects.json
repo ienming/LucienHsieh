@@ -2,7 +2,10 @@
     {
         "title": "iroironairo",
         "cate": ["code"],
-        "name": "色々な色　iroironairo",
+        "name": {
+            "zh": "色々な色",
+            "en": "iroironairo"
+        },
         "tags": ["Web", "Data visualization", "Vue", "GSAP"],
         "intro": {
             "zh": "將在日本旅遊的照片用「顏色」做主題呈現的資料視覺化"
@@ -10,8 +13,11 @@
     },
     {
         "title": "snailOasis",
-        "cate": ["code"],
-        "name": "蝸牛綠洲 Snail Oasis",
+        "cate": ["code", "design"],
+        "name": {
+            "zh": "蝸牛綠洲",
+            "en": "Snail Oasis"
+        },
         "tags": ["Web", "PIXI", "Vue", "Digital design"],
         "intro": {
             "zh": "基於「台南蝸牛巷」的遊戲化設計"
@@ -20,7 +26,10 @@
     {
         "title": "modernLove",
         "cate": ["code"],
-        "name": "現代愛情 Modern Love",
+        "name": {
+            "zh": "現代愛情",
+            "en": "Modern Love"
+        },
         "tags": ["Web", "Data visualization", "p5"],
         "intro": {
             "zh": ""
@@ -29,7 +38,10 @@
     {
         "title": "sushillustration",
         "cate": ["design"],
-        "name": "壽司插畫集 Sushillustration",
+        "name": {
+            "zh": "壽司插畫集",
+            "en": "Sushillustration"
+        },
         "tags": ["Illustration", "Photoshop"],
         "intro": {
             "zh": ""
