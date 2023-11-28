@@ -160,10 +160,10 @@ onMounted(()=>{
 </script>
 
 <template>
-    <section class="relative txt-slot-hover">
+    <section class="relative">
         <div ref="canvas"></div>
-        <div class="absolute bottom-52 flex flex-col items-baseline gap-3">
-            <h2 class="text-3xl bg-light p-2 px-3 border border-dark txt-slot-container">
+        <div class="absolute bottom-52 flex flex-col items-baseline gap-3 txt-slot-hover" style="--slot-offset: -165%;">
+            <h2 class="text-3xl p-5 txt-slot-container">
                 <div v-for="n of 2" class="txt-slot flex gap-3 items-center">
                     <span class="font-serif font-bold">{{ info.name.zh }}</span>
                     <span class="font-light">{{ info.name.en }}</span>
@@ -179,3 +179,11 @@ onMounted(()=>{
         </div>
     </section>
 </template>
+
+<style scoped>
+h2 {
+    background-image: url("../assets/bg_pj_title.png");
+    background-size: 100% 90%;
+    background-repeat: no-repeat;
+}
+</style>

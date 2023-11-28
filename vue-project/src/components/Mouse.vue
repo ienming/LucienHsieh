@@ -10,8 +10,8 @@ watch(() => props.hoverPj, (newValue, oldValue) => {
     const size = parseInt(getComputedStyle(mouseOuter).getPropertyValue('--size'), 10)
     if (newValue){
         gsap.to(mouseOuter, {
-            width: size*3,
-            height: size*3,
+            width: size*3.5,
+            height: size*3.5,
             backgroundColor: color,
             duration: .2,
             ease: 'power2'

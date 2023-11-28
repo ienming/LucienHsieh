@@ -13,7 +13,8 @@ export default {
     extend: {
       colors: {
         'light': '#FCFAF4',
-        'dark': '#292929'
+        'dark': '#292929',
+        'beige': '#E9E5D1'
       }
     },
   },

@@ -23,23 +23,25 @@ const link_behance = {
         <button
           v-for="(tab, id) of tabs"
           :key="tab"
-          class="hov-el text-center hover:text-light font-semibold border-dark py-2 lg:py-1"
+          class="hov-el text-center font-semibold border-dark py-2 lg:py-1 txt-slot-container txt-slot-hover"
           :class="{ 'border-l-2': id !== 0, 'active': tab === props.currentTab }"
           @click="emits('switch-tab', tab)"
         >
-          {{ tab.toUpperCase() }}
+          <span v-for="n of 2" class="txt-slot ps-2">{{ tab.toUpperCase() }}</span>
         </button>
       </div>
       <a
         :href="link_behance.url"
         target="_blank"
-        class="hov-el px-2 hover:text-light flex gap-1 items-center flex-shrink-0 py-2 lg:py-1"
+        class="hov-el px-2 py-2 lg:py-1 txt-slot-container txt-slot-hover"
         style="line-height: 1.5;"
       >
-        <span class="font-semibold">
-          {{ link_behance.text }}
+        <span v-for="n of 2" class="txt-slot flex gap-1 items-center">
+          <span class="font-semibold">
+            {{ link_behance.text }}
+          </span>
+          <span class="material-symbols-outlined"> open_in_new </span>
         </span>
-        <span class="material-symbols-outlined"> open_in_new </span>
       </a>
     </nav>
   </section>
@@ -70,7 +72,10 @@ const link_behance = {
 }
 
 .hov-el.active {
-  color: var(--luc-light);
+  color: var(--luc-beige);
+}
+.hov-el.active::after{
+  background-color: var(--luc-dark);
 }
 
 .hov-el.active::after {
@@ -85,7 +90,7 @@ const link_behance = {
   content: "";
   z-index: -1;
   display: block;
-  background-color: var(--luc-dark);
+  background-color: var(--luc-beige);
   position: absolute;
   width: 0%;
   height: 100%;

@@ -16,6 +16,14 @@
     transition: .2s ease-out;
 }
 
+.txt-slot-hover{
+    --slot-offset: -115%;
+}
+
 .txt-slot-hover:hover .txt-slot{
-    transform: translateY(-115%);
+    transform: translateY(var(--slot-offset));
+}
+
+.txt-slot-hover:hover .txt-slot:nth-child(1){
+    opacity: 0;
 }
