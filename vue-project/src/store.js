@@ -1,7 +1,7 @@
 import { reactive } from 'vue'
 
 export const storeIcon = reactive({
-    icon: "code",
+    icon: "",
     switchIcon(iconName){
         this.icon = iconName
     }

@@ -15,28 +15,36 @@ app.stage.addChild(container)
 
 // Sprite
 const texturesPath =  {
-    "base": '../assets/',
+    // "base": '../assets/',
+    // "base": import.meta.env.BASE_URL + 'assets/',
     "code": ['icon_code_1.png', 'icon_code_2.png'],
     "design": ['icon_design_1.png', 'icon_design_2.png']
 }
-let sprites = [], texturesPromise
+let sprites = [],textureSrc, texturesPromise, tween
 let texturesCaches = {
     "code": undefined,
     "design": undefined
 }
 
-for (let i=0; i<texturesPath[storeIcon.icon].length; i++){
-    const src = new URL(texturesPath.base+texturesPath[storeIcon.icon][i], import.meta.url).href
-    PIXI.Assets.add({
-        alias: texturesPath[storeIcon.icon][i],
-        src: src
-    })
-}
+textureSrc = new URL('../assets/icon_code_1.png', import.meta.url).href
 
 watch(storeIcon, (newValue, oldValue)=>{
-    console.log(newValue, oldValue)
+    console.log("New value: "+newValue)
+    clearAll()
     if (!texturesCaches[newValue.icon]){
         console.log("Load new textures: "+newValue.icon)
+        for (let i=0; i<texturesPath[newValue.icon].length; i++){
+            // if (import.meta.env.PROD){
+            //     src = import.meta.env.BASE_URL + 'assets/'
+            // }else{
+                // textureSrc = new URL('../assets/'+ texturesPath[newValue.icon][i], import.meta.url).href
+            // }
+            console.log(textureSrc)
+            PIXI.Assets.add({
+                alias: texturesPath[newValue.icon][i],
+                src: textureSrc
+            })
+        }
         texturesPromise = PIXI.Assets.load(texturesPath[newValue.icon])
         texturesPromise.then((textures) => {
             texturesCaches[newValue.icon] = textures
@@ -61,11 +69,13 @@ function makeSprite(textures){
     sprite.anchor.set(0.5);
     sprite.scale.set(0.5);
     sprites.push(sprite)
+    // console.log('Make sprite: '+sprite)
     container.addChild(sprite)
 }
 
 function animateSprites(){
-    gsap.to(sprites, {
+    console.log(sprites)
+    tween = gsap.to(sprites, {
         pixi: { 
             y: window.innerHeight,
             alpha: 0,
@@ -76,10 +86,20 @@ function animateSprites(){
         duration: 1,
         ease: "power3.in",
         onComplete: function(){
-            container.removeChildren()
-            console.log(container)
+            clearAll()
         }
     })
+}
+
+function clearAll(){
+    container.removeChildren()
+    sprites.forEach(sprite => {
+        sprite.destroy()
+    })
+    if (tween){
+        tween.kill()
+    }
+    sprites = []
 }
 
 // Canvas
@@ -88,6 +108,9 @@ onMounted(()=>{
     const parent = canvas.value.parentNode
     const [canvasWidth, canvasHeight] = [parent.getBoundingClientRect().width, parent.getBoundingClientRect().height]
     app.renderer.resize(canvasWidth, canvasHeight)
+
+    // initialize
+    storeIcon.switchIcon('code')
     
     canvas.value.appendChild(app.view)
 })
