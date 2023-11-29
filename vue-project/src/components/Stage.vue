@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { PixiPlugin } from "gsap/PixiPlugin";
 import logoImg from '../assets/logo.svg'
 gsap.registerPlugin(PixiPlugin);
+PixiPlugin.registerPIXI(PIXI)
 
 const app = new PIXI.Application({
     backgroundAlpha: 0
@@ -21,19 +22,20 @@ texturePromise.then((resolvedTexture) => {
         const sprite = PIXI.Sprite.from(resolvedTexture)
         sprite.x = Math.floor(Math.random()*app.renderer.width)
         sprite.anchor.set(0.5);
+        sprite.scale.set(0.5);
         sprites.push(sprite)
         container.addChild(sprite);
     }
     gsap.to(sprites, {
-        y: window.innerHeight,
-        alpha: 0,
+        pixi: { 
+            y: window.innerHeight,
+            alpha: 0,
+            scale: 1,
+            rotation: Math.random()*60+60
+        },
         stagger: .1,
         duration: 1,
-        ease: "power3.in",
-        onUpdate: function(){
-            this.y = gsap.getProperty(this, 'y');
-            this.alpha = gsap.getProperty(this, 'alpha');
-        }
+        ease: "power3.in"
     })
 })
 

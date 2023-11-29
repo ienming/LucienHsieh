@@ -4,6 +4,7 @@ import * as PIXI from "pixi.js";
 import { gsap } from "gsap";
 import { PixiPlugin } from "gsap/PixiPlugin";
 gsap.registerPlugin(PixiPlugin);
+PixiPlugin.registerPIXI(PIXI)
 
 const lang = inject("lang")
 
@@ -29,7 +30,7 @@ container.onmousemove = (evt) => {
     const attractionRadius = 200
     const dist = Math.sqrt(Math.pow(mouseX - spriteOriX, 2) + Math.pow(mouseY - spriteOriY, 2))
     if (dist < attractionRadius){
-        let [skew_x, skew_y] = [.03, .03]
+        let [skew_x, skew_y] = [3, 3]
         if (mouseX > spriteOriX){
             skew_x = skew_x*-1
         }
@@ -37,41 +38,33 @@ container.onmousemove = (evt) => {
             skew_y = skew_y*-1
         }
         gsap.to(maskGraphic, {
-            skewX: skew_x,
-            skewY: skew_y,
-            duration: 1,
-            onUpdate: () => {
-                maskGraphic.skew.x = gsap.getProperty(maskGraphic, 'skewX');
-                maskGraphic.skew.y = gsap.getProperty(maskGraphic, 'skewY');
-            }
+            pixi: {
+                skewX: skew_x,
+                skewY: skew_y
+            },
+            duration: 1
         });
         gsap.to(shadow, {
-            skewX: skew_x,
-            skewY: skew_y,
-            duration: 1,
-            onUpdate: () => {
-                shadow.skew.x = gsap.getProperty(shadow, 'skewX');
-                shadow.skew.y = gsap.getProperty(shadow, 'skewY');
-            }
+            pixi: {
+                skewX: skew_x,
+                skewY: skew_y,
+            },
+            duration: 1
         });
     }else{
         gsap.to(maskGraphic, {
-            skewX: 0,
-            skewY: 0,
-            duration: 1,
-            onUpdate: () => {
-                maskGraphic.skew.x = gsap.getProperty(maskGraphic, 'skewX');
-                maskGraphic.skew.y = gsap.getProperty(maskGraphic, 'skewY');
-            }
+            pixi: {
+                skewX: 0,
+                skewY: 0
+            },
+            duration: 1
         });
         gsap.to(shadow, {
-            skewX: 0,
-            skewY: 0,
-            duration: 1,
-            onUpdate: () => {
-                shadow.skew.x = gsap.getProperty(shadow, 'skewX');
-                shadow.skew.y = gsap.getProperty(shadow, 'skewY');
-            }
+            pixi: {
+                skewX: 0,
+                skewY: 0
+            },
+            duration: 1
         });
     }
 }
