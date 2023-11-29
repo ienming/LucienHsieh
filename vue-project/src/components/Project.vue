@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref, inject } from "vue";
+import { onMounted, ref, inject, onBeforeUnmount } from "vue";
 import * as PIXI from "pixi.js";
 import { gsap } from "gsap";
 import { PixiPlugin } from "gsap/PixiPlugin";
@@ -149,6 +149,10 @@ texturePromise.then((resolvedTexture) => {
 const canvas = ref(null)
 onMounted(()=>{
     canvas.value.appendChild(app.view)
+})
+
+onBeforeUnmount(()=>{
+    app.destroy(true)
 })
 </script>
 

@@ -109,7 +109,7 @@ onMounted(()=>{
     <Stage class="absolute top-0 left-0"/>
     <div>
       <section class="fixed top-1/2 left-0"
-      v-show="projectsFiltered && !coverLetterShowing"
+      v-if="projectsFiltered && !coverLetterShowing"
       style="transform: translateY(-50%)" @wheel="wheelShowCase"
       >
       <div class="flex gap-20 ps-10 lg:ps-40" ref="showCase">

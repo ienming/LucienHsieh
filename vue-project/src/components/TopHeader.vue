@@ -1,4 +1,6 @@
 <script setup>
+import { storeIcon } from '../store';
+
 const props = defineProps(['currentTab'])
 const emits = defineEmits(['switch-tab'])
 
@@ -7,6 +9,13 @@ const link_behance = {
   text: "VIEW ALL PROJECTS ON BEHANCE",
   url: "https://www.behance.net/Lucienming",
 };
+
+function switchTab(tabName){
+  emits('switch-tab', tabName)
+  if (tabName !== 'all'){
+    storeIcon.switchIcon(tabName)
+  }
+}
 </script>
 
 <template>
@@ -25,7 +34,7 @@ const link_behance = {
           :key="tab"
           class="hov-el text-center font-semibold border-dark py-2 lg:py-1 txt-slot-container txt-slot-hover"
           :class="{ 'border-l-2': id !== 0, 'active': tab === props.currentTab }"
-          @click="emits('switch-tab', tab)"
+          @click="switchTab(tab)"
         >
           <span v-for="n of 2" class="txt-slot ps-2">{{ tab.toUpperCase() }}</span>
         </button>
