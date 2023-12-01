@@ -28,12 +28,12 @@ function switchTab(tabName){
       </span>
     </div>
     <nav class="lg:border-l-2 border-dark flex flex-col">
-      <div class="grid grid-cols-3 border-b-2 border-dark">
+      <div class="grid grid-cols-3 border-b-2 border-dark bg-light">
         <button
           v-for="(tab, id) of tabs"
           :key="tab"
           class="hov-el text-center font-semibold border-dark py-2 lg:py-1 txt-slot-container txt-slot-hover"
-          :class="{ 'border-l-2': id !== 0, 'active': tab === props.currentTab }"
+          :class="{ 'border-l-2': id !== 0, 'bg-dark': tab === props.currentTab, 'text-snow-shadow': tab === props.currentTab }"
           @click="switchTab(tab)"
         >
           <span v-for="n of 2" class="txt-slot ps-2">{{ tab.toUpperCase() }}</span>
@@ -80,9 +80,6 @@ function switchTab(tabName){
   position: relative;
 }
 
-.hov-el.active {
-  color: var(--luc-snow-shadow);
-}
 .hov-el.active::after{
   background-color: var(--luc-dark);
 }

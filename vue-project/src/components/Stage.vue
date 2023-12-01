@@ -16,8 +16,8 @@ app.stage.addChild(container)
 // Sprite
 const texturesPath =  {
     "base": '/',
-    "code": ['icon_code_1.png', 'icon_code_2.png'],
-    "design": ['icon_design_1.png', 'icon_design_2.png']
+    "code": ['icon_code_1.png', 'icon_code_2.png', 'icon_code_3.png', 'icon_code_4.png', 'icon_code_5.png', 'icon_code_6.png'],
+    "design": ['icon_design_1.png', 'icon_design_2.png', 'icon_design_3.png']
 }
 let sprites = [],textureSrc, texturesPromise, tween
 let texturesCaches = {
@@ -26,13 +26,13 @@ let texturesCaches = {
 }
 
 watch(storeIcon, (newValue, oldValue)=>{
-    console.log("New value: "+newValue)
+    // console.log("New value: "+newValue)
     clearAll()
     if (!texturesCaches[newValue.icon]){
         console.log("Load new textures: "+newValue.icon)
         for (let i=0; i<texturesPath[newValue.icon].length; i++){
             textureSrc = new URL(texturesPath.base + texturesPath[newValue.icon][i], import.meta.url).href
-            console.log(textureSrc)
+            // console.log(textureSrc)
             PIXI.Assets.add({
                 alias: texturesPath[newValue.icon][i],
                 src: textureSrc
@@ -41,14 +41,14 @@ watch(storeIcon, (newValue, oldValue)=>{
         texturesPromise = PIXI.Assets.load(texturesPath[newValue.icon])
         texturesPromise.then((textures) => {
             texturesCaches[newValue.icon] = textures
-            for (let i=0; i<10; i++){
+            for (let i=0; i<20; i++){
                 makeSprite(textures)
             }
             animateSprites()
         })
     }else{
         console.log("Already have textures: "+newValue.icon)
-        for (let i=0; i<10; i++){
+        for (let i=0; i<20; i++){
             makeSprite(texturesCaches[newValue.icon])
         }
         animateSprites()
@@ -60,23 +60,20 @@ function makeSprite(textures){
     const sprite = PIXI.Sprite.from(textures[texturesPath[storeIcon.icon][random]])
     sprite.x = Math.floor(Math.random()*app.renderer.width)
     sprite.anchor.set(0.5);
-    sprite.scale.set(0.5);
     sprites.push(sprite)
-    // console.log('Make sprite: '+sprite)
     container.addChild(sprite)
 }
 
 function animateSprites(){
-    console.log(sprites)
+    // console.log(sprites)
     tween = gsap.to(sprites, {
         pixi: { 
             y: window.innerHeight,
-            alpha: 0,
-            scale: 1,
             rotation: Math.random()*60+60
         },
-        stagger: .1,
-        duration: 1,
+        stagger: .5,
+        repeat: -1,
+        duration: 5,
         ease: "power3.in",
         onComplete: function(){
             clearAll()
