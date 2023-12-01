@@ -23,7 +23,7 @@ function switchTab(tabName){
     <div class="font-display font-thin text-4xl flex overflow-hidden opacity-70 border-b-2 border-dark lg:border-b-0">
       <span class="marquee inline-block whitespace-nowrap" v-for="n of 3">
         <span class="flex gap-2 ps-3 leading-normal">
-          <span>Portfolio Lucien Hsieh 2023 WEB & DESIGN</span>
+          <span class="text-beige">Portfolio Lucien Hsieh 2023 WEB & DESIGN</span>
         </span>
       </span>
     </div>
@@ -81,7 +81,7 @@ function switchTab(tabName){
 }
 
 .hov-el.active {
-  color: var(--luc-beige);
+  color: var(--luc-snow-shadow);
 }
 .hov-el.active::after{
   background-color: var(--luc-dark);
@@ -99,7 +99,7 @@ function switchTab(tabName){
   content: "";
   z-index: -1;
   display: block;
-  background-color: var(--luc-beige);
+  background-color: var(--luc-snow-shadow);
   position: absolute;
   width: 0%;
   height: 100%;

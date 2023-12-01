@@ -15,8 +15,7 @@ app.stage.addChild(container)
 
 // Sprite
 const texturesPath =  {
-    // "base": '../assets/',
-    // "base": import.meta.env.BASE_URL + 'assets/',
+    "base": '/',
     "code": ['icon_code_1.png', 'icon_code_2.png'],
     "design": ['icon_design_1.png', 'icon_design_2.png']
 }
@@ -26,19 +25,13 @@ let texturesCaches = {
     "design": undefined
 }
 
-textureSrc = new URL('../assets/icon_code_1.png', import.meta.url).href
-
 watch(storeIcon, (newValue, oldValue)=>{
     console.log("New value: "+newValue)
     clearAll()
     if (!texturesCaches[newValue.icon]){
         console.log("Load new textures: "+newValue.icon)
         for (let i=0; i<texturesPath[newValue.icon].length; i++){
-            // if (import.meta.env.PROD){
-            //     src = import.meta.env.BASE_URL + 'assets/'
-            // }else{
-                // textureSrc = new URL('../assets/'+ texturesPath[newValue.icon][i], import.meta.url).href
-            // }
+            textureSrc = new URL(texturesPath.base + texturesPath[newValue.icon][i], import.meta.url).href
             console.log(textureSrc)
             PIXI.Assets.add({
                 alias: texturesPath[newValue.icon][i],

@@ -12,9 +12,10 @@ export default {
     },
     extend: {
       colors: {
-        'light': '#FCFAF4',
-        'dark': '#292929',
-        'beige': '#E9E5D1'
+        'light': '#EFEFEF',
+        'dark': '#1d2b43',
+        'snow-shadow': '#BECCE2',
+        'beige': '#8C8462'
       }
     },
   },

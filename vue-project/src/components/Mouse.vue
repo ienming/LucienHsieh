@@ -117,7 +117,7 @@ onMounted(()=>{
 <template>
     <div class="font-sans mouse-outer flex justify-center items-center">
         <p v-show="props.hoverPj" class="text-center">View on Behance</p>
-        <!-- <div class="mouse-inner"></div> -->
+        <div class="mouse-inner"></div>
     </div>
 </template>
 

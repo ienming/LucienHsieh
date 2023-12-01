@@ -127,10 +127,10 @@ onMounted(()=>{
         </transition-group>
       </div>
       </section>
-      <CoverLetter v-show="coverLetterShowing" class="absolute top-0 right-0" @close="coverLetterShowing = false"/>
     </div>
     <Controller @show-prev="scrollShowCase('backward')" @show-next="scrollShowCase('forward')"/>
     <Contact class="toucher absolute bottom-0 right-0"/>
+    <CoverLetter v-if="coverLetterShowing" class="fixed top-0 left-0" @close="coverLetterShowing = false"/>
   </main>
   <Mouse :hover-pj="mouseHoverPj"/>
 </template>
