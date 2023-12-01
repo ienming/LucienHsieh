@@ -2,15 +2,7 @@
 </script>
 
 <template>
-    <section class="p-5 rounded-full invert-target text-white">
-        Cover Letter
+    <section class="p-5 bg-lavendar rounded-full invert-target text-white">
+        //
     </section>
 </template>
-
-<style scoped>
-section {
-    background-image: url('../assets/bg_avatar.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-</style>

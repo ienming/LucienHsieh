@@ -5,7 +5,7 @@ const emits = defineEmits(['close'])
 <template>
     <section class="z-20 bg-dark/50 h-screen w-screen flex justify-center items-center backdrop-blur-sm"
     ref="coverLetter">
-        <div class="w-1/2 p-4 border-4 border-dark bg-snow-shadow">
+        <div class="w-1/2 p-4 bg-snow-shadow">
             <div class="flex justify-between">
                 <span>About</span>
                 <button class="bg-light text-dark p-2 rounded-lg"

@@ -20,10 +20,10 @@ function switchTab(tabName){
 
 <template>
   <section class="border-b-2 border-dark w-full grid relative z-10">
-    <div class="font-display font-thin text-4xl flex overflow-hidden opacity-70 border-b-2 border-dark lg:border-b-0">
+    <div class="font-display font-thin text-4xl flex overflow-hidden border-b-2 border-dark lg:border-b-0 bg-lavendar lg:bg-light">
       <span class="marquee inline-block whitespace-nowrap" v-for="n of 3">
         <span class="flex gap-2 ps-3 leading-normal">
-          <span class="text-beige">Portfolio Lucien Hsieh 2023 WEB & DESIGN</span>
+          <span class="text-light lg:text-lavendar">Portfolio Lucien Hsieh 2023 WEB & DESIGN</span>
         </span>
       </span>
     </div>

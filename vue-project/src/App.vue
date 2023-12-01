@@ -129,7 +129,7 @@ onMounted(()=>{
       </section>
     </div>
     <Controller @show-prev="scrollShowCase('backward')" @show-next="scrollShowCase('forward')"/>
-    <Contact class="toucher absolute bottom-0 right-0"/>
+    <Contact class="toucher absolute -bottom-4 -right-4"/>
     <CoverLetter v-if="coverLetterShowing" class="fixed top-0 left-0" @close="coverLetterShowing = false"/>
   </main>
   <Mouse :hover-pj="mouseHoverPj"/>
@@ -138,9 +138,8 @@ onMounted(()=>{
 <style scoped>
 main {
   background-image: url("./assets/bg.png");
-  background-size: contain;
+  background-size: 80%;
   background-repeat: no-repeat;
-  background-position-y: bottom;
-  background-blend-mode: multiply;
+  background-position: 10vw 60vh;
 }
 </style>

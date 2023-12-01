@@ -14,8 +14,9 @@ export default {
       colors: {
         'light': '#EFEFEF',
         'dark': '#1d2b43',
+        'lavendar': '#4C6899',
         'snow-shadow': '#BECCE2',
-        'beige': '#8C8462'
+        'gold': '#8C8462'
       }
     },
   },

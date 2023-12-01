@@ -12,7 +12,7 @@ const props = defineProps(['title', 'info'])
 const emits = defineEmits(['hover', 'leave'])
 const coverImg = new URL(`../assets/cover_${props.title}.png`, import.meta.url).href
 
-const [canvasWidth, canvasHeight] = [600, 800]
+const [canvasWidth, canvasHeight] = [600, 600]
 
 const app = new PIXI.Application({
     backgroundAlpha: 0,
@@ -23,14 +23,14 @@ const app = new PIXI.Application({
 
 const container = new PIXI.Container();
 container.x = app.screen.width / 2;
-container.y = app.screen.height / 2;
+container.y = app.screen.height / 2.5;
 container.onmousemove = (evt) => {
     const [mouseX, mouseY] = [evt.screenX, evt.screenY]
     const [spriteOriX, spriteOriY] = [sprite.x+canvasWidth/2, sprite.y+canvasHeight/2]
     const attractionRadius = 200
     const dist = Math.sqrt(Math.pow(mouseX - spriteOriX, 2) + Math.pow(mouseY - spriteOriY, 2))
     if (dist < attractionRadius){
-        let [skew_x, skew_y] = [3, 3]
+        let [skew_x, skew_y] = [5, 5]
         if (mouseX > spriteOriX){
             skew_x = skew_x*-1
         }
@@ -72,42 +72,15 @@ app.stage.addChild(container);
 
 // Mask
 const maskGraphic = new PIXI.Graphics();
-app.stage.addChild(maskGraphic);
-maskGraphic.x = app.screen.width / 2;
-maskGraphic.y = app.screen.height / 2;
+container.addChild(maskGraphic)
 maskGraphic.lineStyle(0);
-// let randomDis = Math.floor(Math.random()*50)
-let randomDis = 0
-let count = 0
 maskGraphic.beginFill(0x8bc5ff, 0.4);
 drawShape(maskGraphic)
 
 function drawShape(el, offsetX=0, offsetY=0){
-    const points = [
-        {
-            x: -200+randomDis,
-            y: -150+randomDis
-        },
-        {
-            x: 200+randomDis,
-            y: -180+randomDis
-        },
-        {
-            x: 200+randomDis,
-            y: 120+randomDis
-        },
-        {
-            x: -200+randomDis,
-            y: 150+randomDis
-        }
-    ]
-    for(let i=0; i<points.length; i++){
-        if (i==0){
-            el.moveTo(points[i].x + offsetX , points[i].y + offsetY);
-        }else{
-            el.lineTo(points[i].x + offsetX , points[i].y + offsetY);
-        }
-    }
+    const size = 200
+    el.drawEllipse(offsetX, offsetY, size, size)
+    el.endFill()
 }
 
 // Noise shadow
@@ -118,7 +91,6 @@ let [offsetX, offsetY] = [25, 40]
 shadow.beginFill('0x244d69');
 shadow.alpha = 0.3;
 drawShape(shadow, offsetX, offsetY)
-shadow.endFill();
 shadow.filters = [blurFilter, noiseFilter]
 container.addChild(shadow);
 
@@ -159,28 +131,22 @@ onBeforeUnmount(()=>{
 <template>
     <section class="relative">
         <div ref="canvas"></div>
-        <div class="absolute bottom-52 flex flex-col items-baseline gap-2 txt-slot-hover" style="--slot-offset: -165%;">
-            <h2 class="text-3xl p-5 txt-slot-container">
-                <div v-for="n of 2" class="txt-slot flex gap-3 items-center">
-                    <span class="font-serif font-bold">{{ info.name.zh }}</span>
-                    <span class="font-light">{{ info.name.en }}</span>
+        <div class="absolute left-1/2 w-full bottom-20 txt-slot-hover" style="--slot-offset: -165%; transform: translateX(-50%)">
+            <div class="flex flex-col items-center gap-3">
+                <h2 class="text-3xl p-4 txt-slot-container bg-light border border-dark">
+                    <div v-for="n of 2" class="txt-slot flex gap-3 items-center">
+                        <span class="font-serif font-bold">{{ info.name.zh }}</span>
+                        <span class="font-light">{{ info.name.en }}</span>
+                    </div>
+                </h2>
+                <div class="flex gap-2">
+                    <div v-for="tag of info.tags" :key="tag"
+                    class="p-2 border border-lavendar text-lavendar bg-light rounded-full">
+                        {{ tag }}
+                    </div>
                 </div>
-            </h2>
-            <div class="flex gap-2">
-                <div v-for="tag of info.tags" :key="tag"
-                class="p-2 border border-dark bg-light rounded-full">
-                    {{ tag }}
-                </div>
+                <p class="text-black mt-3">{{ info.intro[lang] }}</p>
             </div>
-            <p class="text-black mt-3">{{ info.intro[lang] }}</p>
         </div>
     </section>
 </template>
-
-<style scoped>
-h2 {
-    background-image: url("../assets/bg_pj_title.png");
-    background-size: 100% 90%;
-    background-repeat: no-repeat;
-}
-</style>
