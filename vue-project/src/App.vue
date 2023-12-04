@@ -106,8 +106,8 @@ onMounted(()=>{
   <main class="relative text-dark border-4 lg:border-8 border-dark h-full">
     <Avatar @click="coverLetterShowing = true" class="toucher absolute top-32 left-5 lg:top-20 lg:left-10 z-10"/>
     <TopHeader :current-tab="currentTab" @switch-tab="switchTab"/>
-    <Stage class="absolute top-0 left-0"/>
-    <div>
+    <Stage v-if="!coverLetterShowing" class="absolute top-0 left-0"/>
+    <div class="relative">
       <section class="fixed top-1/2 left-0"
       v-if="projectsFiltered && !coverLetterShowing"
       style="transform: translateY(-50%)" @wheel="wheelShowCase"
@@ -127,10 +127,10 @@ onMounted(()=>{
         </transition-group>
       </div>
       </section>
+      <CoverLetter v-if="coverLetterShowing" class="absolute top-0 left-0" @close="coverLetterShowing = false"/>
     </div>
     <Controller @show-prev="scrollShowCase('backward')" @show-next="scrollShowCase('forward')"/>
     <Contact class="toucher absolute -bottom-4 -right-4"/>
-    <CoverLetter v-if="coverLetterShowing" class="fixed top-0 left-0" @close="coverLetterShowing = false"/>
   </main>
   <Mouse :hover-pj="mouseHoverPj"/>
 </template>
