@@ -19,7 +19,8 @@ function switchTab(tabName){
 </script>
 
 <template>
-  <section class="border-b-2 border-dark w-full grid relative z-10">
+  <section class="border-b-2 border-dark w-full grid relative z-10"
+  id="topHeader">
     <div class="font-display font-thin text-4xl flex overflow-hidden border-b-2 border-dark lg:border-b-0 bg-lavendar lg:bg-light">
       <span class="marquee inline-block whitespace-nowrap" v-for="n of 3">
         <span class="flex gap-2 ps-3 leading-normal">

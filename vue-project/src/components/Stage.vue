@@ -41,14 +41,14 @@ watch(storeIcon, (newValue, oldValue)=>{
         texturesPromise = PIXI.Assets.load(texturesPath[newValue.icon])
         texturesPromise.then((textures) => {
             texturesCaches[newValue.icon] = textures
-            for (let i=0; i<20; i++){
+            for (let i=0; i<10; i++){
                 makeSprite(textures)
             }
             animateSprites()
         })
     }else{
         console.log("Already have textures: "+newValue.icon)
-        for (let i=0; i<20; i++){
+        for (let i=0; i<10; i++){
             makeSprite(texturesCaches[newValue.icon])
         }
         animateSprites()
@@ -69,7 +69,8 @@ function animateSprites(){
     tween = gsap.to(sprites, {
         pixi: { 
             y: window.innerHeight,
-            rotation: Math.random()*60+60
+            rotation: Math.random()*60+60,
+            alpha: 0
         },
         stagger: .5,
         repeat: -1,

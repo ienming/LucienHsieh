@@ -103,7 +103,8 @@ onMounted(()=>{
 </script>
 
 <template>
-  <main class="relative text-dark border-4 lg:border-8 border-dark h-full">
+  <main class="relative text-dark border-4 lg:border-8 border-dark h-full"
+  id="mainFrame">
     <Avatar @click="coverLetterShowing = true" class="toucher absolute top-32 left-5 lg:top-20 lg:left-10 z-10"/>
     <TopHeader :current-tab="currentTab" @switch-tab="switchTab"/>
     <Stage v-if="!coverLetterShowing" class="absolute top-0 left-0"/>
@@ -130,7 +131,7 @@ onMounted(()=>{
       <CoverLetter v-if="coverLetterShowing" class="absolute top-0 left-0" @close="coverLetterShowing = false"/>
     </div>
     <Controller @show-prev="scrollShowCase('backward')" @show-next="scrollShowCase('forward')"/>
-    <Contact class="toucher absolute -bottom-4 -right-4"/>
+    <Contact class="toucher absolute -bottom-4 -right-4 z-20"/>
   </main>
   <Mouse :hover-pj="mouseHoverPj"/>
 </template>
