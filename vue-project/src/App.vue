@@ -18,14 +18,15 @@ provide("lang", lang)
 const currentTab = ref("all")
 function switchTab(tab){
   currentTab.value = tab
-  // if (deltaX !== 0){
-  //   const dom = showCase.value;
-  //   gsap.to(dom, {
-  //     x: 0,
-  //     duration: 1,
-  //     ease: 'power3.out'
-  //   })
-  // }
+  if (deltaX !== 0){
+    const dom = showCase.value;
+    gsap.to(dom, {
+      x: 0,
+      duration: 1,
+      ease: 'power3.out'
+    })
+    deltaX = 0
+  }
 }
 
 const projectsFiltered = computed(()=>{
@@ -48,7 +49,10 @@ function wheelShowCase(evt){
   gsap.to(dom, {
     x: ()=>{
       if (evt.deltaY > 0 && deltaX*-1 < domWidth){
-        return deltaX += -1*evt.deltaY
+        // return deltaX += -1*evt.deltaY
+        if (deltaX-evt.deltaY < domWidth*-1){
+          return deltaX -= (domWidth-(deltaX*-1)-200)
+        }else return deltaX -= evt.deltaY
       }else if (evt.deltaY < 0 && deltaX < 0){
         return deltaX += -1*evt.deltaY
       }
@@ -120,14 +124,16 @@ onMounted(()=>{
           :info="{
             'name': pj.name,
             'intro': pj.intro,
-            'tags': pj.tags
+            'tags': pj.tags,
+            'url': pj.url
           }"
           @hover="mouseHoverPj = true"
           @leave="mouseHoverPj = false"/>
         </transition-group>
       </div>
       </section>
-      <CoverLetter v-show="storeCV.show" class="absolute top-0 left-0" @close="storeCV.toggleCV()"/>
+      <CoverLetter v-show="storeCV.show" :show="storeCV.show"
+      class="absolute top-0 left-0" @close="storeCV.toggleCV()"/>
     </div>
     <Controller @show-prev="scrollShowCase('backward')" @show-next="scrollShowCase('forward')"/>
     <Contact class="toucher absolute -bottom-4 -right-4 z-20"/>

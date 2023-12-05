@@ -9,7 +9,6 @@
 .txt-slot-container .txt-slot:nth-child(2){
     position: absolute;
     top: 100%;
-    width: max-content;
 }
 
 .txt-slot{
@@ -17,7 +16,7 @@
 }
 
 .txt-slot-hover{
-    --slot-offset: -115%;
+    --slot-offset: -113%;
 }
 
 .txt-slot-hover:hover .txt-slot{

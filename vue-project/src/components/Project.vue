@@ -108,7 +108,9 @@ texturePromise.then((resolvedTexture) => {
     sprite.mask = maskGraphic;
     sprite.eventMode = 'static'
     sprite
-        .on('pointerdown', ()=>{window.alert(`Go to behance view ${props.title}`)})
+        .on('pointerdown', ()=>{
+            viewProject()
+        })
         .on('pointerover', () => {
             emits('hover')
         })
@@ -117,6 +119,10 @@ texturePromise.then((resolvedTexture) => {
         })
     container.addChild(sprite);
 })
+
+function viewProject(){
+    window.open(props.info.url, '_blank')
+}
 
 const canvas = ref(null)
 onMounted(()=>{
@@ -131,10 +137,11 @@ onBeforeUnmount(()=>{
 <template>
     <section class="relative">
         <div ref="canvas"></div>
-        <div class="absolute left-1/2 w-full bottom-20 txt-slot-hover" style="--slot-offset: -165%; transform: translateX(-50%)">
+        <div class="absolute left-1/2 w-full bottom-20 txt-slot-hover max-w-[70%]" style="transform: translateX(-50%)">
             <div class="flex flex-col items-center gap-3">
-                <h2 class="text-3xl p-4 txt-slot-container bg-light border border-dark">
-                    <div v-for="n of 2" class="txt-slot flex gap-3 items-center">
+                <h2 class="text-3xl p-4 txt-slot-container bg-light border border-dark"
+                @click="viewProject">
+                    <div v-for="n of 2" class="txt-slot flex flex-wrap gap-3 items-center">
                         <span class="font-serif font-bold">{{ info.name.zh }}</span>
                         <span class="font-light">{{ info.name.en }}</span>
                     </div>

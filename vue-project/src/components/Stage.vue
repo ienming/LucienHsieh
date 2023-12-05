@@ -66,7 +66,12 @@ function makeSprite(textures){
 
 function animateSprites(){
     // console.log(sprites)
-    tween = gsap.to(sprites, {
+    tween = gsap.fromTo(sprites, {
+        pixi: {
+            alpha: 0.3
+        }
+    },
+    {
         pixi: { 
             y: window.innerHeight,
             rotation: Math.random()*60+60,

@@ -1,17 +1,20 @@
 <script setup>
-import { onMounted, ref, nextTick } from 'vue';
+import { watch, ref, nextTick } from 'vue';
 import Collapse from './Collapse.vue';
+const props = defineProps(['show'])
 const emits = defineEmits(['close'])
 
 const coverLetter = ref(null)
-onMounted(()=>{
-    const mainEl = document.querySelector("#mainFrame")
-    const topEl = document.querySelector("#topHeader")
 
-    const h = mainEl.clientHeight - topEl.clientHeight
-    nextTick(()=>{
-        coverLetter.value.style.height = h+'px'
-    })
+watch(() => props.show, (newValue, oldValue)=>{
+    if (props.show){
+        nextTick(()=>{
+            const mainEl = document.querySelector("#mainFrame")
+            const topEl = document.querySelector("#topHeader")
+            const h = mainEl.clientHeight - topEl.clientHeight
+            coverLetter.value.style.height = h+'px'
+        })
+    }
 })
 
 const contents = {
@@ -23,7 +26,7 @@ const contents = {
                 date: "2023.5 ~ 2024.3",
                 jobtitle: "網頁釋出系統前端與UIUX",
                 workplace: "國家高速網路與計算中心（委外派駐）",
-                detail: "Detail description",
+                detail: "主要負責生物網頁釋出系統改版的前端網頁開發、介面原型和使用者需求整理，並支援活動網頁和相關圖案設計。",
                 collapsed: false
             }
         ]
@@ -70,12 +73,24 @@ const contents = {
 </script>
 
 <template>
-    <section class="z-10 w-full invert-target overflow-y-scroll"
+    <section class="z-10 w-full invert-target overflow-y-scroll p-4 bg-dark text-light
+    pb-20 lg:pb-4"
     ref="coverLetter">
-        <div class="p-4 bg-dark text-light grid grid-cols-3 min-h-full">
-            <section class="col-start-1 col-end-3">
+        <h2 class="font-light text-4xl mb-10 flex justify-between item-center">
+            <div class="flex gap-2 flex-col lg:flex-row">
+                <span>Lucien Hsieh</span>
+                <span>謝明倫</span>
+            </div>
+            <button class="toucher bg-lavendar p-5 rounded-full"
+            @click="emits('close')">
+                <span class="material-symbols-outlined align-middle">
+                    close
+                </span>
+            </button>
+        </h2>
+        <div class="grid grid-cols-3 min-h-full">
+            <section class="col-span-3 lg:col-span-2">
                 <div class="my-5">
-                    <h2 class="font-light text-4xl mb-10">Lucien Hsieh</h2>
                     <p>
                         中文自我介紹
                     </p>
@@ -84,20 +99,20 @@ const contents = {
                     </p>
                 </div>
                 <div class="mb-8" v-for="(cv, key) of contents" :key="cv.title">
-                    <h5 class="text-snow-shadow font-semibold mb-4">{{ cv.title }}</h5>
+                    <h5 class="text-snow-shadow font-semibold mb-2">{{ cv.title }}</h5>
                     <div v-if="key === 'work'">
                         <Collapse v-for="exp of cv.data"
                         :key="exp.jobtitle"
                         :collapsed="exp.collapsed">
                             <template v-slot:header>
-                                <div class="grid grid-cols-3 hover:text-snow-shadow">
+                                <div class="grid grid-cols-1 lg:grid-cols-3 hover:text-snow-shadow">
                                     <span class="text-snow-shadow">{{exp.date}}</span>
                                     <span>{{ exp.jobtitle }}</span>
                                     <span>{{ exp.workplace }}</span>
                                 </div>
                             </template>
                             <template v-slot:content>
-                                <div class="p-3">
+                                <div class="px-0 lg:p-3">
                                     {{ exp.detail }}
                                 </div>
                             </template>
@@ -116,18 +131,9 @@ const contents = {
                         <span v-for="(value, key) of cv.data"
                         class="p-3 rounded-full" :class="'bg-'+value">
                             {{ key }}
-                            <span class="hidden">{{ value }}</span>
                         </span>
                     </div>
                 </div>
-            </section>
-            <section>
-                <button class="toucher bg-lavendar p-5 rounded-full float-right"
-                @click="emits('close')">
-                    <span class="material-symbols-outlined align-middle">
-                        close
-                    </span>
-                </button>
             </section>
         </div>
     </section>
