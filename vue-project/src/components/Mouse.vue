@@ -144,6 +144,6 @@ onMounted(()=>{
     height: 8px;
     border-radius: 50%;
     position: absolute;
-    background-color: var(--luc-dark);
+    background-color: var(--mouse-color);
 }
 </style>

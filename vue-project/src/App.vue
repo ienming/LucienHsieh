@@ -10,6 +10,7 @@ import Mouse from '@/components/Mouse.vue'
 import Controller from '@/components/Controller.vue'
 import projects from '@/assets/projects.json'
 import { gsap } from 'gsap';
+import { storeCV } from './store';
 
 const lang = ref("zh")
 provide("lang", lang)
@@ -36,8 +37,6 @@ const projectsFiltered = computed(()=>{
     }
   }
 })
-
-const coverLetterShowing = ref(false)
 
 const mouseHoverPj = ref(false)
 
@@ -105,12 +104,12 @@ onMounted(()=>{
 <template>
   <main class="relative text-dark border-4 lg:border-8 border-dark h-full"
   id="mainFrame">
-    <Avatar @click="coverLetterShowing = true" class="toucher absolute top-32 left-5 lg:top-20 lg:left-10 z-10"/>
+    <Avatar @click="storeCV.toggleCV()" class="toucher absolute top-32 left-5 lg:top-20 lg:left-10 z-10"/>
     <TopHeader :current-tab="currentTab" @switch-tab="switchTab"/>
-    <Stage v-if="!coverLetterShowing" class="absolute top-0 left-0"/>
+    <Stage v-if="!storeCV.show" class="absolute top-0 left-0"/>
     <div class="relative">
       <section class="fixed top-1/2 left-0"
-      v-if="projectsFiltered && !coverLetterShowing"
+      v-if="projectsFiltered && !storeCV.show"
       style="transform: translateY(-50%)" @wheel="wheelShowCase"
       >
       <div class="flex gap-20 ps-10 lg:ps-40" ref="showCase">
@@ -128,7 +127,7 @@ onMounted(()=>{
         </transition-group>
       </div>
       </section>
-      <CoverLetter v-if="coverLetterShowing" class="absolute top-0 left-0" @close="coverLetterShowing = false"/>
+      <CoverLetter v-show="storeCV.show" class="absolute top-0 left-0" @close="storeCV.toggleCV()"/>
     </div>
     <Controller @show-prev="scrollShowCase('backward')" @show-next="scrollShowCase('forward')"/>
     <Contact class="toucher absolute -bottom-4 -right-4 z-20"/>

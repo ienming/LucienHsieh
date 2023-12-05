@@ -6,3 +6,10 @@ export const storeIcon = reactive({
         this.icon = iconName
     }
 })
+
+export const storeCV = reactive({
+    show: false,
+    toggleCV(){
+        this.show = !this.show
+    }
+})

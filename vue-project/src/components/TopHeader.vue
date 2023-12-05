@@ -1,5 +1,6 @@
 <script setup>
 import { storeIcon } from '../store';
+import { storeCV } from '../store';
 
 const props = defineProps(['currentTab'])
 const emits = defineEmits(['switch-tab'])
@@ -20,7 +21,8 @@ function switchTab(tabName){
 
 <template>
   <section class="border-b-2 border-dark w-full grid relative z-10"
-  id="topHeader">
+  id="topHeader"
+  :style="storeCV.show ? {'grid-template-columns': '100%'}:''">
     <div class="font-display font-thin text-4xl flex overflow-hidden border-b-2 border-dark lg:border-b-0 bg-lavendar lg:bg-light">
       <span class="marquee inline-block whitespace-nowrap" v-for="n of 3">
         <span class="flex gap-2 ps-3 leading-normal">
@@ -28,7 +30,7 @@ function switchTab(tabName){
         </span>
       </span>
     </div>
-    <nav class="lg:border-l-2 border-dark flex flex-col">
+    <nav v-show="!storeCV.show" class="lg:border-l-2 border-dark flex flex-col">
       <div class="grid grid-cols-3 border-b-2 border-dark bg-light">
         <button
           v-for="(tab, id) of tabs"
@@ -59,7 +61,7 @@ function switchTab(tabName){
 
 <style scoped>
 @media screen and (min-width: 992px) {
-  section {
+  #topHeader {
     grid-template-columns: auto 35%;
   }
 }
