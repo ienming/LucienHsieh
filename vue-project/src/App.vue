@@ -15,6 +15,16 @@ import { storeCV } from './store';
 const lang = ref("zh")
 provide("lang", lang)
 
+const usingMobile = ref(false)
+const mobileStrings = ['iPhone', 'Android']
+mobileStrings.forEach(str => {
+    if (navigator.userAgent.indexOf(str) > -1){
+        usingMobile.value = true
+    return
+    }
+})
+provide('usingMobile', usingMobile)
+
 const currentTab = ref("all")
 function switchTab(tab){
   currentTab.value = tab
@@ -69,7 +79,7 @@ function wheelShowCase(evt){
 function scrollShowCase(type) {
   const dom = showCase.value;
   const domWidth = dom.getBoundingClientRect().width
-  const step = 500
+  const step = usingMobile.value ? window.innerWidth : 500
   switch (type) {
     case "forward":
       gsap.to(dom, {
@@ -127,7 +137,7 @@ onMounted(()=>{
       v-if="projectsFiltered && !storeCV.show"
       style="transform: translateY(-50%)" @wheel="wheelShowCase"
       >
-      <div class="flex items-center gap-5 lg:gap-20 ps-20 lg:ps-40" ref="showCase">
+      <div class="flex items-center gap-5 lg:gap-20 ps-10 lg:ps-40" ref="showCase">
         <transition-group name="fade">
           <Project v-for="pj of projectsFiltered"
           :key="pj.title"

@@ -35,17 +35,17 @@ const contents = {
         title: "技能 Skills & Preferred Tools",
         ui: "badge",
         data: {
-            "Vue": "gold",
-            "GSAP": "gold",
-            "PIXI": "gold",
-            "p5.js": "gold",
-            "JavaScript": "gold",
-            "Python": "gold",
-            "CSS": "gold",
-            "Bootstrap 5": "gold",
-            "Tailwind": "gold",
-            "HTML": "gold",
-            "Figma": "lavendar"
+            "Vue": "bg-lavendar",
+            "GSAP": "bg-lavendar",
+            "PIXI": "bg-lavendar",
+            "p5.js": "bg-lavendar",
+            "JavaScript": "bg-lavendar",
+            "Python": "bg-lavendar",
+            "CSS": "bg-lavendar",
+            "Bootstrap 5": "bg-lavendar",
+            "Tailwind": "bg-lavendar",
+            "HTML": "bg-lavendar",
+            "Figma": "bg-gold"
         }
     },
     "edu": {
@@ -76,8 +76,8 @@ const contents = {
     <section class="z-10 w-full invert-target overflow-y-scroll p-4 bg-dark text-light
     pb-20 lg:pb-4"
     ref="coverLetter">
-        <h2 class="font-light text-4xl mb-10 grid grid-cols-3">
-            <button class="toucher bg-lavendar p-5 rounded-full w-fit flex"
+        <h2 class="font-light text-4xl grid grid-cols-3">
+            <button class="toucher bg-lavendar p-5 rounded-full w-fit flex col-start-4 lg:col-start-1"
             @click="emits('close')">
                 <span class="material-symbols-outlined align-middle">
                     close
@@ -90,7 +90,7 @@ const contents = {
         </h2>
         <div class="grid grid-cols-3 min-h-full">
             <section class="col-span-3 lg:col-span-2 lg:col-start-2">
-                <div class="my-5">
+                <div class="my-10">
                     <p>
                         中文自我介紹
                     </p>
@@ -107,7 +107,7 @@ const contents = {
                             <template v-slot:header>
                                 <div class="grid grid-cols-1 lg:grid-cols-3 hover:text-snow-shadow">
                                     <span class="text-snow-shadow">{{exp.date}}</span>
-                                    <span>{{ exp.jobtitle }}</span>
+                                    <span class="pt-2 lg:pt-0">{{ exp.jobtitle }}</span>
                                     <span>{{ exp.workplace }}</span>
                                 </div>
                             </template>
@@ -119,17 +119,17 @@ const contents = {
                         </Collapse>
                     </div>
                     <div v-else-if="key === 'edu'">
-                        <div class="grid grid-cols-5 py-3 border-b border-snow-shadow/20"
+                        <div class="grid grid-cols-2 lg:grid-cols-5 py-3 border-b border-snow-shadow/20"
                         v-for="edu of cv.data"
                         :key="edu.jobtitle">
                             <span class="text-snow-shadow">{{edu.date}}</span>
                             <span>{{ edu.degree }}</span>
-                            <span class="col-span-3">{{ edu.department }}</span>
+                            <span class="col-span-3 pt-2 lg:pt-0">{{ edu.department }}</span>
                         </div>
                     </div>
                     <div v-else class="flex gap-3 flex-wrap">
                         <span v-for="(value, key) of cv.data"
-                        class="p-3 rounded-full" :class="'bg-'+value">
+                        class="py-1 px-2 rounded-full" :class="value">
                             {{ key }}
                         </span>
                     </div>

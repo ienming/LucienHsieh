@@ -12,14 +12,7 @@ const props = defineProps(['title', 'info'])
 const emits = defineEmits(['hover', 'leave'])
 const coverImg = new URL(`../assets/cover_${props.title}.png`, import.meta.url).href
 
-const usingMobile = ref(false)
-const mobileStrings = ['iPhone', 'Android']
-mobileStrings.forEach(str => {
-    if (navigator.userAgent.indexOf(str) > -1){
-        usingMobile.value = true
-    return
-    }
-})
+const usingMobile = inject("usingMobile")
 const canvasRatio = computed(()=>{
     if (usingMobile.value){
         return 1.5
@@ -59,13 +52,15 @@ container.onmousemove = (evt) => {
             },
             duration: 1
         });
-        gsap.to(shadow, {
-            pixi: {
-                skewX: skew_x,
-                skewY: skew_y,
-            },
-            duration: 1
-        });
+        if (!usingMobile.value){
+            gsap.to(shadow, {
+                pixi: {
+                    skewX: skew_x,
+                    skewY: skew_y,
+                },
+                duration: 1
+            });
+        }
     }else{
         gsap.to(maskGraphic, {
             pixi: {
@@ -74,13 +69,15 @@ container.onmousemove = (evt) => {
             },
             duration: 1
         });
-        gsap.to(shadow, {
-            pixi: {
-                skewX: 0,
-                skewY: 0
-            },
-            duration: 1
-        });
+        if (!usingMobile.value){
+            gsap.to(shadow, {
+                pixi: {
+                    skewX: 0,
+                    skewY: 0
+                },
+                duration: 1
+            });
+        }
     }
 }
 app.stage.addChild(container);
@@ -99,10 +96,11 @@ function drawShape(el, offsetX=0, offsetY=0){
 }
 
 // Noise shadow
+let shadow
 if (!usingMobile.value){
     let noiseFilter = new PIXI.NoiseFilter(0.9)
     let blurFilter = new PIXI.BlurFilter(32, 6)
-    const shadow = new PIXI.Graphics();
+    shadow = new PIXI.Graphics();
     let [offsetX, offsetY] = [25, 40]
     shadow.beginFill('0x244d69');
     shadow.alpha = 0.3;
