@@ -1,6 +1,7 @@
 <script setup>
 import { watch, ref, nextTick } from 'vue';
 import Collapse from './Collapse.vue';
+import Contact from './Contact.vue';
 const props = defineProps(['show'])
 const emits = defineEmits(['close'])
 
@@ -73,8 +74,7 @@ const contents = {
 </script>
 
 <template>
-    <section class="z-10 w-full invert-target overflow-y-scroll p-4 bg-dark text-light
-    pb-20 lg:pb-4"
+    <section class="z-10 w-full invert-target overflow-y-scroll p-4 bg-dark text-light"
     ref="coverLetter">
         <h2 class="font-light text-4xl grid grid-cols-3">
             <button class="toucher bg-lavendar p-5 rounded-full w-fit flex col-start-4 lg:col-start-1"
@@ -134,6 +134,7 @@ const contents = {
                         </span>
                     </div>
                 </div>
+                <Contact class="lg:hidden"></Contact>
             </section>
         </div>
     </section>

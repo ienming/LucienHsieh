@@ -169,7 +169,7 @@ onMounted(()=>{
     </div>
     <Controller @show-prev="scrollShowCase('backward')" @show-next="scrollShowCase('forward')"
     class="absolute bottom-0 right-0 p-3"/>
-    <Contact class="toucher absolute -bottom-4 -left-4 z-20"/>
+    <Contact class="toucher absolute -bottom-4 -left-4 z-20 hidden lg:block"/>
   </main>
   <Mouse :hover-pj="mouseHoverPj"/>
 </template>

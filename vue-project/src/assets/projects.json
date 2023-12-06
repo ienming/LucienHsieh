@@ -9,7 +9,8 @@
         "tags": ["Web", "Data visualization", "Vue", "GSAP"],
         "intro": {
             "zh": "將在日本旅遊的照片用「顏色」做主題呈現的資料視覺化"
-        }
+        },
+        "url": {}
     },
     {
         "title": "modernLove",
@@ -21,7 +22,8 @@
         "tags": ["Web", "Data visualization", "p5"],
         "intro": {
             "zh": ""
-        }
+        },
+        "url": {}
     },
     {
         "title": "sushillustration",
@@ -34,7 +36,9 @@
         "intro": {
             "zh": ""
         },
-        "url": "https://www.behance.net/gallery/85191807/-Sushillustration-no-0115"
+        "url": {
+            "project": "https://www.behance.net/gallery/85191807/-Sushillustration-no-0115"
+        }
     },
     {
         "title": "alishan",
@@ -47,6 +51,8 @@
         "intro": {
             "zh": ""
         },
-        "url": "https://www.behance.net/gallery/139774659/Editorial-Design-for-Alishan-Forest-Railway-Pahmphlet"
+        "url": {
+            "project": "https://www.behance.net/gallery/139774659/Editorial-Design-for-Alishan-Forest-Railway-Pahmphlet"
+        }
     }
 ]

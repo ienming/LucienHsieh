@@ -122,21 +122,27 @@ texturePromise.then((resolvedTexture) => {
     sprite.scale.set(canvasWidth / (sprite.width - 200))
     sprite.mask = maskGraphic;
     sprite.eventMode = 'static'
-    sprite
-        .on('pointerdown', ()=>{
-            viewProject()
-        })
-        .on('pointerover', () => {
-            emits('hover')
-        })
-        .on('pointerout', () => {
-            emits('leave')
-        })
+    if (!usingMobile.value){        
+        sprite
+            .on('pointerdown', ()=>{
+                viewProject()
+            })
+            .on('pointerover', () => {
+                emits('hover')
+            })
+            .on('pointerout', () => {
+                emits('leave')
+            })
+    }
     container.addChild(sprite);
 })
 
 function viewProject(){
-    window.open(props.info.url, '_blank')
+    if (usingMobile.value){
+        return
+    }else{
+        window.open(props.info.url.project, '_blank')
+    }
 }
 
 const canvas = ref(null)
@@ -152,7 +158,7 @@ onBeforeUnmount(()=>{
 <template>
     <section class="relative">
         <div ref="canvas"></div>
-        <div class="absolute top-1/2 w-9/12 txt-slot-hover">
+        <div class="absolute bottom-10 lg:bottom-24 w-9/12 txt-slot-hover">
             <div class="flex flex-col items-start gap-2 lg:gap-3">
                 <h2 class="text-lg lg:text-2xl p-2 lg:p-4 txt-slot-container bg-light border border-dark"
                 @click="viewProject">
@@ -161,13 +167,30 @@ onBeforeUnmount(()=>{
                         <span class="font-light">{{ info.name.en }}</span>
                     </div>
                 </h2>
-                <div class="flex gap-2 items-start flex-wrap">
+                <div class="flex flex-col gap-2 text-light" :class="usingMobile ? '':'hidden'">
+                    <a :href="info.url.demo"
+                    v-if="Object.prototype.hasOwnProperty.call(info.url, 'demo')" target="_blank"
+                    class="flex gap-1 items-center py-1 px-2 text-sm bg-gold rounded-full">
+                        <span class="material-symbols-outlined text-sm">
+                            open_in_new
+                        </span>
+                        View project</a>
+                    <a :href="info.url.project"
+                    v-if="Object.prototype.hasOwnProperty.call(info.url, 'project')" target="_blank"
+                    class="flex gap-1 items-center py-1 px-2 text-sm bg-gold rounded-full">
+                        <span class="material-symbols-outlined text-sm">
+                            open_in_new
+                        </span>
+                        Project detail on Behance</a>
+                </div>
+                <div class="flex gap-2 items-start flex-wrap"
+                v-show="!usingMobile">
                     <div v-for="tag of info.tags" :key="tag"
                     class="py-1 px-2 lg:py-2 border border-lavendar text-lavendar bg-light rounded-full">
                         {{ tag }}
                     </div>
                 </div>
-                <p class="text-black mt-3">{{ info.intro[lang] }}</p>
+                <p class="p-3 bg-light text-black">{{ info.intro[lang] }}</p>
             </div>
         </div>
     </section>
