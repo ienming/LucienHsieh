@@ -162,7 +162,7 @@ onBeforeUnmount(()=>{
             <div class="flex flex-col items-start gap-2 lg:gap-3">
                 <h2 class="text-lg lg:text-2xl p-2 lg:p-4 txt-slot-container bg-light border border-dark"
                 @click="viewProject">
-                    <div v-for="n of 2" class="txt-slot flex flex-wrap gap-3 items-center">
+                    <div v-for="n of 2" class="txt-slot flex flex-wrap items-center">
                         <span class="font-serif font-bold">{{ info.name.zh }}</span>
                         <span class="font-light">{{ info.name.en }}</span>
                     </div>
@@ -190,7 +190,7 @@ onBeforeUnmount(()=>{
                         {{ tag }}
                     </div>
                 </div>
-                <p class="p-3 bg-light text-black">{{ info.intro[lang] }}</p>
+                <p class="p-1 bg-light text-black">{{ info.intro[lang] }}</p>
             </div>
         </div>
     </section>

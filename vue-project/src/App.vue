@@ -135,7 +135,7 @@ onMounted(()=>{
     :class="!storeCV.show ? 'overflow-hidden':''">
       <section class="absolute top-1/2 left-0"
       v-if="projectsFiltered && !storeCV.show"
-      style="transform: translateY(-50%)" @wheel="wheelShowCase"
+      style="transform: translateY(-50%)" @scroll="wheelShowCase" @wheel="wheelShowCase"
       >
       <div class="flex items-center gap-5 lg:gap-20 ps-10 lg:ps-40" ref="showCase">
         <transition-group name="fade">

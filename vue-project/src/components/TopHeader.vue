@@ -7,7 +7,7 @@ const emits = defineEmits(['switch-tab'])
 
 const tabs = ["all", "code", "design"];
 const link_behance = {
-  text: "VIEW ALL PROJECTS ON BEHANCE",
+  text: "VIEW ALL PROJECTS",
   url: "https://www.behance.net/Lucienming",
 };
 
@@ -35,7 +35,7 @@ function switchTab(tabName){
         <button
           v-for="(tab, id) of tabs"
           :key="tab"
-          class="hov-el text-center font-semibold border-dark py-1 txt-slot-container txt-slot-hover"
+          class="hov-el text-sm lg:text-base text-center font-semibold border-dark py-1 txt-slot-container txt-slot-hover"
           :class="{ 'border-l-2': id !== 0, 'bg-dark': tab === props.currentTab, 'text-snow-shadow': tab === props.currentTab }"
           @click="switchTab(tab)"
         >
@@ -45,7 +45,7 @@ function switchTab(tabName){
       <a
         :href="link_behance.url"
         target="_blank"
-        class="hov-el px-2 py-1 txt-slot-container txt-slot-hover"
+        class="hov-el px-2 py-1 text-sm lg:text-base txt-slot-container txt-slot-hover"
         style="line-height: 1.5;"
       >
         <span v-for="n of 2" class="txt-slot flex gap-1 items-center">

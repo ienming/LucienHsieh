@@ -1,7 +1,7 @@
 <script setup>
 import { watch, ref, nextTick } from 'vue';
 import Collapse from './Collapse.vue';
-import Contact from './Contact.vue';
+import Contact from '@/components/Contact.vue'
 const props = defineProps(['show'])
 const emits = defineEmits(['close'])
 
@@ -76,7 +76,7 @@ const contents = {
 <template>
     <section class="z-10 w-full invert-target overflow-y-scroll p-4 bg-dark text-light"
     ref="coverLetter">
-        <h2 class="font-light text-4xl grid grid-cols-3">
+        <h2 class="font-light text-3xl lg:text-4xl grid grid-cols-3">
             <button class="toucher bg-lavendar p-5 rounded-full w-fit flex col-start-4 lg:col-start-1"
             @click="emits('close')">
                 <span class="material-symbols-outlined align-middle">
