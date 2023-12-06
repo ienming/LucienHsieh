@@ -23,7 +23,7 @@ function switchTab(tabName){
   <section class="border-b-2 border-dark w-full grid relative z-10"
   id="topHeader"
   :style="storeCV.show ? {'grid-template-columns': '100%'}:''">
-    <div class="font-display font-thin text-4xl flex overflow-hidden border-b-2 border-dark lg:border-b-0 bg-lavendar lg:bg-light">
+    <div class="font-display font-thin text-lg lg:text-4xl flex overflow-hidden border-b-2 border-dark lg:border-b-0 bg-lavendar lg:bg-light">
       <span class="marquee inline-block whitespace-nowrap" v-for="n of 3">
         <span class="flex gap-2 ps-3 leading-normal">
           <span class="text-light lg:text-lavendar">Portfolio Lucien Hsieh 2023 WEB & DESIGN</span>
@@ -35,7 +35,7 @@ function switchTab(tabName){
         <button
           v-for="(tab, id) of tabs"
           :key="tab"
-          class="hov-el text-center font-semibold border-dark py-2 lg:py-1 txt-slot-container txt-slot-hover"
+          class="hov-el text-center font-semibold border-dark py-1 txt-slot-container txt-slot-hover"
           :class="{ 'border-l-2': id !== 0, 'bg-dark': tab === props.currentTab, 'text-snow-shadow': tab === props.currentTab }"
           @click="switchTab(tab)"
         >
@@ -45,7 +45,7 @@ function switchTab(tabName){
       <a
         :href="link_behance.url"
         target="_blank"
-        class="hov-el px-2 py-2 lg:py-1 txt-slot-container txt-slot-hover"
+        class="hov-el px-2 py-1 txt-slot-container txt-slot-hover"
         style="line-height: 1.5;"
       >
         <span v-for="n of 2" class="txt-slot flex gap-1 items-center">

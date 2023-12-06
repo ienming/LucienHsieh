@@ -19,14 +19,18 @@ const currentTab = ref("all")
 function switchTab(tab){
   currentTab.value = tab
   if (deltaX !== 0){
-    const dom = showCase.value;
+    back2Start()
+  }
+}
+
+function back2Start(){
+  const dom = showCase.value;
     gsap.to(dom, {
       x: 0,
       duration: 1,
       ease: 'power3.out'
     })
     deltaX = 0
-  }
 }
 
 const projectsFiltered = computed(()=>{
@@ -94,6 +98,12 @@ function scrollShowCase(type) {
 }
 
 onMounted(()=>{
+  const pjBox = document.querySelector("#projectContainer")
+  const mainEl = document.querySelector("#mainFrame")
+  const topEl = document.querySelector("#topHeader")
+  const h = mainEl.clientHeight - topEl.clientHeight
+  pjBox.style.height = h+'px'
+
   const dom = showCase.value;
   gsap.fromTo(dom, {
     x: -1000
@@ -108,15 +118,16 @@ onMounted(()=>{
 <template>
   <main class="relative text-dark border-4 lg:border-8 border-dark h-full"
   id="mainFrame">
-    <Avatar @click="storeCV.toggleCV()" class="toucher absolute top-32 left-5 lg:top-20 lg:left-10 z-10"/>
+    <Avatar @click="storeCV.toggleCV()" class="toucher absolute top-28 left-3 lg:top-20 z-10"/>
     <TopHeader :current-tab="currentTab" @switch-tab="switchTab"/>
     <Stage v-if="!storeCV.show" class="absolute top-0 left-0"/>
-    <div class="relative">
-      <section class="fixed top-1/2 left-0"
+    <div id="projectContainer" class="relative"
+    :class="!storeCV.show ? 'overflow-hidden':''">
+      <section class="absolute top-1/2 left-0"
       v-if="projectsFiltered && !storeCV.show"
       style="transform: translateY(-50%)" @wheel="wheelShowCase"
       >
-      <div class="flex gap-20 ps-10 lg:ps-40" ref="showCase">
+      <div class="flex items-center gap-5 lg:gap-20 ps-20 lg:ps-40" ref="showCase">
         <transition-group name="fade">
           <Project v-for="pj of projectsFiltered"
           :key="pj.title"
@@ -130,13 +141,25 @@ onMounted(()=>{
           @hover="mouseHoverPj = true"
           @leave="mouseHoverPj = false"/>
         </transition-group>
+        <div class="text-sm text-lavendar flex flex-col gap-3 lg:gap-5 whitespace-nowrap">
+          <span>The End</span>
+          <button class="toucher flex items-center gap-1 txt-slot-hover"
+          @click="back2Start">
+            <span class="material-symbols-outlined p-1 border border-lavendar rounded-full
+            ">arrow_back</span>
+            <div class="txt-slot-container">
+              <span v-for="n of 2" class="txt-slot">Back to the start</span>
+            </div>
+          </button>
+        </div>
       </div>
       </section>
       <CoverLetter v-show="storeCV.show" :show="storeCV.show"
       class="absolute top-0 left-0" @close="storeCV.toggleCV()"/>
     </div>
-    <Controller @show-prev="scrollShowCase('backward')" @show-next="scrollShowCase('forward')"/>
-    <Contact class="toucher absolute -bottom-4 -right-4 z-20"/>
+    <Controller @show-prev="scrollShowCase('backward')" @show-next="scrollShowCase('forward')"
+    class="absolute bottom-0 right-0 p-3"/>
+    <Contact class="toucher absolute -bottom-4 -left-4 z-20"/>
   </main>
   <Mouse :hover-pj="mouseHoverPj"/>
 </template>

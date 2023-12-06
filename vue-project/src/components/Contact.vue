@@ -3,8 +3,8 @@
 
 <template>
     <section class="txt-slot-hover bg-snow-shadow">
-        <div class="p-4">
-            <h4 class="font-sans text-xl font-semibold mb-2">
+        <div class="p-2 lg:p-4">
+            <h4 class="font-sans text-base lg:text-xl font-semibold mb-2">
                 <div class="txt-slot-container">
                     <span v-for="n of 2" class="txt-slot">Contact</span>
                 </div>

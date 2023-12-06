@@ -7,7 +7,7 @@ const emits = defineEmits(['close'])
 const coverLetter = ref(null)
 
 watch(() => props.show, (newValue, oldValue)=>{
-    if (props.show){
+    if (newValue){
         nextTick(()=>{
             const mainEl = document.querySelector("#mainFrame")
             const topEl = document.querySelector("#topHeader")
@@ -76,20 +76,20 @@ const contents = {
     <section class="z-10 w-full invert-target overflow-y-scroll p-4 bg-dark text-light
     pb-20 lg:pb-4"
     ref="coverLetter">
-        <h2 class="font-light text-4xl mb-10 flex justify-between item-center">
-            <div class="flex gap-2 flex-col lg:flex-row">
-                <span>Lucien Hsieh</span>
-                <span>謝明倫</span>
-            </div>
-            <button class="toucher bg-lavendar p-5 rounded-full"
+        <h2 class="font-light text-4xl mb-10 grid grid-cols-3">
+            <button class="toucher bg-lavendar p-5 rounded-full w-fit flex"
             @click="emits('close')">
                 <span class="material-symbols-outlined align-middle">
                     close
                 </span>
             </button>
+            <div class="flex gap-2 flex-col lg:flex-row col-span-3 lg:col-span-2 lg:col-start-2">
+                <span>Lucien Hsieh</span>
+                <span>謝明倫</span>
+            </div>
         </h2>
         <div class="grid grid-cols-3 min-h-full">
-            <section class="col-span-3 lg:col-span-2">
+            <section class="col-span-3 lg:col-span-2 lg:col-start-2">
                 <div class="my-5">
                     <p>
                         中文自我介紹

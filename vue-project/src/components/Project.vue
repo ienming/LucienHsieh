@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref, inject, onBeforeUnmount } from "vue";
+import { onMounted, ref, inject, onBeforeUnmount, computed } from "vue";
 import * as PIXI from "pixi.js";
 import { gsap } from "gsap";
 import { PixiPlugin } from "gsap/PixiPlugin";
@@ -12,7 +12,22 @@ const props = defineProps(['title', 'info'])
 const emits = defineEmits(['hover', 'leave'])
 const coverImg = new URL(`../assets/cover_${props.title}.png`, import.meta.url).href
 
-const [canvasWidth, canvasHeight] = [600, 600]
+const usingMobile = ref(false)
+const mobileStrings = ['iPhone', 'Android']
+mobileStrings.forEach(str => {
+    if (navigator.userAgent.indexOf(str) > -1){
+        usingMobile.value = true
+    return
+    }
+})
+const canvasRatio = computed(()=>{
+    if (usingMobile.value){
+        return 1.5
+    }else return 1.2
+})
+const [canvasWidth, canvasHeight] = [
+    window.innerHeight/canvasRatio.value,
+    window.innerHeight/canvasRatio.value]
 
 const app = new PIXI.Application({
     backgroundAlpha: 0,
@@ -78,25 +93,27 @@ maskGraphic.beginFill(0x8bc5ff, 0.4);
 drawShape(maskGraphic)
 
 function drawShape(el, offsetX=0, offsetY=0){
-    const size = 200
+    const size = (window.innerHeight/canvasRatio.value)/3
     el.drawEllipse(offsetX, offsetY, size, size)
     el.endFill()
 }
 
 // Noise shadow
-let noiseFilter = new PIXI.NoiseFilter(0.9)
-let blurFilter = new PIXI.BlurFilter(32, 6)
-const shadow = new PIXI.Graphics();
-let [offsetX, offsetY] = [25, 40]
-shadow.beginFill('0x244d69');
-shadow.alpha = 0.3;
-drawShape(shadow, offsetX, offsetY)
-shadow.filters = [blurFilter, noiseFilter]
-container.addChild(shadow);
-
-setInterval(() => {
-    noiseFilter.seed = Math.random();
-  }, 50); 
+if (!usingMobile.value){
+    let noiseFilter = new PIXI.NoiseFilter(0.9)
+    let blurFilter = new PIXI.BlurFilter(32, 6)
+    const shadow = new PIXI.Graphics();
+    let [offsetX, offsetY] = [25, 40]
+    shadow.beginFill('0x244d69');
+    shadow.alpha = 0.3;
+    drawShape(shadow, offsetX, offsetY)
+    shadow.filters = [blurFilter, noiseFilter]
+    container.addChild(shadow);
+    
+    setInterval(() => {
+        noiseFilter.seed = Math.random();
+      }, 50); 
+}
 
 // Project cover
 let sprite
@@ -137,18 +154,18 @@ onBeforeUnmount(()=>{
 <template>
     <section class="relative">
         <div ref="canvas"></div>
-        <div class="absolute left-1/2 w-full bottom-20 txt-slot-hover max-w-[70%]" style="transform: translateX(-50%)">
-            <div class="flex flex-col items-center gap-3">
-                <h2 class="text-3xl p-4 txt-slot-container bg-light border border-dark"
+        <div class="absolute top-1/2 w-9/12 txt-slot-hover">
+            <div class="flex flex-col items-start gap-2 lg:gap-3">
+                <h2 class="text-lg lg:text-2xl p-2 lg:p-4 txt-slot-container bg-light border border-dark"
                 @click="viewProject">
                     <div v-for="n of 2" class="txt-slot flex flex-wrap gap-3 items-center">
                         <span class="font-serif font-bold">{{ info.name.zh }}</span>
                         <span class="font-light">{{ info.name.en }}</span>
                     </div>
                 </h2>
-                <div class="flex gap-2">
+                <div class="flex gap-2 items-start flex-wrap">
                     <div v-for="tag of info.tags" :key="tag"
-                    class="p-2 border border-lavendar text-lavendar bg-light rounded-full">
+                    class="py-1 px-2 lg:py-2 border border-lavendar text-lavendar bg-light rounded-full">
                         {{ tag }}
                     </div>
                 </div>
