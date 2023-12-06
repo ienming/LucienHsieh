@@ -165,7 +165,7 @@ onBeforeUnmount(()=>{
                 @click="viewProject">
                     <div v-for="n of 2" class="txt-slot flex flex-wrap items-center">
                         <span class="font-serif font-bold">{{ info.name.zh }}</span>
-                        <span class="font-light">{{ info.name.en }}</span>
+                        <span class="font-light text-sm ps-1 lg:ps-2">{{ info.name.en }}</span>
                     </div>
                 </h2>
                 <div class="flex flex-col gap-2 text-light">

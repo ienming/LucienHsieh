@@ -57,27 +57,62 @@ const mouseHoverPj = ref(false)
 
 const showCase = ref(null)
 let deltaX = 0
-function wheelShowCase(evt){
+function wheelShowCase(evt) {
   const dom = showCase.value;
-  const domWidth = dom.getBoundingClientRect().width
+  const domWidth = dom.getBoundingClientRect().width;
+
+  let deltaDist;
+
+  if (evt.type === 'wheel') {
+    deltaDist = evt.deltaY || evt.deltaX;
+  } else if (evt.type === 'touchmove') {
+    const touch = evt.touches[0];
+    const touchStartX = touch.clientX;
+    const touchMoveX = touch.clientX;
+    deltaDist = touchMoveX - touchStartX;
+  } else if (evt.type === 'scroll') {
+    deltaDist = evt.deltaY;
+  } else {
+    return;
+  }
+
   gsap.to(dom, {
-    x: ()=>{
-      let deltaDist
-      if (evt.deltaX == 0){
-        deltaDist = evt.deltaY
-      }else deltaDist = evt.deltaX
-      if (deltaDist > 0 && deltaX*-1 < domWidth){
-        if (deltaX-deltaDist < domWidth*-1){
-          return deltaX -= (domWidth-(deltaX*-1)-200)
-        }else return deltaX -= deltaDist
-      }else if (deltaDist < 0 && deltaX < 0){
-        return deltaX += -1*deltaDist
+    x: () => {
+      if (deltaDist > 0 && deltaX * -1 < domWidth) {
+        if (deltaX - deltaDist < domWidth * -1) {
+          return deltaX -= (domWidth - (deltaX * -1) - 200);
+        } else {
+          return deltaX -= deltaDist;
+        }
+      } else if (deltaDist < 0 && deltaX < 0) {
+        return deltaX += -1 * deltaDist;
       }
     },
-    duration: .3,
-    ease: "power3.out"
-  })
+    duration: 0.3,
+    ease: 'power3.out',
+  });
 }
+// function wheelShowCase(evt){
+//   const dom = showCase.value;
+//   const domWidth = dom.getBoundingClientRect().width
+//   gsap.to(dom, {
+//     x: ()=>{
+//       let deltaDist
+//       if (evt.deltaX == 0){
+//         deltaDist = evt.deltaY
+//       }else deltaDist = evt.deltaX
+//       if (deltaDist > 0 && deltaX*-1 < domWidth){
+//         if (deltaX-deltaDist < domWidth*-1){
+//           return deltaX -= (domWidth-(deltaX*-1)-200)
+//         }else return deltaX -= deltaDist
+//       }else if (deltaDist < 0 && deltaX < 0){
+//         return deltaX += -1*deltaDist
+//       }
+//     },
+//     duration: .3,
+//     ease: "power3.out"
+//   })
+// }
 
 function scrollShowCase(type) {
   const dom = showCase.value;
@@ -131,14 +166,16 @@ onMounted(()=>{
 <template>
   <main class="relative text-dark border-4 lg:border-8 border-dark h-full"
   id="mainFrame">
-    <Avatar @click="storeCV.toggleCV()" class="toucher absolute top-28 left-3 lg:top-20 z-10"/>
+    <Avatar @click="storeCV.toggleCV()" class="toucher absolute left-1 top-24 lg:top-20 z-10"/>
     <TopHeader :current-tab="currentTab" @switch-tab="switchTab"/>
     <Stage v-if="!storeCV.show" class="absolute top-0 left-0"/>
     <div id="projectContainer" class="relative"
     :class="!storeCV.show ? 'overflow-hidden':''">
       <section class="absolute top-1/2 left-0"
       v-if="projectsFiltered && !storeCV.show"
-      style="transform: translateY(-50%)" @wheel="wheelShowCase"
+      style="transform: translateY(-50%)"
+      @wheel="wheelShowCase"
+      @touchmove.prevent="wheelShowCase"
       >
       <div class="flex items-center gap-5 lg:gap-20 ps-10 lg:ps-40" ref="showCase">
         <transition-group name="fade">
