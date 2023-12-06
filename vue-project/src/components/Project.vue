@@ -25,6 +25,7 @@ const [canvasWidth, canvasHeight] = [
 const app = new PIXI.Application({
     backgroundAlpha: 0,
     antialias: true,
+    autoDensity: true,
     width: canvasWidth,
     height: canvasHeight
 });
@@ -160,28 +161,29 @@ onBeforeUnmount(()=>{
         <div ref="canvas"></div>
         <div class="absolute bottom-10 lg:bottom-24 w-9/12 txt-slot-hover">
             <div class="flex flex-col items-start gap-2 lg:gap-3">
-                <h2 class="text-lg lg:text-2xl p-2 lg:p-4 txt-slot-container bg-light border border-dark"
+                <h2 class="text-lg lg:text-2xl p-1 lg:p-4 txt-slot-container bg-light border border-dark"
                 @click="viewProject">
                     <div v-for="n of 2" class="txt-slot flex flex-wrap items-center">
                         <span class="font-serif font-bold">{{ info.name.zh }}</span>
                         <span class="font-light">{{ info.name.en }}</span>
                     </div>
                 </h2>
-                <div class="flex flex-col gap-2 text-light" :class="usingMobile ? '':'hidden'">
+                <div class="flex flex-col gap-2 text-light">
                     <a :href="info.url.demo"
                     v-if="Object.prototype.hasOwnProperty.call(info.url, 'demo')" target="_blank"
                     class="flex gap-1 items-center py-1 px-2 text-sm bg-gold rounded-full">
                         <span class="material-symbols-outlined text-sm">
                             open_in_new
                         </span>
-                        View project</a>
+                        Project demo</a>
                     <a :href="info.url.project"
+                    :class="usingMobile ? '':'hidden'"
                     v-if="Object.prototype.hasOwnProperty.call(info.url, 'project')" target="_blank"
                     class="flex gap-1 items-center py-1 px-2 text-sm bg-gold rounded-full">
                         <span class="material-symbols-outlined text-sm">
                             open_in_new
                         </span>
-                        Project detail on Behance</a>
+                        Detail description</a>
                 </div>
                 <div class="flex gap-2 items-start flex-wrap"
                 v-show="!usingMobile">

@@ -10,7 +10,10 @@
         "intro": {
             "zh": "將在日本旅遊的照片用「顏色」做主題呈現的資料視覺化"
         },
-        "url": {}
+        "url": {
+            "demo": "",
+            "project": ""
+        }
     },
     {
         "title": "modernLove",
@@ -23,7 +26,10 @@
         "intro": {
             "zh": ""
         },
-        "url": {}
+        "url": {
+            "demo": "",
+            "project": ""
+        }
     },
     {
         "title": "sushillustration",

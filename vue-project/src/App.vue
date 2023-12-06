@@ -62,13 +62,16 @@ function wheelShowCase(evt){
   const domWidth = dom.getBoundingClientRect().width
   gsap.to(dom, {
     x: ()=>{
-      if (evt.deltaY > 0 && deltaX*-1 < domWidth){
-        // return deltaX += -1*evt.deltaY
-        if (deltaX-evt.deltaY < domWidth*-1){
+      let deltaDist
+      if (evt.deltaX == 0){
+        deltaDist = evt.deltaY
+      }else deltaDist = evt.deltaX
+      if (deltaDist > 0 && deltaX*-1 < domWidth){
+        if (deltaX-deltaDist < domWidth*-1){
           return deltaX -= (domWidth-(deltaX*-1)-200)
-        }else return deltaX -= evt.deltaY
-      }else if (evt.deltaY < 0 && deltaX < 0){
-        return deltaX += -1*evt.deltaY
+        }else return deltaX -= deltaDist
+      }else if (deltaDist < 0 && deltaX < 0){
+        return deltaX += -1*deltaDist
       }
     },
     duration: .3,
@@ -135,7 +138,7 @@ onMounted(()=>{
     :class="!storeCV.show ? 'overflow-hidden':''">
       <section class="absolute top-1/2 left-0"
       v-if="projectsFiltered && !storeCV.show"
-      style="transform: translateY(-50%)" @scroll="wheelShowCase" @wheel="wheelShowCase"
+      style="transform: translateY(-50%)" @wheel="wheelShowCase"
       >
       <div class="flex items-center gap-5 lg:gap-20 ps-10 lg:ps-40" ref="showCase">
         <transition-group name="fade">
