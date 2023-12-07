@@ -15,7 +15,7 @@ app.stage.addChild(container)
 
 // Sprite
 const texturesPath =  {
-    "base": '/',
+    "base": '/LucienHsieh/',
     "code": ['icon_code_1.png', 'icon_code_2.png', 'icon_code_3.png', 'icon_code_4.png', 'icon_code_5.png', 'icon_code_6.png'],
     "design": ['icon_design_1.png', 'icon_design_2.png', 'icon_design_3.png']
 }

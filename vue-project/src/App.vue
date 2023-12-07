@@ -1,5 +1,5 @@
 <script setup>
-import { ref, provide, computed, onMounted } from 'vue';
+import { ref, provide, computed, onMounted, nextTick } from 'vue';
 import TopHeader from '@/components/TopHeader.vue'
 import Avatar from '@/components/Avatar.vue'
 import Stage from './components/Stage.vue';
@@ -146,11 +146,14 @@ function scrollShowCase(type) {
 }
 
 onMounted(()=>{
-  const pjBox = document.querySelector("#projectContainer")
-  const mainEl = document.querySelector("#mainFrame")
-  const topEl = document.querySelector("#topHeader")
-  const h = mainEl.clientHeight - topEl.clientHeight
-  pjBox.style.height = h+'px'
+  nextTick(()=>{
+    const pjBox = document.querySelector("#projectContainer")
+    const mainEl = document.querySelector("#mainFrame")
+    const topEl = document.querySelector("#topHeader")
+    const h = mainEl.clientHeight - topEl.clientHeight
+    window.alert(h)
+    pjBox.style.height = h+'px'
+  })
 
   const dom = showCase.value;
   gsap.fromTo(dom, {
@@ -170,13 +173,15 @@ onMounted(()=>{
     <TopHeader :current-tab="currentTab" @switch-tab="switchTab"/>
     <Stage v-if="!storeCV.show" class="absolute top-0 left-0"/>
     <div id="projectContainer" class="relative"
-    :class="!storeCV.show ? 'overflow-hidden':''">
+    :class="!storeCV.show ? 'overflow-hidden':''"
+    style="border: 5px solid red;">
       <section class="absolute top-1/2 left-0"
       v-if="projectsFiltered && !storeCV.show"
-      style="transform: translateY(-50%)"
+      style="transform: translateY(-50%); border: 5px solid blue;"
       @wheel="wheelShowCase"
       >
-      <div class="flex items-center gap-5 lg:gap-20 ps-10 lg:ps-40" ref="showCase">
+      <div class="flex items-center gap-5 lg:gap-20 ps-10 lg:ps-40" ref="showCase"
+      style="border: 5px solid green;">
         <transition-group name="fade">
           <Project v-for="pj of projectsFiltered"
           :key="pj.title"
