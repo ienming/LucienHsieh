@@ -151,7 +151,7 @@ onMounted(()=>{
     const mainEl = document.querySelector("#mainFrame")
     const topEl = document.querySelector("#topHeader")
     const h = mainEl.clientHeight - topEl.clientHeight
-    window.alert(h)
+    window.alert('main: '+mainEl.clientHeight+'; top: '+topEl.clientHeight+'; '+'Total: '+h)
     pjBox.style.height = h+'px'
   })
 
