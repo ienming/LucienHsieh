@@ -26,7 +26,7 @@ const app = new PIXI.Application({
     backgroundAlpha: 0,
     antialias: true,
     autoDensity: true,
-    resolution: usingMobile ? 2 * window.devicePixelRatio : 1,
+    resolution: usingMobile.value ? 2 * window.devicePixelRatio : 1,
     width: canvasWidth,
     height: canvasHeight
 });
