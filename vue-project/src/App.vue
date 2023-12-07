@@ -171,7 +171,7 @@ onMounted(()=>{
     <Stage v-if="!storeCV.show" class="absolute top-0 left-0"/>
     <div id="projectContainer" class="relative"
     :class="!storeCV.show ? 'overflow-hidden':''">
-      <section class="relative top-1/2 left-0"
+      <section class="absolute top-1/2 left-0"
       v-if="projectsFiltered && !storeCV.show"
       style="transform: translateY(-50%)"
       @wheel="wheelShowCase"
