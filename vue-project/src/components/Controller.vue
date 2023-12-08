@@ -7,7 +7,7 @@ const controllerEl = ref(null)
 
 <template>
     <section ref="controllerEl">
-        <div class="flex px-2 py-2 py-lg-0 gap-4 lg:gap-3">
+        <div class="flex gap-4 lg:gap-3">
             <div class="flex gap-3 items-center invert-target">
                 <span class="hidden lg:inline-block">Backward</span>
                 <button class="toucher bg-snow-shadow hover:bg-lavendar hover:text-light p-3 lg:p-5 rounded-full flex items-center"

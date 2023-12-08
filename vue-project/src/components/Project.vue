@@ -169,7 +169,7 @@ onBeforeUnmount(()=>{
                         <span class="font-light text-sm ps-1 lg:ps-2">{{ info.name.en }}</span>
                     </div>
                 </h2>
-                <div class="flex flex-col gap-2 text-light">
+                <div class="flex gap-2 text-light">
                     <a :href="info.url.demo"
                     v-if="Object.prototype.hasOwnProperty.call(info.url, 'demo')" target="_blank"
                     class="flex gap-1 items-center py-1 px-2 text-sm bg-gold rounded-full">
