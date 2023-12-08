@@ -15,7 +15,7 @@ const coverImg = new URL(`../assets/cover_${props.title}.png`, import.meta.url).
 const usingMobile = inject("usingMobile")
 const canvasRatio = computed(()=>{
     if (usingMobile.value){
-        return 1.5
+        return 1.3
     }else return 1.2
 })
 const [canvasWidth, canvasHeight] = [
@@ -176,7 +176,7 @@ onBeforeUnmount(()=>{
                         <span class="material-symbols-outlined text-sm">
                             open_in_new
                         </span>
-                        Project demo</a>
+                        Demo</a>
                     <a :href="info.url.project"
                     :class="usingMobile ? '':'hidden'"
                     v-if="Object.prototype.hasOwnProperty.call(info.url, 'project')" target="_blank"
@@ -184,7 +184,7 @@ onBeforeUnmount(()=>{
                         <span class="material-symbols-outlined text-sm">
                             open_in_new
                         </span>
-                        Detail description</a>
+                        Description</a>
                 </div>
                 <div class="flex gap-2 items-start flex-wrap"
                 v-show="!usingMobile">
@@ -193,7 +193,7 @@ onBeforeUnmount(()=>{
                         {{ tag }}
                     </div>
                 </div>
-                <p class="p-1 lg:bg-light text-black">{{ info.intro[lang] }}</p>
+                <p class="p-1 bg-light text-black text-sm lg:text-base">{{ info.intro[lang] }}</p>
             </div>
         </div>
     </section>
