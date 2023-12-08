@@ -26,6 +26,7 @@ mobileStrings.forEach(str => {
 provide('usingMobile', usingMobile)
 
 const currentTab = ref("all")
+provide("currentTab", currentTab)
 function switchTab(tab){
   currentTab.value = tab
   if (deltaX !== 0){
@@ -145,13 +146,16 @@ function scrollShowCase(type) {
   }
 }
 
+// const mainFrame = ref(null)
 onMounted(()=>{
   nextTick(()=>{
     const pjBox = document.querySelector("#projectContainer")
-    const mainEl = document.querySelector("#mainFrame")
+    // const mainEl = document.querySelector("#mainFrame")
+    // const mainEl = mainFrame.value
     const topEl = document.querySelector("#topHeader")
-    const h = mainEl.clientHeight - topEl.clientHeight
-    window.alert('main: '+mainEl.clientHeight+'; top: '+topEl.clientHeight+'; '+'Total: '+h)
+    const padding = usingMobile.value ? 24 : 40
+    const h = (window.innerHeight - padding) - topEl.clientHeight
+    // window.alert('main: '+(window.innerHeight - padding)+'; top: '+topEl.clientHeight+'; '+'Total: '+h)
     pjBox.style.height = h+'px'
   })
 
@@ -168,20 +172,18 @@ onMounted(()=>{
 
 <template>
   <main class="relative text-dark border-4 lg:border-8 border-dark h-full"
-  id="mainFrame">
-    <Avatar @click="storeCV.toggleCV()" class="toucher absolute left-1 top-24 lg:top-20 z-10"/>
-    <TopHeader :current-tab="currentTab" @switch-tab="switchTab"/>
+  id="mainFrame" ref="mainFrame">
+    <Avatar @click="storeCV.toggleCV()" class="toucher absolute left-1 top-16 lg:top-20 z-10"/>
+    <TopHeader @switch-tab="switchTab"/>
     <Stage v-if="!storeCV.show" class="absolute top-0 left-0"/>
     <div id="projectContainer" class="relative"
-    :class="!storeCV.show ? 'overflow-hidden':''"
-    style="border: 5px solid red;">
+    :class="!storeCV.show ? 'overflow-hidden':''">
       <section class="absolute top-1/2 left-0"
       v-if="projectsFiltered && !storeCV.show"
-      style="transform: translateY(-50%); border: 5px solid blue;"
+      style="transform: translateY(-50%);"
       @wheel="wheelShowCase"
       >
-      <div class="flex items-center gap-5 lg:gap-20 ps-10 lg:ps-40" ref="showCase"
-      style="border: 5px solid green;">
+      <div class="flex items-center gap-5 lg:gap-20 ps-10 lg:ps-40" ref="showCase">
         <transition-group name="fade">
           <Project v-for="pj of projectsFiltered"
           :key="pj.title"
@@ -214,15 +216,24 @@ onMounted(()=>{
     <Controller @show-prev="scrollShowCase('backward')" @show-next="scrollShowCase('forward')"
     class="absolute bottom-0 right-0 p-3"/>
     <Contact class="toucher absolute -bottom-4 -left-4 z-20 hidden lg:block"/>
+    <div id="bgTitle" class="absolute bottom-0 w-full h-1/5 lg:h-2/6 lg:opacity-30"></div>
   </main>
   <Mouse :hover-pj="mouseHoverPj"/>
 </template>
 
 <style scoped>
-main {
+#bgTitle {
   background-image: url("./assets/bg.png");
-  background-size: 80%;
+  background-size: 90%;
   background-repeat: no-repeat;
-  background-position: 10vw 60vh;
+  background-position: center;
+  transform: rotate(90deg) translateX(-50%);
+  z-index: -1;
+}
+
+@media screen and (min-width: 992px) {
+  #bgTitle{
+    transform: none;
+  }
 }
 </style>

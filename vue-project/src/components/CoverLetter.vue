@@ -27,7 +27,7 @@ const contents = {
                 date: "2023.5 ~ 2024.3",
                 jobtitle: "網頁釋出系統前端與UIUX",
                 workplace: "國家高速網路與計算中心（委外派駐）",
-                detail: "主要負責生物網頁釋出系統改版的前端網頁開發、介面原型和使用者需求整理，並支援活動網頁和相關圖案設計。",
+                detail: "主要負責生物網頁釋出系統改版的前端網頁開發、介面原型設計和使用者需求整理，並支援活動網頁和相關圖案設計。",
                 collapsed: false
             }
         ]
@@ -74,10 +74,10 @@ const contents = {
 </script>
 
 <template>
-    <section class="z-10 w-full invert-target overflow-y-scroll p-4 bg-dark text-light"
+    <section class="z-10 w-full invert-target overflow-y-scroll p-2 lg:p-4 bg-dark text-light"
     ref="coverLetter">
         <h2 class="font-light text-3xl lg:text-4xl grid grid-cols-3">
-            <button class="toucher bg-lavendar p-5 rounded-full w-fit flex col-start-4 lg:col-start-1"
+            <button class="toucher bg-lavendar p-2 lg:p-5 rounded-full w-fit flex col-start-4 lg:col-start-1"
             @click="emits('close')">
                 <span class="material-symbols-outlined align-middle">
                     close

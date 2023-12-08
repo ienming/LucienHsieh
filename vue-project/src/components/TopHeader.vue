@@ -1,21 +1,14 @@
 <script setup>
-import { storeIcon } from '../store';
+import { ref }from 'vue';
 import { storeCV } from '../store';
+import Navs from './Navs.vue';
 
-const props = defineProps(['currentTab'])
 const emits = defineEmits(['switch-tab'])
 
-const tabs = ["all", "code", "design"];
-const link_behance = {
-  text: "VIEW ALL PROJECTS",
-  url: "https://www.behance.net/Lucienming",
-};
+const menuOpening = ref(false)
 
 function switchTab(tabName){
   emits('switch-tab', tabName)
-  if (tabName !== 'all'){
-    storeIcon.switchIcon(tabName)
-  }
 }
 </script>
 
@@ -24,42 +17,36 @@ function switchTab(tabName){
   id="topHeader"
   :style="storeCV.show ? {'grid-template-columns': '100%'}:''">
     <div class="font-display font-thin text-lg lg:text-4xl flex overflow-hidden border-b-2 border-dark lg:border-b-0 bg-lavendar lg:bg-light">
-      <span class="marquee inline-block whitespace-nowrap" v-for="n of 3">
+      <span class="marquee inline-block whitespace-nowrap self-center" v-for="n of 3">
         <span class="flex gap-2 ps-3 leading-normal">
           <span class="text-light lg:text-lavendar">Portfolio Lucien Hsieh 2023 WEB & DESIGN</span>
         </span>
       </span>
     </div>
-    <nav v-show="!storeCV.show" class="lg:border-l-2 border-dark flex flex-col">
-      <div class="grid grid-cols-3 border-b-2 border-dark bg-light">
-        <button
-          v-for="(tab, id) of tabs"
-          :key="tab"
-          class="hov-el text-sm lg:text-base text-center font-semibold border-dark py-1 txt-slot-container txt-slot-hover"
-          :class="{ 'border-l-2': id !== 0, 'bg-dark': tab === props.currentTab, 'text-snow-shadow': tab === props.currentTab }"
-          @click="switchTab(tab)"
-        >
-          <span v-for="n of 2" class="txt-slot ps-2">{{ tab.toUpperCase() }}</span>
-        </button>
-      </div>
-      <a
-        :href="link_behance.url"
-        target="_blank"
-        class="hov-el px-2 py-1 text-sm lg:text-base txt-slot-container txt-slot-hover"
-        style="line-height: 1.5;"
-      >
-        <span v-for="n of 2" class="txt-slot flex gap-1 items-center">
-          <span class="font-semibold">
-            {{ link_behance.text }}
-          </span>
-          <span class="material-symbols-outlined"> open_in_new </span>
-        </span>
-      </a>
-    </nav>
+    <section>
+      <nav class="bg-dark text-light flex justify-center items-center lg:hidden"
+      v-show="!storeCV.show"
+      style="min-height: 48px;"
+      @click="menuOpening = !menuOpening">
+        <span v-if="!menuOpening" class="material-symbols-outlined"> menu </span>
+        <span v-else class="material-symbols-outlined"> close </span>
+      </nav>
+      <!-- Desktop -->
+      <Navs v-show="!storeCV.show" class="lg:border-l-2 hidden lg:flex flex-col"
+      @switch-tab="switchTab"></Navs>
+    </section>
+    <!-- Mobile -->
+    <div class="absolute top-full w-full bg-light">
+      <Navs v-show="menuOpening" class="flex flex-col"
+      @switch-tab="switchTab"></Navs>
+    </div>
   </section>
 </template>
 
 <style scoped>
+#topHeader {
+  grid-template-columns: auto 48px;
+}
 @media screen and (min-width: 992px) {
   #topHeader {
     grid-template-columns: auto 35%;
@@ -77,34 +64,5 @@ function switchTab(tabName){
   100% {
     transform: translateX(-100%);
   }
-}
-
-.hov-el {
-  position: relative;
-}
-
-.hov-el.active::after{
-  background-color: var(--luc-dark);
-}
-
-.hov-el.active::after {
-  width: 100%;
-}
-
-.hov-el:hover::after {
-  width: 100%;
-}
-
-.hov-el::after {
-  content: "";
-  z-index: -1;
-  display: block;
-  background-color: var(--luc-snow-shadow);
-  position: absolute;
-  width: 0%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  transition: 0.3s ease;
 }
 </style>

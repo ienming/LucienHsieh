@@ -193,7 +193,7 @@ onBeforeUnmount(()=>{
                         {{ tag }}
                     </div>
                 </div>
-                <p class="p-1 bg-light text-black">{{ info.intro[lang] }}</p>
+                <p class="p-1 lg:bg-light text-black">{{ info.intro[lang] }}</p>
             </div>
         </div>
     </section>
