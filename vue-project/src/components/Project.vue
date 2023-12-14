@@ -161,7 +161,7 @@ onBeforeUnmount(()=>{
 <template>
     <section class="relative">
         <div ref="canvas"></div>
-        <div class="absolute bottom-10 lg:bottom-24 lg:pb-8 w-9/12 txt-slot-hover">
+        <div class="absolute bottom-10 lg:bottom-24 pb-2 lg:pb-8 w-9/12 txt-slot-hover">
             <div class="flex flex-col items-start gap-2 lg:gap-3">
                 <div class="flex gap-2">
                     <Symbol v-for="c of info.cate" :name="c" :key="info.title+'_'+c"></Symbol>
