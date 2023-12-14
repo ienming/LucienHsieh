@@ -2,7 +2,6 @@
 import { ref, provide, computed, onMounted, nextTick } from 'vue';
 import TopHeader from '@/components/TopHeader.vue'
 import Avatar from '@/components/Avatar.vue'
-import Stage from './components/Stage.vue';
 import CoverLetter from '@/components/CoverLetter.vue'
 import Contact from '@/components/Contact.vue'
 import Project from '@/components/Project.vue'
@@ -175,7 +174,6 @@ onMounted(() => {
   <main class="relative text-dark border-4 lg:border-8 border-dark h-full" id="mainFrame" ref="mainFrame">
     <Avatar @click="storeCV.toggleCV()" class="toucher absolute left-1 top-16 lg:top-20 z-10" />
     <TopHeader @switch-tab="switchTab" />
-    <!-- <Stage v-if="!storeCV.show && !usingMobile" class="absolute top-0 left-0" /> -->
     <div id="projectContainer" class="relative" :class="!storeCV.show ? 'overflow-hidden' : ''">
       <section class="absolute top-1/2 left-0" v-if="projectsFiltered && !storeCV.show"
         style="transform: translateY(-50%);" @wheel="wheelShowCase">

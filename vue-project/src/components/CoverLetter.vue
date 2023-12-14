@@ -32,23 +32,23 @@ const contents = {
             }
         ]
     },
-    "skill": {
-        title: "技能 Skills & Preferred Tools",
-        ui: "badge",
-        data: {
-            "Vue": "bg-lavendar",
-            "GSAP": "bg-lavendar",
-            "PIXI": "bg-lavendar",
-            "p5.js": "bg-lavendar",
-            "JavaScript": "bg-lavendar",
-            "Python": "bg-lavendar",
-            "CSS": "bg-lavendar",
-            "Bootstrap 5": "bg-lavendar",
-            "Tailwind": "bg-lavendar",
-            "HTML": "bg-lavendar",
-            "Figma": "bg-gold"
-        }
-    },
+    // "skill": {
+    //     title: "技能 Skills & Preferred Tools",
+    //     ui: "badge",
+    //     data: {
+    //         "Vue": "bg-lavendar",
+    //         "GSAP": "bg-lavendar",
+    //         "PIXI": "bg-lavendar",
+    //         "p5.js": "bg-lavendar",
+    //         "JavaScript": "bg-lavendar",
+    //         "Python": "bg-lavendar",
+    //         "CSS": "bg-lavendar",
+    //         "Bootstrap 5": "bg-lavendar",
+    //         "Tailwind": "bg-lavendar",
+    //         "HTML": "bg-lavendar",
+    //         "Figma": "bg-gold"
+    //     }
+    // },
     "edu": {
         title: "教育背景 Education",
         ui: "list",

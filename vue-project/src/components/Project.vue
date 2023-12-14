@@ -190,7 +190,7 @@ onBeforeUnmount(()=>{
                         </span>
                         Description</a>
                 </div>
-                <p v-if="info.intro[lang]" class="p-1 bg-light text-black border border-black text-sm lg:text-base">{{ info.intro[lang] }}</p>
+                <p v-if="info.intro[lang]" class="p-1 bg-light text-black text-sm lg:text-base">{{ info.intro[lang] }}</p>
                 <div class="flex gap-2 items-start flex-wrap"
                 v-show="!usingMobile">
                     <div v-for="tag of info.tags" :key="tag"

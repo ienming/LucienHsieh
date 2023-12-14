@@ -6,13 +6,29 @@
             "zh": "色々な色",
             "en": "iroironairo"
         },
-        "tags": ["Vue", "GSAP", "UI", "Data visualization"],
+        "tags": ["Frontend", "UIUX", "Data visualization"],
         "intro": {
-            "zh": "想用顏色代表我在日本交換時拍的每一張照片，紀錄那段時間看過的色彩"
+            "zh": "將日本交換時拍攝每一張照片的顏色抽取出來，看見這段時間我在國外見過的顏色"
         },
         "url": {
             "demo": "https://ienming.github.io/iroironairo/#/",
             "project": "https://www.behance.net/gallery/186477055/-iroironairo"
+        }
+    },
+    {
+        "title": "snailOasis",
+        "cate": ["code"],
+        "name": {
+            "zh": "蝸牛綠洲",
+            "en": "Snail Oasis"
+        },
+        "tags": ["Frontend", "Gamification", "Design research"],
+        "intro": {
+            "zh": "碩士論文中將地區巷弄的元素抽取出來變成小遊戲"
+        },
+        "url": {
+            "demo": "https://ienming.github.io/snail-journey/",
+            "project": ""
         }
     },
     {
@@ -27,7 +43,7 @@
             "zh": "每首華語流行音樂所說的愛情故事與歌詞裡關於「愛」的用法，以顏色呈現這些變化和訊息"
         },
         "url": {
-            "demo": "",
+            "demo": "https://ienming.github.io/moder-love/",
             "project": ""
         }
     },
