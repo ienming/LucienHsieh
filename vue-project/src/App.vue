@@ -1,5 +1,5 @@
 <script setup>
-import { ref, provide, computed, onMounted, nextTick } from 'vue';
+import { ref, provide, onMounted, nextTick } from 'vue';
 import TopHeader from '@/components/TopHeader.vue'
 import Avatar from '@/components/Avatar.vue'
 import CoverLetter from '@/components/CoverLetter.vue'
@@ -43,16 +43,6 @@ function back2Start() {
   })
   deltaX = 0
 }
-
-const projectsFiltered = computed(() => {
-  if (projects) {
-    if (currentTab.value === 'all') {
-      return projects
-    } else {
-      return projects.filter(pj => pj.cate.includes(currentTab.value))
-    }
-  }
-})
 
 const mouseHoverPj = ref(false)
 
@@ -160,20 +150,24 @@ onMounted(() => {
 <template>
   <main class="relative text-dark border-4 lg:border-8 border-dark h-full" :class="enterAnimating ? '':'cursor-none'"
   id="mainFrame" ref="mainFrame">
-    <Avatar @click="storeCV.toggleCV()" class="toucher absolute left-1 top-16 lg:top-20 z-10" />
+    <Avatar v-show="!storeCV.show" @click="storeCV.toggleCV()" class="toucher absolute left-1 top-16 lg:top-20 z-10" />
     <TopHeader @switch-tab="switchTab" />
     <div id="projectContainer" class="relative" :class="!storeCV.show ? 'overflow-hidden' : ''">
-      <section class="absolute top-1/2 left-0" v-if="projectsFiltered && !storeCV.show"
+      <section class="absolute top-1/2 left-0" v-if="!storeCV.show"
         style="transform: translateY(-50%);" @wheel="wheelShowCase">
         <div class="flex items-center gap-5 lg:gap-20 ps-10 lg:ps-40" ref="showCase">
           <TransitionGroup name="list">
             <Project
-              v-for="pj of projectsFiltered" :key="pj.title" :title="pj.title" :info="{
-              'name': pj.name,
-              'cate': pj.cate,
-              'intro': pj.intro,
-              'tags': pj.tags,
-              'url': pj.url
+              v-for="pj of projects"
+              v-show="pj.cate.includes(currentTab) || currentTab === 'all'"
+              :key="pj.title"
+              :title="pj.title"
+              :info="{
+                'name': pj.name,
+                'cate': pj.cate,
+                'intro': pj.intro,
+                'tags': pj.tags,
+                'url': pj.url
             }" @hover="mouseHoverPj = true" @leave="mouseHoverPj = false" />
           </TransitionGroup>
           <div class="text-sm text-lavendar flex flex-col gap-3 lg:gap-5 whitespace-nowrap">

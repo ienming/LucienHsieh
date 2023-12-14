@@ -8,7 +8,7 @@
         },
         "tags": ["Frontend", "UIUX", "Data visualization"],
         "intro": {
-            "zh": "將日本交換時拍攝每一張照片的顏色抽取出來，看見這段時間我在國外見過的顏色"
+            "zh": "將日本交換時拍攝每一張照片的顏色搜集起來，呈現這段時間在國外見過的色彩"
         },
         "url": {
             "demo": "https://ienming.github.io/iroironairo/#/",
@@ -24,7 +24,7 @@
         },
         "tags": ["Frontend", "Gamification", "Design research"],
         "intro": {
-            "zh": "碩士論文中將地區巷弄的元素轉變成小遊戲"
+            "zh": "將地區巷弄的元素轉變成的網頁小遊戲！"
         },
         "url": {
             "demo": "https://ienming.github.io/snail-journey/",
@@ -40,7 +40,7 @@
         },
         "tags": ["p5.js", "Data visualization"],
         "intro": {
-            "zh": "每首華語流行音樂所說的愛情故事與歌詞裡關於「愛」的用法，以顏色呈現這些變化和訊息"
+            "zh": "從華語流行音樂中歌詞裡關於「愛」的用法看十年間大眾浪漫愛情的想像"
         },
         "url": {
             "demo": "https://ienming.github.io/moder-love/",

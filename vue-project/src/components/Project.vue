@@ -167,10 +167,10 @@ onBeforeUnmount(()=>{
                     <Symbol v-for="c of info.cate" :name="c" :key="info.title+'_'+c"></Symbol>
                 </div>
                 <h2 class="text-lg lg:text-2xl p-1 lg:p-4 txt-slot-container bg-light border border-dark"
-                @click="viewProject">
+                style="--slot-offset: calc(-113% + 1rem*-1)">
                     <div v-for="n of 2" class="txt-slot flex flex-wrap items-center">
-                        <span class="font-serif font-bold">{{ info.name.zh }}</span>
-                        <span class="font-light text-sm ps-1 lg:ps-2">{{ info.name.en }}</span>
+                        <a :href="info.url.project" target="_blank" class="font-serif font-bold">{{ info.name.zh }}</a>
+                        <a :href="info.url.project" target="_blank" class="font-light text-sm ps-1 lg:ps-2">{{ info.name.en }}</a>
                     </div>
                 </h2>
                 <div class="flex gap-2 text-light">
