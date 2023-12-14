@@ -1,6 +1,7 @@
 <script setup>
 import { inject } from 'vue';
 import { storeIcon } from '../store';
+import Symbol from './Symbol.vue';
 const emits = defineEmits(['switch-tab'])
 const currentTab = inject("currentTab")
 
@@ -25,7 +26,10 @@ function switchTab(tabName){
                 class="hov-el text-sm text-center font-semibold border-dark py-3 lg:py-1 txt-slot-container txt-slot-hover"
                 :class="{ 'border-l-2': id !== 0, 'bg-dark': tab === currentTab, 'text-snow-shadow': tab === currentTab }"
                 @click="switchTab(tab)">
-                <span v-for="n of 2" class="txt-slot ps-2">{{ tab.toUpperCase() }}</span>
+                <span v-for="n of 2" class="txt-slot ps-2 flex gap-1 items-center">
+                  <Symbol :name="tab"></Symbol>
+                  <span>{{ tab.toUpperCase() }}</span>
+                </span>
             </button>
         </div>
         <a :href="link_behance.url" target="_blank"

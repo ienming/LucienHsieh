@@ -1,5 +1,6 @@
 <script setup>
 import { onMounted, ref, inject, onBeforeUnmount, computed } from "vue";
+import Symbol from "./Symbol.vue";
 import * as PIXI from "pixi.js";
 import { gsap } from "gsap";
 import { PixiPlugin } from "gsap/PixiPlugin";
@@ -162,6 +163,9 @@ onBeforeUnmount(()=>{
         <div ref="canvas"></div>
         <div class="absolute bottom-10 lg:bottom-24 w-9/12 txt-slot-hover">
             <div class="flex flex-col items-start gap-2 lg:gap-3">
+                <div class="flex gap-2">
+                    <Symbol v-for="c of info.cate" :name="c" :key="info.title+'_'+c"></Symbol>
+                </div>
                 <h2 class="text-lg lg:text-2xl p-1 lg:p-4 txt-slot-container bg-light border border-dark"
                 @click="viewProject">
                     <div v-for="n of 2" class="txt-slot flex flex-wrap items-center">
@@ -186,6 +190,7 @@ onBeforeUnmount(()=>{
                         </span>
                         Description</a>
                 </div>
+                <p v-if="info.intro[lang]" class="p-1 bg-light text-black text-sm lg:text-base">{{ info.intro[lang] }}</p>
                 <div class="flex gap-2 items-start flex-wrap"
                 v-show="!usingMobile">
                     <div v-for="tag of info.tags" :key="tag"
@@ -193,7 +198,6 @@ onBeforeUnmount(()=>{
                         {{ tag }}
                     </div>
                 </div>
-                <p class="p-1 bg-light text-black text-sm lg:text-base">{{ info.intro[lang] }}</p>
             </div>
         </div>
     </section>

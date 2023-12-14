@@ -2,6 +2,7 @@
 import { ref }from 'vue';
 import { storeCV } from '../store';
 import Navs from './Navs.vue';
+import Symbol from './Symbol.vue';
 
 const emits = defineEmits(['switch-tab'])
 
@@ -18,8 +19,10 @@ function switchTab(tabName){
   :style="storeCV.show ? {'grid-template-columns': '100%'}:''">
     <div class="font-display font-thin text-lg lg:text-4xl flex overflow-hidden border-b-2 border-dark lg:border-b-0 bg-lavendar lg:bg-light">
       <span class="marquee inline-block whitespace-nowrap self-center" v-for="n of 3">
-        <span class="flex gap-2 ps-3 leading-normal">
-          <span class="text-light lg:text-lavendar">Portfolio Lucien Hsieh 2023 WEB & DESIGN</span>
+        <span class="flex items-center gap-2 ps-3 leading-normal">
+          <Symbol name="code"></Symbol>
+          <span class="text-light lg:text-lavendar">Portfolio Lucien Hsieh 2023 WEB FRONTEND & DESIGN</span>
+          <Symbol name="design"></Symbol>
         </span>
       </span>
     </div>

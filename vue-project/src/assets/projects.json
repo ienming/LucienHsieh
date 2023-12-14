@@ -6,13 +6,13 @@
             "zh": "色々な色",
             "en": "iroironairo"
         },
-        "tags": ["Web", "Data visualization", "Vue", "GSAP"],
+        "tags": ["Vue", "GSAP", "UI", "Data visualization"],
         "intro": {
-            "zh": "將在日本旅遊的照片用「顏色」做主題呈現的資料視覺化"
+            "zh": "想用顏色代表我在日本交換時拍的每一張照片，紀錄那段時間看過的色彩"
         },
         "url": {
-            "demo": "",
-            "project": ""
+            "demo": "https://ienming.github.io/iroironairo/#/",
+            "project": "https://www.behance.net/gallery/186477055/-iroironairo"
         }
     },
     {
@@ -22,9 +22,9 @@
             "zh": "現代愛情",
             "en": "Modern Love"
         },
-        "tags": ["Web", "Data visualization", "p5"],
+        "tags": ["p5.js", "Data visualization"],
         "intro": {
-            "zh": ""
+            "zh": "每首華語流行音樂所說的愛情故事與歌詞裡關於「愛」的用法，以顏色呈現這些變化和訊息。"
         },
         "url": {
             "demo": "",
@@ -40,7 +40,7 @@
         },
         "tags": ["Illustration", "Photoshop"],
         "intro": {
-            "zh": ""
+            "zh": "下班時的隨性小作　いっらしゃいませ！"
         },
         "url": {
             "project": "https://www.behance.net/gallery/85191807/-Sushillustration-no-0115"
