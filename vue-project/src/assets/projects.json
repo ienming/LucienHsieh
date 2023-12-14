@@ -24,7 +24,7 @@
         },
         "tags": ["p5.js", "Data visualization"],
         "intro": {
-            "zh": "每首華語流行音樂所說的愛情故事與歌詞裡關於「愛」的用法，以顏色呈現這些變化和訊息。"
+            "zh": "每首華語流行音樂所說的愛情故事與歌詞裡關於「愛」的用法，以顏色呈現這些變化和訊息"
         },
         "url": {
             "demo": "",
@@ -38,7 +38,7 @@
             "zh": "壽司插畫集",
             "en": "Sushillustration"
         },
-        "tags": ["Illustration", "Photoshop"],
+        "tags": ["Illustration", "Digital painting"],
         "intro": {
             "zh": "下班時的隨性小作　いっらしゃいませ！"
         },
@@ -53,9 +53,9 @@
             "zh": "阿里山林鐵摺頁",
             "en": "Alishan Forest Railway Pamphlet"
         },
-        "tags": ["Layout"],
+        "tags": ["Layout", "Illustration"],
         "intro": {
-            "zh": ""
+            "zh": "2020年摺頁，插畫和跨頁簡易地圖呈現林鐵風景與人文景觀"
         },
         "url": {
             "project": "https://www.behance.net/gallery/139774659/Editorial-Design-for-Alishan-Forest-Railway-Pahmphlet"
