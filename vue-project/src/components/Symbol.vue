@@ -25,7 +25,7 @@ function loadIcon(path){
         return response.text()
     })
     .then((data) => {
-        let svg = data.replace('width=\"24\"', `width=\"${props.width}\"`)
+        let svg = data.replace('width=\"24\"', `width=\"${props.width}\"`).replace('height=\"24\"', `height=\"${props.width}\"`)
         svgCode.value = svg
     })
     .catch((error) => {

@@ -188,7 +188,7 @@ onBeforeUnmount(()=>{
                         <span class="material-symbols-outlined text-sm">
                             open_in_new
                         </span>
-                        Description</a>
+                        Detail</a>
                 </div>
                 <p v-if="info.intro[lang]" class="p-1 bg-light text-black text-sm lg:text-base">{{ info.intro[lang] }}</p>
                 <div class="flex gap-2 items-start flex-wrap"

@@ -158,7 +158,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <main class="relative text-dark border-4 lg:border-8 border-dark h-full" id="mainFrame" ref="mainFrame">
+  <main class="relative text-dark border-4 lg:border-8 border-dark h-full" :class="enterAnimating ? '':'cursor-none'"
+  id="mainFrame" ref="mainFrame">
     <Avatar @click="storeCV.toggleCV()" class="toucher absolute left-1 top-16 lg:top-20 z-10" />
     <TopHeader @switch-tab="switchTab" />
     <div id="projectContainer" class="relative" :class="!storeCV.show ? 'overflow-hidden' : ''">
@@ -194,13 +195,13 @@ onMounted(() => {
     <Controller @show-prev="scrollShowCase('backward')" @show-next="scrollShowCase('forward')"
       class="absolute bottom-0 right-0 p-3" />
       <Transition name="list">
-        <Contact v-if="!enterAnimating" class="toucher absolute -bottom-4 -left-4 z-20 hidden lg:block" />
+        <Contact v-if="!enterAnimating" class="absolute -bottom-4 -left-4 z-20 hidden lg:block" />
       </Transition>
     <div id="bgTitle" class="absolute bottom-0 w-full h-1/5 lg:h-2/6 lg:opacity-30"></div>
     <Enter v-if="enterAnimating"
     class="absolute top-0 left-0" @finish="closeEnterAnim" @start="revealProjects"></Enter>
   </main>
-  <Mouse :hover-pj="mouseHoverPj" />
+  <Mouse v-if="!enterAnimating" :hover-pj="mouseHoverPj"></Mouse>
 </template>
 
 <style scoped>
