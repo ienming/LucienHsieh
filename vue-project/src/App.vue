@@ -34,33 +34,30 @@ function switchTab(tab) {
   }
 }
 
+const mouseHoverPj = ref(false)
+
+// Scroll projects
+const projectContainer = ref(null)
+let deltaX = 0
+
 function back2Start() {
-  const dom = showCase.value;
+  const dom = projectContainer.value
   gsap.to(dom, {
-    x: 0,
+    scrollLeft: 0,
     duration: 1,
     ease: 'power3.out'
   })
   deltaX = 0
 }
 
-const mouseHoverPj = ref(false)
-
-const showCase = ref(null)
-let deltaX = 0
 function wheelShowCase(evt) {
-  const dom = showCase.value;
-  const domWidth = dom.getBoundingClientRect().width;
+  const dom = projectContainer.value
+  const scrollWidth = dom.scrollWidth
 
   let deltaDist;
 
   if (evt.type === 'wheel') {
     deltaDist = evt.deltaY || evt.deltaX;
-  } else if (evt.type === 'touchmove') {
-    const touch = evt.touches[0];
-    const touchStartX = touch.clientX;
-    const touchMoveX = touch.clientX;
-    deltaDist = touchMoveX - touchStartX;
   } else if (evt.type === 'scroll') {
     deltaDist = evt.deltaY;
   } else {
@@ -68,15 +65,19 @@ function wheelShowCase(evt) {
   }
 
   gsap.to(dom, {
-    x: () => {
-      if (deltaDist > 0 && deltaX * -1 < domWidth) {
-        if (deltaX - deltaDist < domWidth * -1) {
-          return deltaX -= (domWidth - (deltaX * -1) - 200);
-        } else {
-          return deltaX -= deltaDist;
+    scrollLeft: () => {
+      if (deltaDist > 0){
+        if (deltaX + deltaDist <= scrollWidth){
+          return deltaX += deltaDist
+        }else{
+          return deltaX = scrollWidth
         }
-      } else if (deltaDist < 0 && deltaX < 0) {
-        return deltaX += -1 * deltaDist;
+      }else{
+        if (deltaX + deltaDist >= 0){
+          return deltaX += deltaDist
+        }else{
+          return 0
+        }
       }
     },
     duration: 0.3,
@@ -84,19 +85,20 @@ function wheelShowCase(evt) {
   });
 }
 
-function scrollShowCase(type) {
-  const dom = showCase.value;
-  const domWidth = dom.getBoundingClientRect().width
+function stepShowCase(type) {
+  const dom = projectContainer.value
+  const scrollWidth = dom.scrollWidth
   const step = usingMobile.value ? window.innerWidth : 500
   switch (type) {
     case "forward":
       gsap.to(dom, {
-        x: () => {
-          if (deltaX * -1 < domWidth) {
-            if (deltaX - step < domWidth * -1) {
-              return deltaX -= (domWidth - (deltaX * -1) - 170)
-            } else return deltaX -= step
-          } else return deltaX
+        scrollLeft: () => {
+          console.log(deltaX)
+          if (deltaX + step <= scrollWidth){
+            return deltaX += step
+          }else{
+            return deltaX = scrollWidth
+          }
         },
         duration: 1,
         ease: "power3.out"
@@ -104,10 +106,13 @@ function scrollShowCase(type) {
       break;
     case "backward":
       gsap.to(dom, {
-        x: () => {
-          if (deltaX < 0) {
-            return deltaX += step
-          } else return deltaX
+        scrollLeft: () => {
+          console.log(deltaX)
+          if (deltaX - step >= 0){
+            return deltaX -= step
+          }else{
+            return 0
+          }
         },
         duration: 1,
         ease: "power3.out"
@@ -118,11 +123,11 @@ function scrollShowCase(type) {
 // Enter Animation
 const enterAnimating = ref(true)
 function revealProjects(){
-  const dom = showCase.value;
+  const dom = projectContainer.value
   gsap.fromTo(dom, {
-    x: -800,
+    scrollLeft: 800,
   }, {
-    x: 0,
+    scrollLeft: 0,
     duration: 1.5,
     ease: "power3.inOut"
   })
@@ -152,10 +157,11 @@ onMounted(() => {
   id="mainFrame" ref="mainFrame">
     <Avatar v-show="!storeCV.show" @click="storeCV.toggleCV()" class="toucher absolute left-1 top-16 lg:top-20 z-10" />
     <TopHeader @switch-tab="switchTab" />
-    <div id="projectContainer" class="relative" :class="!storeCV.show ? 'overflow-y-hidden' : ''">
+    <div id="projectContainer" class="relative" :class="!storeCV.show ? 'overflow-y-hidden' : ''"
+    @wheel="wheelShowCase" ref="projectContainer">
       <section class="absolute top-1/2 left-0" v-show="!storeCV.show"
-        style="transform: translateY(-50%);" @wheel="wheelShowCase">
-        <div class="flex items-center gap-5 lg:gap-20 ps-10 lg:ps-40" ref="showCase">
+        style="transform: translateY(-50%);">
+        <div class="flex items-center gap-5 lg:gap-20 ps-10 lg:ps-40">
           <TransitionGroup name="list">
             <Project
               v-for="pj of projects"
@@ -186,7 +192,7 @@ onMounted(() => {
         <CoverLetter v-show="storeCV.show" :show="storeCV.show" class="absolute top-0 left-0" @close="storeCV.toggleCV()" />
       </Transition>
     </div>
-    <Controller @show-prev="scrollShowCase('backward')" @show-next="scrollShowCase('forward')"
+    <Controller @show-prev="stepShowCase('backward')" @show-next="stepShowCase('forward')"
       class="absolute bottom-0 right-0 p-3" />
       <Transition name="list">
         <Contact v-if="!enterAnimating" class="absolute -bottom-4 -left-4 z-20 hidden lg:block" />
@@ -212,5 +218,14 @@ onMounted(() => {
   #bgTitle {
     transform: none;
   }
+}
+
+#projectContainer::-webkit-scrollbar{
+  display: none;
+}
+
+#projectContainer{
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 </style>
