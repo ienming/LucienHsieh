@@ -20,13 +20,13 @@ onMounted(() => {
 </script>
 
 <template>
-    <section class="z-10 h-full w-full flex justify-center items-center bg-dark enter-anim">
+    <section class="z-20 h-full w-full flex justify-center items-center bg-dark enter-anim">
         <div class="text-light text-2xl font-display">
             <div class="flex flex-col gap-3 justify-center items-center">
+                <Symbol name="code"></Symbol>
                 <h1>LUCIEN PORTFOLIO</h1>
                 <h2>2023</h2>
-                <Symbol name="code" :width="48"></Symbol>
-                <Symbol name="design" :width="48"></Symbol>
+                <Symbol name="design"></Symbol>
             </div>
         </div>
     </section>

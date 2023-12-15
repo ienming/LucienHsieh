@@ -63,11 +63,11 @@ const contents = {
                 degree: "學士",
                 department: "數位內容與科技，國立政治大學（NCCU, DCT）"
             },
-            {
-                date: "2014.9 ~ 2019.1",
-                degree: "學士",
-                department: "媒體與文化研究，國立政治大學，新聞學系（NCCU, Department of Journalism）"
-            }
+            // {
+            //     date: "2014.9 ~ 2019.1",
+            //     degree: "學士",
+            //     department: "媒體與文化研究，國立政治大學，新聞學系（NCCU, Department of Journalism）"
+            // }
         ]
     }
 }
