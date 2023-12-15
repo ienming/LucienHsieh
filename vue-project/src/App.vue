@@ -152,8 +152,8 @@ onMounted(() => {
   id="mainFrame" ref="mainFrame">
     <Avatar v-show="!storeCV.show" @click="storeCV.toggleCV()" class="toucher absolute left-1 top-16 lg:top-20 z-10" />
     <TopHeader @switch-tab="switchTab" />
-    <div id="projectContainer" class="relative" :class="!storeCV.show ? 'overflow-hidden' : ''">
-      <section class="absolute top-1/2 left-0" v-if="!storeCV.show"
+    <div id="projectContainer" class="relative" :class="!storeCV.show ? 'overflow-y-hidden' : ''">
+      <section class="absolute top-1/2 left-0" v-show="!storeCV.show"
         style="transform: translateY(-50%);" @wheel="wheelShowCase">
         <div class="flex items-center gap-5 lg:gap-20 ps-10 lg:ps-40" ref="showCase">
           <TransitionGroup name="list">

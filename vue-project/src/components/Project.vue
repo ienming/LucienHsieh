@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref, inject, onBeforeUnmount, computed } from "vue";
+import { onMounted, ref, inject, onBeforeUnmount, computed, nextTick } from "vue";
 import Symbol from "./Symbol.vue";
 import * as PIXI from "pixi.js";
 import { gsap } from "gsap";
@@ -151,6 +151,9 @@ function viewProject(){
 const canvas = ref(null)
 onMounted(()=>{
     canvas.value.appendChild(app.view)
+    nextTick(()=>{
+        canvas.value.querySelector("canvas").style['touch-action'] = 'auto'
+    })
 })
 
 onBeforeUnmount(()=>{
