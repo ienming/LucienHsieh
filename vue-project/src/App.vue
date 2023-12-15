@@ -161,7 +161,7 @@ onMounted(() => {
     @wheel="wheelShowCase" ref="projectContainer">
       <section class="absolute top-1/2 left-0" v-show="!storeCV.show"
         style="transform: translateY(-50%);">
-        <div class="flex items-center gap-5 lg:gap-20 ps-10 lg:ps-40">
+        <div class="flex items-center gap-5 lg:gap-20 ps-10 lg:ps-40 pe-32">
           <TransitionGroup name="list">
             <Project
               v-for="pj of projects"
@@ -188,13 +188,13 @@ onMounted(() => {
           </div>
         </div>
       </section>
-      <Transition name="list" mode="out-in">
+      <Transition name="fade" mode="out-in">
         <CoverLetter v-show="storeCV.show" :show="storeCV.show" class="absolute top-0 left-0" @close="storeCV.toggleCV()" />
       </Transition>
     </div>
     <Controller @show-prev="stepShowCase('backward')" @show-next="stepShowCase('forward')"
       class="absolute bottom-0 right-0 p-3" />
-      <Transition name="list">
+      <Transition name="fade">
         <Contact v-if="!enterAnimating" class="absolute -bottom-4 -left-4 z-20 hidden lg:block" />
       </Transition>
     <div id="bgTitle" class="absolute bottom-0 w-full h-1/5 lg:h-2/6 lg:opacity-30"></div>
