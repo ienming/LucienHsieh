@@ -118,7 +118,8 @@ if (!usingMobile.value){
 
 // Project cover
 let sprite
-const texturePromise = PIXI.Assets.load(coverImg)
+PIXI.Assets.add({alias: `cover_${props.title}`, 'src': coverImg})
+const texturePromise = PIXI.Assets.load(`cover_${props.title}`, (progress)=>{console.log(progress)})
 texturePromise.then((resolvedTexture) => {
     sprite = PIXI.Sprite.from(resolvedTexture)
     sprite.anchor.set(0.5);
@@ -170,7 +171,7 @@ onBeforeUnmount(()=>{
                     <Symbol v-for="c of info.cate" :name="c" :key="info.title+'_'+c"></Symbol>
                 </div>
                 <h2 class="text-lg lg:text-2xl p-1 lg:p-4 txt-slot-container bg-light border border-dark"
-                style="--slot-offset: calc(-113% + 1rem*-1)">
+                :style="usingMobile ? {'--slot-offset': 'calc(-113% + 0.25rem*-1)'} : {'--slot-offset': 'calc(-113% + 1rem*-1)'}">
                     <div v-for="n of 2" class="txt-slot flex flex-wrap items-center">
                         <a :href="info.url.project" target="_blank" class="font-serif font-bold">{{ info.name.zh }}</a>
                         <a :href="info.url.project" target="_blank" class="font-light text-sm ps-1 lg:ps-2">{{ info.name.en }}</a>
