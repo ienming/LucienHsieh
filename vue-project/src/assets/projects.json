@@ -16,22 +16,6 @@
         }
     },
     {
-        "title": "snailOasis",
-        "cate": ["code"],
-        "name": {
-            "zh": "蝸牛綠洲",
-            "en": "Snail Oasis"
-        },
-        "tags": ["Frontend", "Gamification", "Design research"],
-        "intro": {
-            "zh": "將地區巷弄的元素轉變成的網頁小遊戲！"
-        },
-        "url": {
-            "demo": "https://ienming.github.io/snail-journey/",
-            "project": ""
-        }
-    },
-    {
         "title": "modernLove",
         "cate": ["code"],
         "name": {
@@ -60,21 +44,6 @@
         },
         "url": {
             "project": "https://www.behance.net/gallery/85191807/-Sushillustration-no-0115"
-        }
-    },
-    {
-        "title": "alishan",
-        "cate": ["design"],
-        "name": {
-            "zh": "阿里山林鐵摺頁",
-            "en": "Alishan Forest Railway Pamphlet"
-        },
-        "tags": ["Layout", "Illustration"],
-        "intro": {
-            "zh": "2020年摺頁，插畫和跨頁簡易地圖呈現林鐵風景與人文景觀"
-        },
-        "url": {
-            "project": "https://www.behance.net/gallery/139774659/Editorial-Design-for-Alishan-Forest-Railway-Pahmphlet"
         }
     }
 ]
