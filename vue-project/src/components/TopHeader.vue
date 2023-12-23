@@ -27,7 +27,7 @@ function switchTab(tabName){
             <Symbol name="code"></Symbol>
             <span>&</span>
             <Symbol name="design"></Symbol>
-            <span>DESIGN</span>
+            <span>ILLUSTRATION</span>
             <Symbol name="design"></Symbol>
           </span>
         </span>

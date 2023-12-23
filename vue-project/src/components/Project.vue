@@ -178,16 +178,16 @@ onBeforeUnmount(()=>{
                     </div>
                 </h2>
                 <div class="flex gap-2 text-light">
-                    <a :href="info.url.demo"
-                    v-if="Object.prototype.hasOwnProperty.call(info.url, 'demo')" target="_blank"
+                    <a :href="info.url.project"
+                    :class="usingMobile ? '':'hidden'"
+                    v-if="Object.prototype.hasOwnProperty.call(info.url, 'project')" target="_blank"
                     class="flex gap-1 items-center py-1 px-2 text-sm bg-gold rounded-full">
                         <span class="material-symbols-outlined text-sm">
                             open_in_new
                         </span>
-                        Demo</a>
-                    <a :href="info.url.project"
-                    :class="usingMobile ? '':'hidden'"
-                    v-if="Object.prototype.hasOwnProperty.call(info.url, 'project')" target="_blank"
+                        Project</a>
+                    <a :href="info.url.detail"
+                    v-if="Object.prototype.hasOwnProperty.call(info.url, 'detail')" target="_blank"
                     class="flex gap-1 items-center py-1 px-2 text-sm bg-gold rounded-full">
                         <span class="material-symbols-outlined text-sm">
                             open_in_new

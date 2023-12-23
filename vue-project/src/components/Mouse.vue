@@ -4,6 +4,10 @@ import { gsap } from 'gsap';
 
 const props = defineProps(['hoverPj'])
 
+// Mouse following
+let mouseFollowing = true
+let mouseOuter, mouseOuterProperties, mouseInner;
+
 // Change mouse appearnce while hovering on Project
 watch(() => props.hoverPj, (newValue, oldValue) => {
     const color = getComputedStyle(mouseOuter).getPropertyValue('--mouse-color')
@@ -16,6 +20,11 @@ watch(() => props.hoverPj, (newValue, oldValue) => {
             duration: .2,
             ease: 'power2'
         })
+        gsap.to(mouseInner, {
+          opacity: 0,
+          dufation: .2,
+          ease: 'power2'
+        })
     }else{
         gsap.to(mouseOuter, {
             width: size,
@@ -24,12 +33,13 @@ watch(() => props.hoverPj, (newValue, oldValue) => {
             duration: .2,
             ease: 'power2'
         })
+        gsap.to(mouseInner, {
+          opacity: 1,
+          dufation: .2,
+          ease: 'power2'
+        })
     }
 });
-
-// Mouse following
-let mouseFollowing = true
-let mouseOuter, mouseOuterProperties;
 
 function getProperties(el) {
   return {
@@ -81,6 +91,7 @@ function animateTarget(target, mouseX, mouseY) {
 
 onMounted(()=>{
     mouseOuter = document.querySelector(".mouse-outer")
+    mouseInner = document.querySelector(".mouse-inner")
     mouseOuterProperties = getProperties(mouseOuter);
 
     const rs = getComputedStyle(document.querySelector(":root"))
@@ -116,7 +127,7 @@ onMounted(()=>{
 
 <template>
     <div class="hidden md:flex font-sans mouse-outer justify-center items-center">
-        <p v-show="props.hoverPj" class="text-center">View Project Detail</p>
+        <p v-show="props.hoverPj" class="text-center">View Project</p>
         <div class="mouse-inner"></div>
     </div>
 </template>

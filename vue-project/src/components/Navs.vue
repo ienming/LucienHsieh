@@ -5,7 +5,7 @@ import Symbol from './Symbol.vue';
 const emits = defineEmits(['switch-tab'])
 const currentTab = inject("currentTab")
 
-const tabs = ["all", "code", "design"];
+const tabs = ["all", "frontend", "illustration"];
 const link_behance = {
     text: "VIEW ALL PROJECTS",
     url: "https://www.behance.net/Lucienming",
