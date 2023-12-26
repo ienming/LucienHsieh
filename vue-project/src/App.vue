@@ -88,7 +88,7 @@ function wheelShowCase(evt) {
 function stepShowCase(type) {
   const dom = projectContainer.value
   const scrollWidth = dom.scrollWidth
-  const step = usingMobile.value ? window.innerWidth : 500
+  const step = usingMobile.value ? window.innerHeight*1.2/1.3 : 500
   switch (type) {
     case "forward":
       gsap.to(dom, {
