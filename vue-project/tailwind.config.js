@@ -12,11 +12,11 @@ export default {
     },
     extend: {
       colors: {
-        'light': '#EFEFEF',
-        'dark': '#1d2b43',
-        'lavendar': '#4C6899',
-        'snow-shadow': '#BECCE2',
-        'gold': '#8C8462'
+        'light': '#EBEBEB',
+        'dark': '#252525',
+        'lavendar': '#3B6796',
+        'snow-shadow': '#C3D9E2',
+        'gold': '#A62900'
       }
     },
   },

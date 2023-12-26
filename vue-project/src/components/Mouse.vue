@@ -126,7 +126,7 @@ onMounted(()=>{
 </script>
 
 <template>
-    <div class="hidden md:flex font-sans mouse-outer justify-center items-center">
+    <div class="hidden lg:flex font-sans mouse-outer justify-center items-center">
         <p v-show="props.hoverPj" class="text-center">View Project</p>
         <div class="mouse-inner"></div>
     </div>

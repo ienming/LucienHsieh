@@ -32,23 +32,6 @@ const contents = {
             }
         ]
     },
-    // "skill": {
-    //     title: "技能 Skills & Preferred Tools",
-    //     ui: "badge",
-    //     data: {
-    //         "Vue": "bg-lavendar",
-    //         "GSAP": "bg-lavendar",
-    //         "PIXI": "bg-lavendar",
-    //         "p5.js": "bg-lavendar",
-    //         "JavaScript": "bg-lavendar",
-    //         "Python": "bg-lavendar",
-    //         "CSS": "bg-lavendar",
-    //         "Bootstrap 5": "bg-lavendar",
-    //         "Tailwind": "bg-lavendar",
-    //         "HTML": "bg-lavendar",
-    //         "Figma": "bg-gold"
-    //     }
-    // },
     "edu": {
         title: "教育背景 Education",
         ui: "list",
@@ -62,12 +45,7 @@ const contents = {
                 date: "2014.9 ~ 2019.1",
                 degree: "學士",
                 department: "數位內容與科技，國立政治大學（NCCU, DCT）"
-            },
-            // {
-            //     date: "2014.9 ~ 2019.1",
-            //     degree: "學士",
-            //     department: "媒體與文化研究，國立政治大學，新聞學系（NCCU, Department of Journalism）"
-            // }
+            }
         ]
     }
 }
