@@ -6,7 +6,7 @@
             "zh": "色々な色",
             "en": "iroironairo"
         },
-        "tags": ["Frontend", "UIUX", "Data visualization"],
+        "tags": ["Data visualization", "Vue", "mongoDB", "Python"],
         "intro": {
             "zh": "將日本交換時拍攝每一張照片的顏色搜集起來，呈現這段時間見過的色彩"
         },
@@ -22,7 +22,7 @@
             "zh": "蝸牛綠洲",
             "en": "Snail Oasis"
         },
-        "tags": ["Gamification", "Design research prototype", "Game art & UI"],
+        "tags": ["Gamification", "Game art & UI", "PIXI"],
         "intro": {
             "zh": "將地區巷弄的元素轉變成網頁小遊戲！碩士論文中的研究用 prototype"
         },

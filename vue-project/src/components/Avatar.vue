@@ -6,7 +6,7 @@
         <div class="avatar"></div>
         <div class="txt-slot-container">
             <span class="txt-slot">
-                About Author
+                About Creator
             </span>
             <span class="txt-slot">
                 關於作者
