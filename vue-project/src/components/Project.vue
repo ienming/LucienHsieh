@@ -156,9 +156,9 @@ function useCSSCover(){
     // Using CSS to display project cover image
     // for phone due to some bugs found in iOS new version
     // 2023.12.26
-    canvas.value.style['width'] = canvasWidth+'px';
+    canvas.value.style['width'] = canvasWidth*1.2+'px';
     canvas.value.style['height'] = canvasHeight+'px';
-    canvas.value.classList.add('p-20');
+    canvas.value.classList.add('p-10', 'pe-32');
 
     const coverEl = document.createElement("div");
     canvas.value.appendChild(coverEl);

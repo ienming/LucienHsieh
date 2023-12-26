@@ -161,7 +161,7 @@ onMounted(() => {
     <TopHeader @switch-tab="switchTab" />
     <div id="projectContainer" class="relative" :class="!storeCV.show ? 'overflow-y-hidden' : ''"
     @wheel="wheelShowCase" ref="projectContainer">
-      <section class="absolute top-[45%] md:top-1/2 left-0" v-show="!storeCV.show"
+      <section class="absolute top-1/2 left-0" v-show="!storeCV.show"
         style="transform: translateY(-50%);">
         <div class="flex items-center gap-5 lg:gap-20 ps-10 lg:ps-40 pe-32">
           <TransitionGroup name="list">
