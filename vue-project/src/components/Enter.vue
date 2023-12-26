@@ -40,10 +40,10 @@ onMounted(() => {
     <section class="z-20 h-full w-full flex justify-center items-center bg-dark anim-enter">
         <div class="text-light text-2xl font-display">
             <div class="flex flex-col gap-3 justify-center items-center">
-                <Symbol name="code" class="anim-symbol"></Symbol>
+                <Symbol name="frontend" class="anim-symbol"></Symbol>
                 <h1 class="anim-text">LUCIEN PORTFOLIO</h1>
                 <h2 class="anim-text">2023</h2>
-                <Symbol name="design" class="anim-symbol"></Symbol>
+                <Symbol name="illustration" class="anim-symbol"></Symbol>
             </div>
         </div>
     </section>

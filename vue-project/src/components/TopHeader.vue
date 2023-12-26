@@ -22,13 +22,13 @@ function switchTab(tabName){
         <span class="flex items-center gap-2 ps-3 leading-normal">
           <span class="text-light lg:text-lavendar flex items-center gap-1">
             <span>Portfolio Lucien Hsieh 2023</span>
-            <Symbol name="code"></Symbol>
+            <Symbol name="frontend"></Symbol>
             <span>WEB FRONTEND</span>
-            <Symbol name="code"></Symbol>
+            <Symbol name="frontend"></Symbol>
             <span>&</span>
-            <Symbol name="design"></Symbol>
+            <Symbol name="illustration"></Symbol>
             <span>ILLUSTRATION</span>
-            <Symbol name="design"></Symbol>
+            <Symbol name="illustration"></Symbol>
           </span>
         </span>
       </span>
