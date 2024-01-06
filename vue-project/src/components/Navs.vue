@@ -21,7 +21,7 @@ function switchTab(tabName){
 
 <template>
     <nav class="border-dark">
-        <div class="grid grid-cols-3 border-b-2 border-dark bg-light">
+        <div class="grid grid-cols-[repeat(3,_auto)] lg:grid-cols-3 border-b-2 border-dark bg-light">
             <button v-for="(tab, id) of tabs" :key="tab"
                 class="hov-el text-sm text-center font-semibold border-dark py-3 lg:py-1 txt-slot-container txt-slot-hover"
                 :class="{ 'border-l-2': id !== 0, 'bg-dark': tab === currentTab, 'text-snow-shadow': tab === currentTab }"
