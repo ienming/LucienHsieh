@@ -29,96 +29,59 @@ const currentTab = ref("all")
 provide("currentTab", currentTab)
 function switchTab(tab) {
   currentTab.value = tab
-  if (deltaX !== 0) {
-    back2Start()
-  }
+  back2Start()
 }
 
 const mouseHoverPj = ref(false)
 
 // Scroll projects
 const projectContainer = ref(null)
-let deltaX = 0
+// let deltaX = 0
 
 function back2Start() {
   const dom = projectContainer.value
   gsap.to(dom, {
-    scrollLeft: 0,
+    scrollTop: 0,
     duration: 1,
     ease: 'power3.out'
   })
-  deltaX = 0
+  // deltaX = 0
 }
 
-function wheelShowCase(evt) {
-  const dom = projectContainer.value
-  const scrollWidth = dom.scrollWidth
+// function wheelShowCase(evt) {
+//   const dom = projectContainer.value
+//   const scrollWidth = dom.scrollWidth
 
-  let deltaDist;
+//   let deltaDist;
 
-  if (evt.type === 'wheel') {
-    deltaDist = evt.deltaY || evt.deltaX;
-  } else if (evt.type === 'scroll') {
-    deltaDist = evt.deltaY;
-  } else {
-    return;
-  }
+//   if (evt.type === 'wheel') {
+//     deltaDist = evt.deltaY || evt.deltaX;
+//   } else if (evt.type === 'scroll') {
+//     deltaDist = evt.deltaY;
+//   } else {
+//     return;
+//   }
 
-  gsap.to(dom, {
-    scrollLeft: () => {
-      if (deltaDist > 0){
-        if (deltaX + deltaDist <= scrollWidth){
-          return deltaX += deltaDist
-        }else{
-          return deltaX = scrollWidth
-        }
-      }else{
-        if (deltaX + deltaDist >= 0){
-          return deltaX += deltaDist
-        }else{
-          return 0
-        }
-      }
-    },
-    duration: 0.3,
-    ease: 'power3.out',
-  });
-}
-
-function stepShowCase(type) {
-  const dom = projectContainer.value
-  const scrollWidth = dom.scrollWidth
-  const step = usingMobile.value ? window.innerHeight*1.2/1.3 : 500
-  switch (type) {
-    case "forward":
-      gsap.to(dom, {
-        scrollLeft: () => {
-          console.log(deltaX)
-          if (deltaX + step <= scrollWidth){
-            return deltaX += step
-          }else{
-            return deltaX = scrollWidth
-          }
-        },
-        duration: 1,
-        ease: "power3.out"
-      })
-      break;
-    case "backward":
-      gsap.to(dom, {
-        scrollLeft: () => {
-          console.log(deltaX)
-          if (deltaX - step >= 0){
-            return deltaX -= step
-          }else{
-            return 0
-          }
-        },
-        duration: 1,
-        ease: "power3.out"
-      })
-  }
-}
+//   gsap.to(dom, {
+//     scrollLeft: () => {
+//       if (deltaDist > 0){
+//         if (deltaX + deltaDist <= scrollWidth){
+//           return deltaX += deltaDist
+//         }else{
+//           return deltaX = scrollWidth
+//         }
+//       }else{
+//         if (deltaX + deltaDist >= 0){
+//           return deltaX += deltaDist
+//         }else{
+//           return 0
+//         }
+//       }
+//     },
+//     duration: 0.3,
+//     ease: 'power3.out',
+//   });
+// }
 
 // Enter Animation
 const enterAnimating = ref(true)
@@ -159,11 +122,9 @@ onMounted(() => {
       class="absolute top-0 left-0" @finish="closeEnterAnim" @start="revealProjects"></Enter>
     <Avatar v-show="!storeCV.show" @click="storeCV.toggleCV()" class="toucher absolute left-1 top-16 lg:top-20 z-10" />
     <TopHeader @switch-tab="switchTab" />
-    <div id="projectContainer" class="relative" :class="!storeCV.show ? 'overflow-y-hidden' : ''"
-    @wheel="wheelShowCase" ref="projectContainer">
-      <section class="absolute top-1/2 left-0" v-show="!storeCV.show"
-        style="transform: translateY(-50%);">
-        <div class="flex items-center gap-5 lg:gap-20 ps-10 lg:ps-40 pe-32">
+    <div id="projectContainer" class="relative overflow-y-scroll" @wheel="wheelShowCase" ref="projectContainer">
+      <section v-show="!storeCV.show"
+      class="flex flex-col items-start gap-5 lg:pl-52 lg:pb-48">
           <TransitionGroup name="list">
             <Project
               v-for="pj of projects"
@@ -178,24 +139,22 @@ onMounted(() => {
                 'url': pj.url
             }" @hover="mouseHoverPj = true" @leave="mouseHoverPj = false" />
           </TransitionGroup>
-          <div class="text-sm text-lavendar flex flex-col gap-3 lg:gap-5 whitespace-nowrap">
+          <div class="text-sm text-lavendar flex flex-col gap-3 lg:gap-5 whitespace-nowrap
+          pl-10 pb-20 lg:pb-0">
             <span>The End</span>
             <button class="toucher flex items-center gap-1 txt-slot-hover" @click="back2Start">
               <span class="material-symbols-outlined p-1 border border-lavendar rounded-full
-            ">arrow_back</span>
+            ">arrow_top</span>
               <div class="txt-slot-container">
                 <span v-for="n of 2" class="txt-slot">Back to the start</span>
               </div>
             </button>
           </div>
-        </div>
       </section>
       <Transition name="fade" mode="out-in">
         <CoverLetter v-show="storeCV.show" :show="storeCV.show" class="absolute top-0 left-0" @close="storeCV.toggleCV()" />
       </Transition>
     </div>
-    <Controller @show-prev="stepShowCase('backward')" @show-next="stepShowCase('forward')"
-      class="absolute bottom-0 right-0 p-3" />
       <Transition name="fade">
         <Contact v-if="!enterAnimating" class="absolute -bottom-4 -left-4 z-20 hidden lg:block" />
       </Transition>
