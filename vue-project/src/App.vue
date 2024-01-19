@@ -1,5 +1,5 @@
 <script setup>
-import { ref, provide, onMounted, nextTick } from 'vue';
+import { ref, provide, onMounted, nextTick, watch } from 'vue';
 import TopHeader from '@/components/TopHeader.vue'
 import Avatar from '@/components/Avatar.vue'
 import CoverLetter from '@/components/CoverLetter.vue'
@@ -7,7 +7,6 @@ import Contact from '@/components/Contact.vue'
 import Project from '@/components/Project.vue'
 import Mouse from '@/components/Mouse.vue'
 import Enter from './components/Enter.vue';
-import Controller from '@/components/Controller.vue'
 import projects from '@/assets/projects.json'
 import { gsap } from 'gsap';
 import { storeCV } from './store';
@@ -16,13 +15,10 @@ const lang = ref("zh")
 provide("lang", lang)
 
 const usingMobile = ref(false)
-const mobileStrings = ['iPhone', 'Android']
-mobileStrings.forEach(str => {
-  if (navigator.userAgent.indexOf(str) > -1) {
-    usingMobile.value = true
-    return
-  }
-})
+console.log(window.innerWidth, window.innerHeight)
+if (window.innerWidth < window.innerHeight){
+  usingMobile.value = true
+}
 provide('usingMobile', usingMobile)
 
 const currentTab = ref("all")
@@ -36,7 +32,6 @@ const mouseHoverPj = ref(false)
 
 // Scroll projects
 const projectContainer = ref(null)
-// let deltaX = 0
 
 function back2Start() {
   const dom = projectContainer.value
@@ -45,43 +40,7 @@ function back2Start() {
     duration: 1,
     ease: 'power3.out'
   })
-  // deltaX = 0
 }
-
-// function wheelShowCase(evt) {
-//   const dom = projectContainer.value
-//   const scrollWidth = dom.scrollWidth
-
-//   let deltaDist;
-
-//   if (evt.type === 'wheel') {
-//     deltaDist = evt.deltaY || evt.deltaX;
-//   } else if (evt.type === 'scroll') {
-//     deltaDist = evt.deltaY;
-//   } else {
-//     return;
-//   }
-
-//   gsap.to(dom, {
-//     scrollLeft: () => {
-//       if (deltaDist > 0){
-//         if (deltaX + deltaDist <= scrollWidth){
-//           return deltaX += deltaDist
-//         }else{
-//           return deltaX = scrollWidth
-//         }
-//       }else{
-//         if (deltaX + deltaDist >= 0){
-//           return deltaX += deltaDist
-//         }else{
-//           return 0
-//         }
-//       }
-//     },
-//     duration: 0.3,
-//     ease: 'power3.out',
-//   });
-// }
 
 // Enter Animation
 const enterAnimating = ref(true)
@@ -95,36 +54,47 @@ function revealProjects(){
     ease: "power3.inOut"
   })
 }
+
 function closeEnterAnim(){
   enterAnimating.value = false
 }
 
-// const mainFrame = ref(null)
-onMounted(() => {
-  nextTick(() => {
-    const pjBox = document.querySelector("#projectContainer")
-    // const mainEl = document.querySelector("#mainFrame")
-    // const mainEl = mainFrame.value
-    // const topEl = document.querySelector("#topHeader")
+// Init
+const pjContainerHeight = ref(0)
+function setPjContainerHeight(){
+  if (!storeCV.show){
     const padding = usingMobile.value ? 24 : 40
-    const topHeight = usingMobile.value ? 48 : document.querySelector("#topHeader").clientHeight
-    const h = (window.innerHeight - padding) - topHeight
-    // window.alert('main: '+(window.innerHeight - padding)+'; top: '+topEl.clientHeight+'; '+'Total: '+h)
-    pjBox.style.height = h + 'px'
+    const bdWidth = usingMobile.value ? 4 : 23
+    const topHeight = document.querySelector("#topHeader").clientHeight
+    const h = window.innerHeight - padding - topHeight - bdWidth
+    pjContainerHeight.value = h+'px'
+  }else pjContainerHeight.value = '0px'
+}
+
+watch(storeCV, async (newValue, oldValue) => {
+  setPjContainerHeight()
+})
+
+onMounted(()=>{
+  nextTick(()=>{
+    setPjContainerHeight()
   })
 })
 </script>
 
 <template>
   <main class="relative text-dark border-4 lg:border-8 border-dark h-full" :class="enterAnimating ? '':'cursor-none'"
-  id="mainFrame" ref="mainFrame">
+  id="mainFrame">
     <Enter v-if="enterAnimating"
       class="absolute top-0 left-0" @finish="closeEnterAnim" @start="revealProjects"></Enter>
     <Avatar v-show="!storeCV.show" @click="storeCV.toggleCV()" class="toucher absolute left-1 top-16 lg:top-20 z-10" />
     <TopHeader @switch-tab="switchTab" />
-    <div id="projectContainer" class="relative overflow-y-scroll" @wheel="wheelShowCase" ref="projectContainer">
+    <div id="projectContainer"
+    ref="projectContainer"
+    :style="{'height': pjContainerHeight}"
+    class="relative overflow-y-scroll">
       <section v-show="!storeCV.show"
-      class="flex flex-col items-start gap-5 lg:pl-52 lg:pb-48">
+      class="flex flex-col items-start gap-5 xl:pl-40 lg:pb-48">
           <TransitionGroup name="list">
             <Project
               v-for="pj of projects"
@@ -140,7 +110,7 @@ onMounted(() => {
             }" @hover="mouseHoverPj = true" @leave="mouseHoverPj = false" />
           </TransitionGroup>
           <div class="text-sm text-lavendar flex flex-col gap-3 lg:gap-5 whitespace-nowrap
-          pl-10 pb-20 lg:pb-0">
+          pl-6 pb-20 lg:pb-0">
             <span>The End</span>
             <button class="toucher flex items-center gap-1 txt-slot-hover" @click="back2Start">
               <span class="material-symbols-outlined p-1 border border-lavendar rounded-full
@@ -151,13 +121,13 @@ onMounted(() => {
             </button>
           </div>
       </section>
-      <Transition name="fade" mode="out-in">
-        <CoverLetter v-show="storeCV.show" :show="storeCV.show" class="absolute top-0 left-0" @close="storeCV.toggleCV()" />
-      </Transition>
     </div>
-      <Transition name="fade">
-        <Contact v-if="!enterAnimating" class="absolute -bottom-4 -left-4 z-20 hidden lg:block" />
-      </Transition>
+    <Transition name="fade" mode="out-in">
+      <CoverLetter v-show="storeCV.show" :show="storeCV.show" @close="storeCV.toggleCV()" />
+    </Transition>
+    <Transition name="fade">
+      <Contact v-if="!enterAnimating" class="absolute -bottom-4 -right-4 z-20 hidden lg:block" />
+    </Transition>
     <div id="bgTitle" class="absolute bottom-0 w-full h-1/5 lg:h-2/6 lg:opacity-30"></div>
   </main>
   <Mouse v-if="!enterAnimating" :hover-pj="mouseHoverPj"></Mouse>

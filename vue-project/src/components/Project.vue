@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref, inject, onBeforeUnmount, computed } from "vue";
+import { onMounted, ref, inject, computed } from "vue";
 import Symbol from "./Symbol.vue";
 
 const lang = inject("lang")
@@ -41,22 +41,16 @@ function useCSSCover(){
 onMounted(()=>{
     useCSSCover()
 })
-
-onBeforeUnmount(()=>{
-    if (app){
-        app.destroy(true)
-    }
-})
 </script>
 
 <template>
-    <section class="w-full relative flex flex-col lg:grid lg:grid-cols-3 gap-3 p-10">
+    <section class="w-full relative flex flex-col lg:grid lg:grid-cols-2 xl:grid-cols-3 gap-3 p-6 lg:p-10">
         <div ref="canvas"
         @click="viewProject()"
         @mouseenter="emits('hover')"
         @mouseleave="emits('leave')"></div>
         <div class="flex flex-col items-start justify-center txt-slot-hover gap-2 lg:gap-3 lg:pl-10
-        lg:col-span-2">
+        xl:col-span-2">
             <div class="flex gap-2">
                 <Symbol v-for="c of info.cate" :name="c" :key="info.title+'_'+c"></Symbol>
             </div>
