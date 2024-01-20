@@ -21,9 +21,17 @@
   .dynamic-color{
     background-color: var(--luc-dynamic-bg-color);
     color: var(--luc-dynamic-text-color);
-    &:hover{
+    &:not(.no-hover):hover{
       background-color: var(--luc-dynamic-text-color);
       color: var(--luc-dynamic-bg-color);
+    }
+  }
+  .dynamic-color-reverse{
+    background-color: var(--luc-dynamic-text-color);
+    color: var(--luc-dynamic-bg-color);
+    &:not(.no-hover):hover{
+      background-color: var(--luc-dynamic-bg-color);
+      color: var(--luc-dynamic-text-color);
     }
   }
   .draw-svg-line{

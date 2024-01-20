@@ -1,5 +1,6 @@
 <script setup>
-import { onMounted, inject, ref } from 'vue';
+import { onMounted, inject, ref, watch } from 'vue';
+import { storeColor } from '@/store.js';
 const usingMobile = inject('usingMobile')
 
 const icon = ref(null)
@@ -9,6 +10,12 @@ onMounted(()=>{
         const dynamicColor = getComputedStyle(document.documentElement).getPropertyValue('--luc-dynamic-text-color')
         path.setAttribute("stroke", dynamicColor)
     }
+})
+
+watch(storeColor, async(oldValue, newValue) => {
+  console.log("change color")
+  icon.value.style['fill'] = storeColor.bg
+  icon.value.querySelector("path").style['stroke'] = storeColor.bg
 })
 </script>
 <template>

@@ -13,3 +13,14 @@ export const storeCV = reactive({
         this.show = !this.show
     }
 })
+
+export const storeColor = reactive({
+    bg: "",
+    text: "",
+    setColor(bg, text){
+        this.bg = bg
+        this.text = text
+        document.documentElement.style.setProperty('--luc-dynamic-bg-color', this.bg);
+        document.documentElement.style.setProperty('--luc-dynamic-text-color', this.text);
+    }
+})

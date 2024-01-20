@@ -11,20 +11,12 @@
       :root{
         --luc-dark: #252525;
         --luc-light: #EBEBEB;
-        --luc-dynamic-bg-color: var(--luc-dark);
-        --luc-dynamic-text-color: var(--luc-light);
+        --luc-dynamic-bg-color: var(--luc-light);
+        --luc-dynamic-text-color: var(--luc-dark);
       }
+
       body {
         background-color: var(--luc-dynamic-bg-color);
-        background-image: url('/bg_mobile.png');
-        background-size: 100%;
-        background-color: 100%;
-        background-position: center;
-      }
-      @media screen and (min-width: 992px){
-        body {
-          background-image: url('/bg_desktop.png');
-        } 
       }
     </style>
   </head>

@@ -1,3 +1,5 @@
+import { storeColor } from '../store.js';
+
 export function setDynamicColor(color){
   let hex;
   if (typeof color === 'string' && color[0] === '#'){
@@ -13,43 +15,40 @@ export function setDynamicColor(color){
       hsl2Hex(colorObj.h, colorObj.s, colorObj.l),
       hsl2Hex(reverseColorObj.h, reverseColorObj.s, reverseColorObj.l)
   ]
-  document.documentElement.style.setProperty('--luc-dynamic-bg-color', colorHex);
-  document.documentElement.style.setProperty('--luc-dynamic-text-color', reverseColorHex);
+  storeColor.setColor(colorHex, reverseColorHex)
 }
 
 export function setLightTheme(){
-  document.documentElement.style.setProperty('--luc-dynamic-bg-color', '#EBEBEB');
-  document.documentElement.style.setProperty('--luc-dynamic-text-color', '#252525');
+  storeColor.setColor('#EBEBEB', '#252525')
 }
 
 export function setDarkTheme(){
-  document.documentElement.style.setProperty('--luc-dynamic-bg-color', '#252525');
-  document.documentElement.style.setProperty('--luc-dynamic-text-color', '#EBEBEB');
+  storeColor.setColor('#252525', '#EBEBEB')
 }
 
 export function getRandomColor(){
   const colors = [
     '#A62900',
-    '#3B6796',
+    '#255588',
     '#C3D9E2',
     '#DCACCC',
-    '#9E918A',
-    '#6D814B',
-    '#B88F7A',
-    '#848A90',
+    '#D3C0B6',
+    '#618426',
+    '#FCB089',
+    '#188A6F',
     '#E5DFCC',
-    '#ABBD98'
+    '#C2D4AE'
   ]
   const idx = Math.floor(Math.random()*colors.length)
   return colors[idx]
 }
 
 export function getReverseColor(hslObj){
-    if (25 < hslObj.l && hslObj.l < 75) {
+    if (hslObj.l > 25 && hslObj.l < 75) {
       return {
-        'h': 360,
+        'h': 0,
         's': 0,
-        'l': 100,
+        'l': 92,
       }
     } else {
       return {

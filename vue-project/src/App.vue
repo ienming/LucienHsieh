@@ -2,6 +2,7 @@
 import { ref, provide, onMounted, nextTick, watch } from 'vue';
 import { gsap } from 'gsap';
 import { storeCV } from './store';
+import { setLightTheme } from './methods/color';
 // Components
 import TopHeader from '@/components/TopHeader.vue'
 import Avatar from '@/components/Avatar.vue'
@@ -81,6 +82,7 @@ watch(storeCV, async (newValue, oldValue) => {
 onMounted(()=>{
   nextTick(()=>{
     setPjContainerHeight()
+    setLightTheme()
   })
 })
 </script>
@@ -141,6 +143,18 @@ onMounted(()=>{
 </template>
 
 <style scoped>
+#mainFrame{
+  background-image: url('/bg_mobile.png');
+  background-size: 100%;
+  background-position: center;
+}
+
+@media screen and (min-width: 992px){
+  #mainFrame {
+    background-image: url('/bg_desktop.png');
+  } 
+}
+
 #projectContainer::-webkit-scrollbar{
   display: none;
 }
