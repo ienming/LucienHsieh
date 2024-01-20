@@ -37,6 +37,7 @@ function useCSSCover(){
     coverEl.style['mask-image'] = `url(${maskImg})`;
     coverEl.style['mask-size'] = `contain`;
     coverEl.style['mask-repeat'] = `no-repeat`;
+    coverEl.style['mask-position'] = `center`;
     coverEl.classList.add('h-full', 'rounded-full', 'bg-cover', 'bg-center');
 }
 

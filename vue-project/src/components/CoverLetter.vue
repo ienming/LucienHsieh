@@ -33,7 +33,8 @@ watch(() => props.show, (newValue, oldValue)=>{
 </script>
 
 <template>
-    <section class="z-10 p-8 lg:p-0 lg:flex justify-center items-center relative overflow-y-scroll"
+    <section class="z-10 p-4 lg:p-0 lg:flex justify-center items-center relative
+    overflow-y-scroll overflow-x-hidden"
     ref="coverLetter">
         <button class="toucher p-2 lg:p-5 rounded-full w-fit absolute right-0 top-0"
         @click="emits('close')">
@@ -42,7 +43,7 @@ watch(() => props.show, (newValue, oldValue)=>{
             </span>
         </button>
         <div class="lg:max-w-[50vw] relative">
-            <div class="py-4 lg:pb-12 inline-flex justify-end w-full">
+            <div class="py-4 pt-8 lg:pb-12 inline-flex justify-end w-full">
                 <IconKeshigomu class="toucher" @click="setLightTheme"></IconKeshigomu>
             </div>
             <h2 class="fs-h3 mb-3">

@@ -3,6 +3,9 @@
   .fs-d1{
     @apply font-display font-thin text-4xl lg:text-5xl;
   }
+  .fs-d2{
+    @apply font-display font-thin text-3xl lg:text-4xl;
+  }
   .fs-h1{
     @apply font-serif font-semibold text-4xl;
   }

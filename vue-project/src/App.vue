@@ -64,24 +64,24 @@ function closeEnterAnim(){
 }
 
 // Init
-const pjContainerHeight = ref(0)
-function setPjContainerHeight(){
-  if (!storeCV.show){
-    const padding = usingMobile.value ? 24 : 40
-    const bdWidth = usingMobile.value ? 4 : 23
-    const topHeight = document.querySelector("#topHeader").clientHeight
-    const h = window.innerHeight - padding - topHeight - bdWidth
-    pjContainerHeight.value = h+'px'
-  }else pjContainerHeight.value = '0px'
-}
+// const pjContainerHeight = ref(0)
+// function setPjContainerHeight(){
+//   if (!storeCV.show){
+//     const padding = usingMobile.value ? 24 : 40
+//     const bdWidth = usingMobile.value ? 4 : 23
+//     const topHeight = document.querySelector("#topHeader").clientHeight
+//     const h = window.innerHeight - padding - topHeight - bdWidth
+//     pjContainerHeight.value = h+'px'
+//   }else pjContainerHeight.value = '0px'
+// }
 
-watch(storeCV, async (newValue, oldValue) => {
-  setPjContainerHeight()
-})
+// watch(storeCV, async (newValue, oldValue) => {
+//   setPjContainerHeight()
+// })
 
 onMounted(()=>{
   nextTick(()=>{
-    setPjContainerHeight()
+    // setPjContainerHeight()
     setLightTheme()
   })
 })
@@ -96,12 +96,12 @@ onMounted(()=>{
     <TopHeader @switch-tab="switchTab" />
     <div id="projectContainer"
     ref="projectContainer"
-    :style="{'height': pjContainerHeight}"
-    class="relative overflow-y-scroll">
+    v-show="!storeCV.show"
+    class="relative overflow-y-scroll h-full">
       <div class="pt-20 inline-flex justify-end w-full pr-10 lg:hidden">
         <IconSign></IconSign>
       </div>
-      <section v-show="!storeCV.show"
+      <section
       class="flex flex-col items-start gap-5 lg:gap-0 xl:pl-48 lg:pb-48">
           <TransitionGroup name="list">
             <Project
@@ -118,10 +118,9 @@ onMounted(()=>{
                 'url': pj.url
             }" @hover="mouseHoverPj = true" @leave="mouseHoverPj = false" />
           </TransitionGroup>
-          <div class="text-sm flex flex-col gap-3 lg:gap-5 whitespace-nowrap
-          pl-6 pb-20 lg:pb-0">
-            <span>The End</span>
-            <button class="toucher flex items-center gap-1 txt-slot-hover" @click="back2Start">
+          <div class="text-sm flex flex-col w-full lg:w-fit gap-3 lg:gap-5 whitespace-nowrap pb-20 lg:pb-0">
+            <span class="text-center lg:text-left">The End</span>
+            <button class="toucher flex flex-col lg:flex-row items-center gap-1 txt-slot-hover" @click="back2Start">
               <span class="material-symbols-outlined p-1 border rounded-full
             ">arrow_top</span>
               <div class="txt-slot-container">

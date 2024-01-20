@@ -17,14 +17,11 @@ function switchTab(tabName){
   <section class="border-b-2 border-dark w-full grid relative z-10"
   id="topHeader"
   :style="storeCV.show ? {'grid-template-columns': '100%'}:''">
-    <div class="fs-d1 flex overflow-hidden border-b-2 border-dark lg:border-b-0 dynamic-color-reverse no-hover">
+    <div class="fs-d2 lg:fs-d1 flex overflow-hidden border-b-2 border-dark lg:border-b-0 dynamic-color-reverse no-hover">
       <span class="marquee inline-block whitespace-nowrap self-center" v-for="n of 3">
         <span class="flex items-center gap-2 ps-3 leading-normal">
           <span class="flex items-center gap-1">
-            <span>Portfolio Lucien Hsieh 2023</span>
-            <span>WEB FRONTEND</span>
-            <span>&</span>
-            <span>ILLUSTRATION</span>
+            <span>Portfolio Lucien Hsieh 2023 WEB FRONT & ILLUSTRATION</span>
             <IconMarquee></IconMarquee>
           </span>
         </span>
