@@ -6,7 +6,7 @@ const currentTab = inject("currentTab")
 
 const tabs = ["all", "frontend", "illustration"];
 const link_behance = {
-    text: "VIEW ALL PROJECTS",
+    text: "VIEW ALL WORKS",
     url: "https://www.behance.net/Lucienming",
 };
 
@@ -47,6 +47,9 @@ function switchTab(tabName){
 <style scoped>
 .hov-el {
   position: relative;
+  span {
+    z-index: 1;
+  }
   &.active{
     background-color: var(--luc-dark);
     color: var(--luc-light);
@@ -55,12 +58,14 @@ function switchTab(tabName){
       width: 100%;
     }
   }
-  &:hover::after{
-    width: 100%;
+  &:not(.active):hover {
+    color: var(--luc-dynamic-text-color);
+    &::after{
+      width: 100%;
+    }
   }
   &::after{
     content: "";
-    z-index: -1;
     display: block;
     background-color: var(--luc-dynamic-bg-color);
     position: absolute;

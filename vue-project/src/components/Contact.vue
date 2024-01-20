@@ -2,7 +2,7 @@
 </script>
 
 <template>
-    <section class="txt-slot-hover border border-snow-shadow/20 text-snow-shadow lg:dynamic-color">
+    <section class="txt-slot-hover border border-snow-shadow/20 dynamic-color">
         <div class="p-2 lg:p-4">
             <h4 class="font-sans text-base lg:text-xl font-semibold mb-2">
                 <div class="txt-slot-container">

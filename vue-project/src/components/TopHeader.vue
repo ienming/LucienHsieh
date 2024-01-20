@@ -2,6 +2,7 @@
 import { ref }from 'vue';
 import { storeCV } from '../store';
 import Navs from './Navs.vue';
+import IconMarquee from '@/components/icons/IconMarquee.vue';
 
 const emits = defineEmits(['switch-tab'])
 
@@ -21,13 +22,10 @@ function switchTab(tabName){
         <span class="flex items-center gap-2 ps-3 leading-normal">
           <span class="text-light lg:text-dark flex items-center gap-1">
             <span>Portfolio Lucien Hsieh 2023</span>
-            <!-- <Symbol name="frontend"></Symbol> -->
             <span>WEB FRONTEND</span>
-            <!-- <Symbol name="frontend"></Symbol> -->
             <span>&</span>
-            <!-- <Symbol name="illustration"></Symbol> -->
             <span>ILLUSTRATION</span>
-            <!-- <Symbol name="illustration"></Symbol> -->
+            <IconMarquee></IconMarquee>
           </span>
         </span>
       </span>
@@ -40,7 +38,7 @@ function switchTab(tabName){
         <span v-else class="material-symbols-outlined"> close </span>
       </nav>
       <!-- Desktop -->
-      <Navs v-show="!storeCV.show" class="lg:border-l-2 hidden lg:flex flex-col"
+      <Navs v-show="!storeCV.show" class="lg:border-l-2 hidden lg:flex flex-col h-full"
       @switch-tab="switchTab"></Navs>
     </section>
     <!-- Mobile -->

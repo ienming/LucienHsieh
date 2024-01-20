@@ -10,7 +10,7 @@ import Contact from '@/components/Contact.vue'
 import Project from '@/components/Project.vue'
 import Mouse from '@/components/Mouse.vue'
 import Enter from '@/components/Enter.vue';
-import Sign from '@/components/icons/Sign.vue';
+import IconSign from '@/components/icons/IconSign.vue';
 // Data
 import projects from '@/assets/projects.json'
 
@@ -86,21 +86,21 @@ onMounted(()=>{
 </script>
 
 <template>
-  <main class="relative text-dark rounded-[32px] lg:rounded-[70px] overflow-hidden border-4 lg:border-8 border-dark h-full" :class="enterAnimating ? '':'cursor-none'"
+  <main class="relative bg-light text-dark rounded-[32px] lg:rounded-[70px] overflow-hidden border-4 lg:border-8 border-dark h-full" :class="enterAnimating ? '':'cursor-none'"
   id="mainFrame">
     <Enter v-if="enterAnimating"
       class="absolute top-0 left-0" @finish="closeEnterAnim" @start="revealProjects"></Enter>
-    <Avatar v-show="!storeCV.show" @click="storeCV.toggleCV()" class="toucher absolute left-1 top-16 lg:top-20 z-10" />
+    <Avatar v-show="!storeCV.show" @click="storeCV.toggleCV()" />
     <TopHeader @switch-tab="switchTab" />
     <div id="projectContainer"
     ref="projectContainer"
     :style="{'height': pjContainerHeight}"
     class="relative overflow-y-scroll">
       <div class="pt-20 inline-flex justify-end w-full pr-10 lg:hidden">
-        <Sign></Sign>
+        <IconSign></IconSign>
       </div>
       <section v-show="!storeCV.show"
-      class="flex flex-col items-start gap-5 xl:pl-48 lg:pb-48">
+      class="flex flex-col items-start gap-5 lg:gap-0 xl:pl-48 lg:pb-48">
           <TransitionGroup name="list">
             <Project
               v-for="pj of projects"
@@ -108,6 +108,7 @@ onMounted(()=>{
               :key="pj.title"
               :title="pj.title"
               :info="{
+                'mask': pj.mask,
                 'name': pj.name,
                 'cate': pj.cate,
                 'intro': pj.intro,
@@ -131,7 +132,7 @@ onMounted(()=>{
     <Transition name="fade" mode="out-in">
       <CoverLetter v-show="storeCV.show" :show="storeCV.show" @close="storeCV.toggleCV()" />
     </Transition>
-    <Sign class="hidden lg:block absolute bottom-8 left-10"></Sign>
+    <IconSign class="hidden lg:block absolute bottom-8 left-10"></IconSign>
   </main>
   <Transition name="fade">
     <Contact v-if="!enterAnimating" class="absolute bottom-4 right-4 z-20 hidden lg:block" />

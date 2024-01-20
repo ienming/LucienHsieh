@@ -7,6 +7,7 @@ const lang = inject("lang")
 const props = defineProps(['title', 'info'])
 const emits = defineEmits(['hover', 'leave'])
 const coverImg = new URL(`../assets/cover_${props.title}.png`, import.meta.url).href
+const maskImg = new URL(`../assets/mask_${props.info.mask}.svg`, import.meta.url).href
 
 const usingMobile = inject("usingMobile")
 
@@ -33,6 +34,9 @@ function useCSSCover(){
     canvas.value.appendChild(coverEl);
 
     coverEl.style['background-image'] = `url(${coverImg})`;
+    coverEl.style['mask-image'] = `url(${maskImg})`;
+    coverEl.style['mask-size'] = `contain`;
+    coverEl.style['mask-repeat'] = `no-repeat`;
     coverEl.classList.add('h-full', 'rounded-full', 'bg-cover', 'bg-center');
 }
 
@@ -53,7 +57,7 @@ onMounted(()=>{
             <div class="flex gap-2">
                 <!-- <Symbol v-for="c of info.cate" :name="c" :key="info.title+'_'+c"></Symbol> -->
             </div>
-            <h2 class="fs-h1 p-1 lg:p-4 txt-slot-container bg-light border border-dark"
+            <h2 class="fs-h2 p-1 lg:p-4 txt-slot-container bg-light border border-dark"
             :style="usingMobile ? {'--slot-offset': 'calc(-113% + 0.25rem*-1)'} : {'--slot-offset': 'calc(-113% + 1rem*-1)'}">
                 <div v-for="n of 2" class="txt-slot flex flex-wrap items-center">
                     <a :href="info.url.demo" target="_blank" class="font-serif font-bold">{{ info.name.zh }}</a>

@@ -2,6 +2,7 @@
     {
         "title": "iroironairo",
         "cate": ["frontend"],
+        "mask": "1",
         "name": {
             "zh": "色々な色",
             "en": "iroironairo"
@@ -18,6 +19,7 @@
     {
         "title": "snailOasis",
         "cate": ["frontend", "illustration"],
+        "mask": "2",
         "name": {
             "zh": "蝸牛綠洲",
             "en": "Snail Oasis"
@@ -33,6 +35,7 @@
     {
         "title": "modernLove",
         "cate": ["frontend"],
+        "mask": "2",
         "name": {
             "zh": "現代愛情",
             "en": "Modern Love"
@@ -48,6 +51,7 @@
     {
         "title": "sushillustration",
         "cate": ["illustration"],
+        "mask": "1",
         "name": {
             "zh": "壽司插畫集",
             "en": "Sushillustration"

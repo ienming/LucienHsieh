@@ -26,6 +26,15 @@
       color: var(--luc-dynamic-bg-color);
     }
   }
+  .draw-svg-line{
+    animation: draw-svg-line 2s ease-in-out forwards;
+  }
+}
+
+@keyframes draw-svg-line{
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 /* Txt slot */

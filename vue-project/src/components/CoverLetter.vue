@@ -1,8 +1,13 @@
 <script setup>
 import { watch, ref, nextTick } from 'vue';
 import Contact from '@/components/Contact.vue'
+import IconKeshigomu from '@/components/icons/IconKeshigomu.vue';
+import IconEscapeKey from '@/components/icons/IconEscapeKey.vue';
+import IconStroke1 from '@/components/icons/IconStroke1.vue';
+import IconStroke2 from '@/components/icons/IconStroke2.vue';
 import githubIcon from '@/assets/github-mark-white.svg';
 import behanceIcon from '@/assets/behance.png';
+import { setLightTheme } from '@/methods/color.js';
 
 const props = defineProps(['show'])
 const emits = defineEmits(['close'])
@@ -22,7 +27,7 @@ watch(() => props.show, (newValue, oldValue)=>{
 </script>
 
 <template>
-    <section class="z-10 p-8 lg:p-0 lg:flex justify-center items-center relative"
+    <section class="z-10 p-8 lg:p-0 lg:flex justify-center items-center relative overflow-y-scroll"
     ref="coverLetter">
         <button class="toucher p-2 lg:p-5 rounded-full w-fit absolute right-0 top-0"
         @click="emits('close')">
@@ -31,6 +36,9 @@ watch(() => props.show, (newValue, oldValue)=>{
             </span>
         </button>
         <div class="lg:max-w-[50vw]">
+            <div class="lg:pb-12 inline-flex justify-end w-full">
+                <IconKeshigomu class="toucher" @click="setLightTheme"></IconKeshigomu>
+            </div>
             <h2 class="fs-h3 mb-3">
                 <span class="pr-3">Lucien Hsieh</span>
                 <span>謝明倫</span>
@@ -56,7 +64,14 @@ watch(() => props.show, (newValue, oldValue)=>{
                     class="social-icon"/>
                 </a>
             </div>
+            <div>
+                <IconStroke1></IconStroke1>
+                <IconStroke2></IconStroke2>
+            </div>
             <Contact class="lg:hidden"></Contact>
+            <div class="lg:pt-12">
+                <IconEscapeKey class="toucher" @click="emits('close')"></IconEscapeKey>
+            </div>
         </div>
     </section>
 </template>
