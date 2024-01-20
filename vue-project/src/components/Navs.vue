@@ -20,7 +20,7 @@ function switchTab(tabName){
 
 <template>
     <nav class="border-dark">
-        <div class="grid grid-cols-[repeat(3,_auto)] lg:grid-cols-3 border-b-2 border-dark bg-light">
+        <div class="grid grid-cols-[repeat(3,_auto)] lg:grid-cols-3 border-b-2 border-dark bg-light h-full">
             <button v-for="(tab, id) of tabs" :key="tab"
                 class="hov-el text-sm text-center font-semibold border-dark py-3 lg:py-1 txt-slot-container txt-slot-hover"
                 :class="{ 'border-l-2': id !== 0, 'active': tab === currentTab}"
@@ -32,7 +32,7 @@ function switchTab(tabName){
             </button>
         </div>
         <a :href="link_behance.url" target="_blank"
-            class="hov-el px-2 py-3 lg:py-1 text-sm txt-slot-container txt-slot-hover border-b-2 border-dark lg:border-0"
+            class="hov-el px-2 py-3 lg:py-1 text-sm txt-slot-container txt-slot-hover border-b-2 border-dark lg:border-0 h-full"
             style="line-height: 1.5;">
             <span v-for="n of 2" class="txt-slot flex gap-1 items-center">
                 <span class="font-semibold">

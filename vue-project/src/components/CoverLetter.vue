@@ -5,9 +5,9 @@ import IconKeshigomu from '@/components/icons/IconKeshigomu.vue';
 import IconEscapeKey from '@/components/icons/IconEscapeKey.vue';
 import IconStroke1 from '@/components/icons/IconStroke1.vue';
 import IconStroke2 from '@/components/icons/IconStroke2.vue';
-import githubIcon from '@/assets/github-mark-white.svg';
-import behanceIcon from '@/assets/behance.png';
-import { setLightTheme } from '@/methods/color.js';
+import githubIcon from '@/assets/github-mark.svg';
+import behanceIcon from '@/assets/behance-mark.svg';
+import { setLightTheme, getRandomColor } from '@/methods/color.js';
 
 const props = defineProps(['show'])
 const emits = defineEmits(['close'])
@@ -17,10 +17,16 @@ const coverLetter = ref(null)
 watch(() => props.show, (newValue, oldValue)=>{
     if (newValue){
         nextTick(()=>{
+            // Reopen
             const mainEl = document.querySelector("#mainFrame")
             const topEl = document.querySelector("#topHeader")
             const h = mainEl.clientHeight - topEl.clientHeight
             coverLetter.value.style.height = h+'px'
+            // Get random colors for each paths
+            const paths = coverLetter.value.querySelectorAll(".draw-svg-line")
+            Array.from(paths).forEach(path => {
+                path.style['stroke'] = getRandomColor()
+            })
         })
     }
 })
@@ -35,8 +41,8 @@ watch(() => props.show, (newValue, oldValue)=>{
                 close
             </span>
         </button>
-        <div class="lg:max-w-[50vw]">
-            <div class="lg:pb-12 inline-flex justify-end w-full">
+        <div class="lg:max-w-[50vw] relative">
+            <div class="py-4 lg:pb-12 inline-flex justify-end w-full">
                 <IconKeshigomu class="toucher" @click="setLightTheme"></IconKeshigomu>
             </div>
             <h2 class="fs-h3 mb-3">
@@ -64,15 +70,13 @@ watch(() => props.show, (newValue, oldValue)=>{
                     class="social-icon"/>
                 </a>
             </div>
-            <div>
-                <IconStroke1></IconStroke1>
-                <IconStroke2></IconStroke2>
-            </div>
-            <Contact class="lg:hidden"></Contact>
-            <div class="lg:pt-12">
+            <div class="py-8 lg:pt-12">
                 <IconEscapeKey class="toucher" @click="emits('close')"></IconEscapeKey>
             </div>
         </div>
+        <Contact class="lg:hidden"></Contact>
+        <IconStroke1 class="absolute -right-10 bottom-20 lg:right-20 lg:top-1/3"></IconStroke1>
+        <IconStroke2 class="absolute -left-12 top-4 lg:left-16 lg:bottom-1/3"></IconStroke2>
     </section>
 </template>
 

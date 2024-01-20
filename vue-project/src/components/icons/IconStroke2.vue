@@ -1,11 +1,12 @@
 <script setup>
 import { nextTick, ref, onMounted } from 'vue';
-import { setDynamicColor } from '@/methods/color.js';
+import { setDynamicColor, getRandomColor } from '@/methods/color.js';
 import { setDrawSvgLine } from '@/methods/svg.js';
 
 const icon = ref(null)
 function dynamicColor(){
-    const color = icon.value.querySelector("path").getAttribute("stroke")
+    const compStyle = window.getComputedStyle(icon.value.querySelector("path"))
+    const color = compStyle.getPropertyValue("stroke")
     setDynamicColor(color)
 }
 
@@ -13,6 +14,9 @@ onMounted(()=>{
     nextTick(()=>{
         const paths = icon.value.querySelectorAll(".draw-svg-line")
         setDrawSvgLine(paths)
+        Array.from(paths).forEach(path => {
+            path.style['stroke'] = getRandomColor()
+        })
     })
 })
 </script>

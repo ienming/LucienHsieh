@@ -1,14 +1,20 @@
-export function setDynamicColor(hex){
-    const colorObj = hex2Hsl(hex)
-    const reverseColorObj = getReverseColor(colorObj)
-    console.log(colorObj)
-    console.log(reverseColorObj)
-    const [colorHex, reverseColorHex] = [
-        hsl2Hex(colorObj.h, colorObj.s, colorObj.l),
-        hsl2Hex(reverseColorObj.h, reverseColorObj.s, reverseColorObj.l)
-    ]
-    document.documentElement.style.setProperty('--luc-dynamic-bg-color', colorHex);
-    document.documentElement.style.setProperty('--luc-dynamic-text-color', reverseColorHex);
+export function setDynamicColor(color){
+  let hex;
+  if (typeof color === 'string' && color[0] === '#'){
+    hex = color
+  }else{
+    hex = Rgb2Hex(color)
+  }
+  // console.log(color)
+  // console.log(hex)
+  const colorObj = hex2Hsl(hex)
+  const reverseColorObj = getReverseColor(colorObj)
+  const [colorHex, reverseColorHex] = [
+      hsl2Hex(colorObj.h, colorObj.s, colorObj.l),
+      hsl2Hex(reverseColorObj.h, reverseColorObj.s, reverseColorObj.l)
+  ]
+  document.documentElement.style.setProperty('--luc-dynamic-bg-color', colorHex);
+  document.documentElement.style.setProperty('--luc-dynamic-text-color', reverseColorHex);
 }
 
 export function setLightTheme(){
@@ -21,9 +27,22 @@ export function setDarkTheme(){
   document.documentElement.style.setProperty('--luc-dynamic-text-color', '#EBEBEB');
 }
 
-// export function getRandomColor(){
-
-// }
+export function getRandomColor(){
+  const colors = [
+    '#A62900',
+    '#3B6796',
+    '#C3D9E2',
+    '#DCACCC',
+    '#9E918A',
+    '#6D814B',
+    '#B88F7A',
+    '#848A90',
+    '#E5DFCC',
+    '#ABBD98'
+  ]
+  const idx = Math.floor(Math.random()*colors.length)
+  return colors[idx]
+}
 
 export function getReverseColor(hslObj){
     if (25 < hslObj.l && hslObj.l < 75) {
@@ -39,6 +58,26 @@ export function getReverseColor(hslObj){
         'l': 100 - hslObj.l,
       }
     }
+}
+
+export function Rgb2Hex(rgb) {
+  // Choose correct separator
+  let sep = rgb.indexOf(",") > -1 ? "," : " ";
+  // Turn "rgb(r,g,b)" into [r,g,b]
+  rgb = rgb.substr(4).split(")")[0].split(sep);
+
+  let r = (+rgb[0]).toString(16),
+      g = (+rgb[1]).toString(16),
+      b = (+rgb[2]).toString(16);
+
+  if (r.length == 1)
+    r = "0" + r;
+  if (g.length == 1)
+    g = "0" + g;
+  if (b.length == 1)
+    b = "0" + b;
+
+  return "#" + r + g + b;
 }
 
 export function hex2Hsl(H) {
