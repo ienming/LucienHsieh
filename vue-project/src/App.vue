@@ -1,15 +1,18 @@
 <script setup>
 import { ref, provide, onMounted, nextTick, watch } from 'vue';
+import { gsap } from 'gsap';
+import { storeCV } from './store';
+// Components
 import TopHeader from '@/components/TopHeader.vue'
 import Avatar from '@/components/Avatar.vue'
 import CoverLetter from '@/components/CoverLetter.vue'
 import Contact from '@/components/Contact.vue'
 import Project from '@/components/Project.vue'
 import Mouse from '@/components/Mouse.vue'
-import Enter from './components/Enter.vue';
+import Enter from '@/components/Enter.vue';
+import Sign from '@/components/icons/Sign.vue';
+// Data
 import projects from '@/assets/projects.json'
-import { gsap } from 'gsap';
-import { storeCV } from './store';
 
 const lang = ref("zh")
 provide("lang", lang)
@@ -83,7 +86,7 @@ onMounted(()=>{
 </script>
 
 <template>
-  <main class="relative text-dark border-4 lg:border-8 border-dark h-full" :class="enterAnimating ? '':'cursor-none'"
+  <main class="relative text-dark rounded-[32px] lg:rounded-[70px] overflow-hidden border-4 lg:border-8 border-dark h-full" :class="enterAnimating ? '':'cursor-none'"
   id="mainFrame">
     <Enter v-if="enterAnimating"
       class="absolute top-0 left-0" @finish="closeEnterAnim" @start="revealProjects"></Enter>
@@ -93,8 +96,11 @@ onMounted(()=>{
     ref="projectContainer"
     :style="{'height': pjContainerHeight}"
     class="relative overflow-y-scroll">
+      <div class="pt-20 inline-flex justify-end w-full pr-10 lg:hidden">
+        <Sign></Sign>
+      </div>
       <section v-show="!storeCV.show"
-      class="flex flex-col items-start gap-5 xl:pl-40 lg:pb-48">
+      class="flex flex-col items-start gap-5 xl:pl-48 lg:pb-48">
           <TransitionGroup name="list">
             <Project
               v-for="pj of projects"
@@ -109,11 +115,11 @@ onMounted(()=>{
                 'url': pj.url
             }" @hover="mouseHoverPj = true" @leave="mouseHoverPj = false" />
           </TransitionGroup>
-          <div class="text-sm text-lavendar flex flex-col gap-3 lg:gap-5 whitespace-nowrap
+          <div class="text-sm flex flex-col gap-3 lg:gap-5 whitespace-nowrap
           pl-6 pb-20 lg:pb-0">
             <span>The End</span>
             <button class="toucher flex items-center gap-1 txt-slot-hover" @click="back2Start">
-              <span class="material-symbols-outlined p-1 border border-lavendar rounded-full
+              <span class="material-symbols-outlined p-1 border rounded-full
             ">arrow_top</span>
               <div class="txt-slot-container">
                 <span v-for="n of 2" class="txt-slot">Back to the start</span>
@@ -125,30 +131,15 @@ onMounted(()=>{
     <Transition name="fade" mode="out-in">
       <CoverLetter v-show="storeCV.show" :show="storeCV.show" @close="storeCV.toggleCV()" />
     </Transition>
-    <Transition name="fade">
-      <Contact v-if="!enterAnimating" class="absolute -bottom-4 -right-4 z-20 hidden lg:block" />
-    </Transition>
-    <div id="bgTitle" class="absolute bottom-0 w-full h-1/5 lg:h-2/6 lg:opacity-30"></div>
+    <Sign class="hidden lg:block absolute bottom-8 left-10"></Sign>
   </main>
+  <Transition name="fade">
+    <Contact v-if="!enterAnimating" class="absolute bottom-4 right-4 z-20 hidden lg:block" />
+  </Transition>
   <Mouse v-if="!enterAnimating" :hover-pj="mouseHoverPj"></Mouse>
 </template>
 
 <style scoped>
-#bgTitle {
-  background-image: url("./assets/bg.png");
-  background-size: 90%;
-  background-repeat: no-repeat;
-  background-position: center;
-  transform: rotate(90deg) translateX(-50%);
-  z-index: -1;
-}
-
-@media screen and (min-width: 992px) {
-  #bgTitle {
-    transform: none;
-  }
-}
-
 #projectContainer::-webkit-scrollbar{
   display: none;
 }

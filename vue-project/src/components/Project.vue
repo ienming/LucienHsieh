@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted, ref, inject, computed } from "vue";
-import Symbol from "./Symbol.vue";
+import Badge from "./Badge.vue";
 
 const lang = inject("lang")
 
@@ -29,8 +29,6 @@ function viewProject(){
 }
 
 function useCSSCover(){
-    canvas.value.style['height'] = canvasWidth*0.6+'px';
-
     const coverEl = document.createElement("div");
     canvas.value.appendChild(coverEl);
 
@@ -46,15 +44,16 @@ onMounted(()=>{
 <template>
     <section class="w-full relative flex flex-col lg:grid lg:grid-cols-2 xl:grid-cols-3 gap-3 p-6 lg:p-10">
         <div ref="canvas"
+        class="aspect-square"
         @click="viewProject()"
         @mouseenter="emits('hover')"
         @mouseleave="emits('leave')"></div>
         <div class="flex flex-col items-start justify-center txt-slot-hover gap-2 lg:gap-3 lg:pl-10
         xl:col-span-2">
             <div class="flex gap-2">
-                <Symbol v-for="c of info.cate" :name="c" :key="info.title+'_'+c"></Symbol>
+                <!-- <Symbol v-for="c of info.cate" :name="c" :key="info.title+'_'+c"></Symbol> -->
             </div>
-            <h2 class="text-lg lg:text-2xl p-1 lg:p-4 txt-slot-container bg-light border border-dark"
+            <h2 class="fs-h1 p-1 lg:p-4 txt-slot-container bg-light border border-dark"
             :style="usingMobile ? {'--slot-offset': 'calc(-113% + 0.25rem*-1)'} : {'--slot-offset': 'calc(-113% + 1rem*-1)'}">
                 <div v-for="n of 2" class="txt-slot flex flex-wrap items-center">
                     <a :href="info.url.demo" target="_blank" class="font-serif font-bold">{{ info.name.zh }}</a>
@@ -79,15 +78,11 @@ onMounted(()=>{
                     Detail</a>
             </div>
             <p v-if="info.intro[lang]"
-            class="p-2 bg-light text-black border border-dark text-sm lg:text-base
-            max-w-[80vw]">
+            class="max-w-[80vw]">
                 {{ info.intro[lang] }}
             </p>
             <div class="hidden md:flex gap-2 items-start flex-wrap">
-                <div v-for="tag of info.tags" :key="tag"
-                class="py-1 px-2 lg:py-2 text-lavendar bg-snow-shadow text-sm rounded-full">
-                    {{ tag }}
-                </div>
+                <Badge v-for="tag of info.tags" :key="tag" :text="tag"></Badge>
             </div>
         </div>
     </section>

@@ -1,19 +1,11 @@
 <script setup>
 import { nextTick, onMounted } from 'vue';
-import Symbol from './Symbol.vue';
 import { gsap } from 'gsap';
 
 const emits = defineEmits(['finish', 'start'])
 
 onMounted(() => {
     nextTick(() => {
-        let tweenSymbol = gsap.from(".anim-symbol", {
-            opacity: 0,
-            transform: "rotate(270deg)",
-            stagger: .1,
-            duration: .5,
-            ease: "power2.out"
-        })
         let tweenText = gsap.from(".anim-text", {
             opacity: 0,
             y: '10px',
@@ -29,9 +21,8 @@ onMounted(() => {
             onComplete: () => emits('finish')
         })
         let tl = gsap.timeline()
-        tl.add(tweenSymbol, "+=0.5")
-            .add(tweenText, "-=0.5")
-            .add(tweenBg, "+=0.5")
+        tl.add(tweenText, "+=0.5")
+        .add(tweenBg, "+=0.5")
     })
 })
 </script>
@@ -40,10 +31,8 @@ onMounted(() => {
     <section class="z-20 h-full w-full flex justify-center items-center bg-dark anim-enter">
         <div class="text-light text-2xl font-display">
             <div class="flex flex-col gap-3 justify-center items-center">
-                <Symbol name="frontend" class="anim-symbol"></Symbol>
                 <h1 class="anim-text">LUCIEN PORTFOLIO</h1>
                 <h2 class="anim-text">2023</h2>
-                <Symbol name="illustration" class="anim-symbol"></Symbol>
             </div>
         </div>
     </section>

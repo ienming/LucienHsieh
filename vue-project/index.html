@@ -11,13 +11,15 @@
       :root{
         --luc-dark: #252525;
         --luc-light: #EBEBEB;
-        --luc-lavendar: #2a608b;
-        --luc-snow-shadow: #C3D9E2;
-        --luc-gold: #a62900;
+        --luc-dynamic-bg-color: #C3D9E2;
+        --luc-dynamic-text-color: #252525;
+      }
+      body {
+        background-image: url('/bg_desktop.png');
       }
     </style>
   </head>
-  <body class="bg-light p-2 lg:p-5 overflow-hidden"
+  <body class="bg-light p-1 lg:p-5"
   style="height: 100dvh;">
     <div id="app" class="h-full"></div>
     <script type="module" src="/src/main.js"></script>

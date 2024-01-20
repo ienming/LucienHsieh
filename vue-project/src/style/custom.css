@@ -1,4 +1,34 @@
-/* Custom */
+/* Typography */
+@layer components{
+  .fs-d1{
+    @apply font-display font-thin text-4xl lg:text-5xl;
+  }
+  .fs-h1{
+    @apply font-serif font-semibold text-4xl;
+  }
+  .fs-h2{
+    @apply font-serif font-bold text-xl lg:text-3xl;
+  }
+  .fs-h3{
+    @apply font-display font-light text-3xl;
+  }
+  .fs-h4{
+    @apply font-sans font-semibold text-2xl;
+  }
+  .fs-small{
+    @apply font-sans text-sm;
+  }
+  .dynamic-color{
+    background-color: var(--luc-dynamic-bg-color);
+    color: var(--luc-dynamic-text-color);
+    &:hover{
+      background-color: var(--luc-dynamic-text-color);
+      color: var(--luc-dynamic-bg-color);
+    }
+  }
+}
+
+/* Txt slot */
 .txt-slot-container{
     display: flex;
     flex-direction: column;

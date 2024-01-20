@@ -2,7 +2,6 @@
 import { ref }from 'vue';
 import { storeCV } from '../store';
 import Navs from './Navs.vue';
-import Symbol from './Symbol.vue';
 
 const emits = defineEmits(['switch-tab'])
 
@@ -17,26 +16,25 @@ function switchTab(tabName){
   <section class="border-b-2 border-dark w-full grid relative z-10"
   id="topHeader"
   :style="storeCV.show ? {'grid-template-columns': '100%'}:''">
-    <div class="font-display font-thin text-lg lg:text-4xl flex overflow-hidden border-b-2 border-dark lg:border-b-0 bg-lavendar lg:bg-light">
+    <div class="fs-d1 flex overflow-hidden border-b-2 border-dark lg:border-b-0 bg-dark lg:bg-light">
       <span class="marquee inline-block whitespace-nowrap self-center" v-for="n of 3">
         <span class="flex items-center gap-2 ps-3 leading-normal">
-          <span class="text-light lg:text-lavendar flex items-center gap-1">
+          <span class="text-light lg:text-dark flex items-center gap-1">
             <span>Portfolio Lucien Hsieh 2023</span>
-            <Symbol name="frontend"></Symbol>
+            <!-- <Symbol name="frontend"></Symbol> -->
             <span>WEB FRONTEND</span>
-            <Symbol name="frontend"></Symbol>
+            <!-- <Symbol name="frontend"></Symbol> -->
             <span>&</span>
-            <Symbol name="illustration"></Symbol>
+            <!-- <Symbol name="illustration"></Symbol> -->
             <span>ILLUSTRATION</span>
-            <Symbol name="illustration"></Symbol>
+            <!-- <Symbol name="illustration"></Symbol> -->
           </span>
         </span>
       </span>
     </div>
     <section>
-      <nav class="bg-dark text-light flex justify-center items-center lg:hidden"
+      <nav class="bg-dark text-light flex justify-center items-center lg:hidden h-full"
       v-show="!storeCV.show"
-      style="min-height: 48px;"
       @click="menuOpening = !menuOpening">
         <span v-if="!menuOpening" class="material-symbols-outlined"> menu </span>
         <span v-else class="material-symbols-outlined"> close </span>
@@ -59,7 +57,7 @@ function switchTab(tabName){
 }
 @media screen and (min-width: 992px) {
   #topHeader {
-    grid-template-columns: auto 35%;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 

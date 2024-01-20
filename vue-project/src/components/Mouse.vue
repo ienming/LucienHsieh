@@ -93,11 +93,8 @@ onMounted(()=>{
     mouseOuter = document.querySelector(".mouse-outer")
     mouseInner = document.querySelector(".mouse-inner")
     mouseOuterProperties = getProperties(mouseOuter);
-
-    const rs = getComputedStyle(document.querySelector(":root"))
-
+    
     const targets = document.querySelectorAll(".toucher");
-    const invertTargets = document.querySelectorAll(".invert-target")
 
     document.addEventListener("mousemove", function (e) {
         const mouseX = e.clientX;
@@ -111,17 +108,6 @@ onMounted(()=>{
           animateTarget(target, mouseX, mouseY);
         })
     });
-
-    Array.from(invertTargets).forEach(target => {
-      target.addEventListener("mouseenter", ()=>{
-        mouseOuter.style.setProperty('--mouse-color', rs.getPropertyValue('--luc-light'))
-        mouseOuter.style.setProperty('--text-color', rs.getPropertyValue('--luc-dark'))
-      })
-      target.addEventListener("mouseleave", ()=>{
-        mouseOuter.style.setProperty('--mouse-color', rs.getPropertyValue('--luc-dark'))
-        mouseOuter.style.setProperty('--text-color', rs.getPropertyValue('--luc-light'))
-      })
-    })
   })
 </script>
 
