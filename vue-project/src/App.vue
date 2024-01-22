@@ -73,8 +73,6 @@ onMounted(()=>{
 <template>
   <main class="relative bg-light text-dark rounded-[32px] lg:rounded-[70px] overflow-hidden border-4 lg:border-8 border-dark h-full" :class="enterAnimating ? '':'cursor-none'"
   id="mainFrame">
-    <Enter v-if="enterAnimating"
-      class="absolute top-0 left-0" @finish="closeEnterAnim" @start="revealProjects"></Enter>
     <Avatar v-show="!storeCV.show" @click="storeCV.toggleCV()" />
     <TopHeader @switch-tab="switchTab" />
     <div id="projectContainer"
@@ -95,7 +93,7 @@ onMounted(()=>{
               :info="{
                 'mask': pj.mask,
                 'name': pj.name,
-                'credits': pj.credits,
+                'credit': pj.credit,
                 'cate': pj.cate,
                 'intro': pj.intro,
                 'tags': pj.tags,
@@ -103,10 +101,9 @@ onMounted(()=>{
             }" @hover="mouseHoverPj = true" @leave="mouseHoverPj = false" />
           </TransitionGroup>
           <div class="text-sm flex flex-col w-full lg:w-fit gap-3 lg:gap-5 whitespace-nowrap pb-20 lg:pb-0">
-            <span class="text-center lg:text-left">The End</span>
             <button class="toucher flex flex-col lg:flex-row items-center gap-1 txt-slot-hover" @click="back2Start">
               <span class="material-symbols-outlined p-1 border rounded-full
-            ">arrow_top</span>
+            ">arrow_upward</span>
               <div class="txt-slot-container">
                 <span v-for="n of 2" class="txt-slot">Back to the start</span>
               </div>
@@ -119,6 +116,8 @@ onMounted(()=>{
     </Transition>
     <IconSign class="hidden lg:block absolute bottom-8 left-10"></IconSign>
   </main>
+  <Enter v-if="enterAnimating"
+      class="fixed top-0 left-0" @finish="closeEnterAnim" @start="revealProjects"></Enter>
   <Transition name="fade">
     <Contact v-if="!enterAnimating" class="absolute bottom-4 right-4 z-20 hidden lg:block" />
   </Transition>

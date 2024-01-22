@@ -1,13 +1,11 @@
 <script setup>
-import { ref, onMounted, nextTick } from 'vue';
+import { ref, onMounted } from 'vue';
 import { setDrawSvgLine } from '@/methods/svg.js';
 
 const icon = ref(null)
 onMounted(()=>{
-    nextTick(()=>{
-        const paths = icon.value.querySelectorAll(".draw-svg-line")
-        setDrawSvgLine(paths);
-    })
+    const paths = icon.value.querySelectorAll(".draw-svg-line")
+    setDrawSvgLine(paths);
 })
 </script>
 <template>

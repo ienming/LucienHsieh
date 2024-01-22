@@ -55,9 +55,9 @@ onMounted(()=>{
         @mouseleave="emits('leave')"></div>
         <div class="flex flex-col items-start justify-center txt-slot-hover gap-2 lg:gap-3 lg:pl-10
         xl:col-span-2">
-            <div class="flex gap-2">
-                <!-- <Symbol v-for="c of info.cate" :name="c" :key="info.title+'_'+c"></Symbol> -->
-            </div>
+            <!-- <div class="flex gap-2">
+                <Symbol v-for="c of info.cate" :name="c" :key="info.title+'_'+c"></Symbol>
+            </div> -->
             <h2 class="fs-h2 p-1 lg:p-4 txt-slot-container bg-light border border-dark"
             :style="usingMobile ? {'--slot-offset': 'calc(-113% + 0.25rem*-1)'} : {'--slot-offset': 'calc(-113% + 1rem*-1)'}">
                 <div v-for="n of 2" class="txt-slot flex flex-wrap items-center">
@@ -80,15 +80,21 @@ onMounted(()=>{
                     <span class="material-symbols-outlined text-sm">
                         open_in_new
                     </span>
-                    Detail</a>
+                    專案過程</a>
             </div>
-            <p v-if="info.intro[lang]"
-            class="max-w-[80vw]">
+            <!-- Tags -->
+            <div class="flex gap-2 items-start flex-wrap">
+                <Badge v-for="tag of info.tags" :key="tag" :text="tag" class="no-hover"></Badge>
+            </div>
+            <!-- Credits -->
+            <div v-if="info.credit" class="flex flex-col gap-2 opacity-50 mb-3 w-full lg:flex-row">
+                <p class="border-b border-black">客戶：{{ info.credit.client }}</p>
+                <p class="border-b border-black">負責：{{ info.credit.responsible }}</p>
+            </div>
+            <!-- Introduction -->
+            <p v-if="info.intro[lang]" class="max-w-[80vw]">
                 {{ info.intro[lang] }}
             </p>
-            <div class="hidden md:flex gap-2 items-start flex-wrap">
-                <Badge v-for="tag of info.tags" :key="tag" :text="tag"></Badge>
-            </div>
         </div>
     </section>
 </template>
