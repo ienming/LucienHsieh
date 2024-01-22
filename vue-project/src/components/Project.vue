@@ -6,7 +6,7 @@ const lang = inject("lang")
 
 const props = defineProps(['title', 'info'])
 const emits = defineEmits(['hover', 'leave'])
-const coverImg = new URL(`../assets/cover_${props.title}.png`, import.meta.url).href
+const coverImg = new URL(`../assets/ProjectCover_${props.title}.jpg`, import.meta.url).href
 const maskImg = new URL(`../assets/mask_${props.info.mask}.svg`, import.meta.url).href
 
 const usingMobile = inject("usingMobile")
@@ -38,7 +38,7 @@ function useCSSCover(){
     coverEl.style['mask-size'] = `contain`;
     coverEl.style['mask-repeat'] = `no-repeat`;
     coverEl.style['mask-position'] = `center`;
-    coverEl.classList.add('h-full', 'rounded-full', 'bg-cover', 'bg-center');
+    coverEl.classList.add('h-full', 'bg-cover', 'bg-center');
 }
 
 onMounted(()=>{

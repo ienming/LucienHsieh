@@ -1,10 +1,9 @@
 <script setup>
 import { inject } from 'vue';
-import { storeIcon } from '../store';
 const emits = defineEmits(['switch-tab'])
 const currentTab = inject("currentTab")
 
-const tabs = ["all", "frontend", "illustration"];
+const tabs = ["all", "commercial", "personal"];
 const link_behance = {
     text: "VIEW ALL WORKS",
     url: "https://www.behance.net/Lucienming",
@@ -12,9 +11,6 @@ const link_behance = {
 
 function switchTab(tabName){
   emits('switch-tab', tabName)
-  if (tabName !== 'all'){
-    storeIcon.switchIcon(tabName)
-  }
 }
 </script>
 

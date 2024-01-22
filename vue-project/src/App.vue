@@ -1,5 +1,5 @@
 <script setup>
-import { ref, provide, onMounted, nextTick, watch } from 'vue';
+import { ref, provide, onMounted, nextTick } from 'vue';
 import { gsap } from 'gsap';
 import { storeCV } from './store';
 import { setLightTheme } from './methods/color';
@@ -63,25 +63,8 @@ function closeEnterAnim(){
   enterAnimating.value = false
 }
 
-// Init
-// const pjContainerHeight = ref(0)
-// function setPjContainerHeight(){
-//   if (!storeCV.show){
-//     const padding = usingMobile.value ? 24 : 40
-//     const bdWidth = usingMobile.value ? 4 : 23
-//     const topHeight = document.querySelector("#topHeader").clientHeight
-//     const h = window.innerHeight - padding - topHeight - bdWidth
-//     pjContainerHeight.value = h+'px'
-//   }else pjContainerHeight.value = '0px'
-// }
-
-// watch(storeCV, async (newValue, oldValue) => {
-//   setPjContainerHeight()
-// })
-
 onMounted(()=>{
   nextTick(()=>{
-    // setPjContainerHeight()
     setLightTheme()
   })
 })
@@ -106,12 +89,13 @@ onMounted(()=>{
           <TransitionGroup name="list">
             <Project
               v-for="pj of projects"
-              v-show="pj.cate.includes(currentTab) || currentTab === 'all'"
+              v-show="pj.commercial_type === currentTab || currentTab === 'all'"
               :key="pj.title"
               :title="pj.title"
               :info="{
                 'mask': pj.mask,
                 'name': pj.name,
+                'credits': pj.credits,
                 'cate': pj.cate,
                 'intro': pj.intro,
                 'tags': pj.tags,
