@@ -21,7 +21,7 @@ function switchTab(tabName){
       <span class="marquee inline-block whitespace-nowrap self-center" v-for="n of 3">
         <span class="flex items-center gap-2 ps-3 leading-normal">
           <span class="flex items-center gap-1">
-            <span>Portfolio Lucien Hsieh 2023 WEB FRONT & ILLUSTRATION</span>
+            <span>Portfolio Lucien Hsieh 2024 WEB FRONTEND & ILLUSTRATION</span>
             <IconMarquee></IconMarquee>
           </span>
         </span>
@@ -57,7 +57,7 @@ function switchTab(tabName){
 }
 
 .marquee {
-  animation: marquee 20s linear infinite;
+  animation: marquee 40s linear infinite;
 }
 
 @keyframes marquee {

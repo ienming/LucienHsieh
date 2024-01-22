@@ -52,13 +52,12 @@ watch(() => props.show, (newValue, oldValue)=>{
             </h2>
             <div class="mb-3">
                 <p class="mb-1">
-                    喜歡用網頁前端技術呈現我在設計、插畫繪本與資料視覺化的興趣，也喜歡用傳統媒材或電繪畫圖。
+                    喜歡結合網頁前端與設計、插畫、資料視覺化方面的興趣。希望能將不同的內容，透過網頁這個媒材轉譯成有趣的敘事作品。
                     平時是一名負責 UIUX 和前端開發的上班族。
                 </p>
                 <p>
                     I use web frontend technologies to express my interests in design, illustration, story, and
-                    data visualization. I also create paintings using traditional media or digital softwares.
-                    I am a salaryman as UIUX design and frontend development in Taiwan now.
+                    data visualization. I also create paintings. On weekdays I am a salaryman as UIUX design and frontend development in Taiwan.
                 </p>
             </div>
             <div class="flex gap-3 items-center">
