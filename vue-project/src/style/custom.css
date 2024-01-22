@@ -16,7 +16,7 @@
     @apply font-display font-light text-3xl;
   }
   .fs-h4{
-    @apply font-sans font-semibold text-2xl;
+    @apply font-sans font-semibold text-base lg:text-2xl;
   }
   .fs-small{
     @apply font-sans text-sm;

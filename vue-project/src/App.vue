@@ -93,6 +93,7 @@ onMounted(()=>{
               :info="{
                 'mask': pj.mask,
                 'name': pj.name,
+                'subtitle': pj.subtitle,
                 'credit': pj.credit,
                 'cate': pj.cate,
                 'intro': pj.intro,
