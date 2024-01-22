@@ -1,7 +1,7 @@
 <svg width="326" height="363" viewBox="0 0 326 363" fill="none" xmlns="http://www.w3.org/2000/svg">
     <defs>
         <filter id="handDrawFilter">
-            <feTurbulence type="turbulence" baseFrequency="0.1 0.01" numOctaves="4" seed="1" result="turbulence">
+            <feTurbulence type="turbulence" baseFrequency="0.1 0.01" numOctaves="1" seed="1" result="turbulence">
                 <animate attributeName="seed"
                     values="1;15;1" keyTimes="0;.5;1" begin="0s" dur="5s"
                     repeatCount="indefinite"></animate>
