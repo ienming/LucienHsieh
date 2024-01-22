@@ -73,7 +73,7 @@ onMounted(()=>{
                     <span class="material-symbols-outlined text-sm">
                         open_in_new
                     </span>
-                    Demo</a>
+                    成品</a>
                 <a :href="info.url.detail"
                 v-if="Object.prototype.hasOwnProperty.call(info.url, 'detail')" target="_blank"
                 class="flex gap-1 items-center py-1 px-2 text-sm bg-dark rounded-full">
