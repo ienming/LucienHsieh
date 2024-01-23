@@ -32,7 +32,7 @@ onMounted(() => {
         <div class="text-light text-2xl font-display">
             <div class="flex flex-col gap-3 justify-center items-center">
                 <h1 class="anim-text">LUCIEN PORTFOLIO</h1>
-                <h2 class="anim-text">2023</h2>
+                <h2 class="anim-text">2024</h2>
             </div>
         </div>
     </section>
