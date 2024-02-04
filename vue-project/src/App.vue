@@ -1,8 +1,8 @@
 <script setup>
-import { ref, provide, onMounted, nextTick } from 'vue';
+import { ref, provide, onMounted, nextTick, onBeforeUnmount } from 'vue';
 import { gsap } from 'gsap';
 import { storeCV } from './store';
-import { setLightTheme } from './methods/color';
+import { setLightTheme, getRandomColor, setDynamicColor } from './methods/color';
 // Components
 import TopHeader from '@/components/TopHeader.vue'
 import Avatar from '@/components/Avatar.vue'
@@ -63,10 +63,19 @@ function closeEnterAnim(){
   enterAnimating.value = false
 }
 
+let timer;
 onMounted(()=>{
   nextTick(()=>{
     setLightTheme()
+
+    timer = window.setInterval(()=>{
+      setDynamicColor(getRandomColor())
+    }, 20000)
   })
+})
+
+onBeforeUnmount(()=>{
+  clearInterval(timer)
 })
 </script>
 

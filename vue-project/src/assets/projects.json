@@ -22,6 +22,28 @@
         }
     },
     {
+        "title": "snailOasis",
+        "commercial_type": "personal",
+        "cate": ["frontend", "illustration"],
+        "mask": "3",
+        "name": {
+            "zh": "蝸牛綠洲",
+            "en": "Snail Oasis"
+        },
+        "subtitle": {
+            "zh": "小遊戲中探索地方，新方式連結當地風情",
+            "en": ""
+        },
+        "tags": ["地方創生", "遊戲化設計", "設計研究", "PIXI"],
+        "intro": {
+            "zh": "以台南蝸牛巷為主題的遊戲化論文研究——透過「蝸牛綠洲」，脫離生活忙碌，與台南建立深厚情感，一步一步探索當地。"
+        },
+        "url": {
+            "demo": "https://ienming.github.io/snail-journey/",
+            "detail": "https://drive.google.com/file/d/1tlzoZy1oLFAPbiqLi-gNcY01L-TP3dHu/view?usp=drive_link"
+        }
+    },
+    {
         "title": "twb_official",
         "commercial_type": "commercial",
         "cate": ["frontend"],
@@ -32,9 +54,9 @@
         },
         "credit": {
             "client": "中研院臺灣人體生物資料庫",
-            "responsible": "UI設計與前端切版"
+            "responsible": "UIUX與前端切版"
         },
-        "tags": ["Landing page", "生物醫學", "UI設計", "前端切版"],
+        "tags": ["Landing page", "生物醫學", "UIUX", "前端切版"],
         "intro": {
             "zh": "臺灣人體生物資料庫收整檢體與健康資料以促進醫療發展。官方網站說明臺灣人體生物資料庫理念、消息與統計資料，提供民眾報名參與加入計畫（任職於國網中心時專案）"
         },
@@ -53,35 +75,14 @@
         },
         "credit": {
             "client": "中研院臺灣人體生物資料庫",
-            "responsible": "UI設計與前端切版"
+            "responsible": "UIUX與前端切版"
         },
-        "tags": ["Landing page", "生物醫學", "UI設計", "前端切版"],
+        "tags": ["Landing page", "生物醫學", "UIUX", "前端切版"],
         "intro": {
             "zh": "健康資料為學界研究提供，促進生物醫學與精準醫療發展。系統入口提供資料申請流程及統計圖表（任職於國網中心時專案）"
         },
         "url": {
             "demo": "https://www.biobank.org.tw/"
-        }
-    },
-    {
-        "title": "snailOasis",
-        "commercial_type": "personal",
-        "cate": ["frontend", "illustration"],
-        "mask": "3",
-        "name": {
-            "zh": "蝸牛綠洲",
-            "en": "Snail Oasis"
-        },
-        "subtitle": {
-            "zh": "小遊戲中探索地方，新方式連結當地風情",
-            "en": ""
-        },
-        "tags": ["地方創生", "遊戲化設計", "設計研究", "PIXI"],
-        "intro": {
-            "zh": "以台南蝸牛巷為主題的遊戲化論文研究——透過「蝸牛綠洲」，脫離生活忙碌，與台南建立深厚情感，一步一步探索當地。"
-        },
-        "url": {
-            "demo": "https://ienming.github.io/snail-journey/"
         }
     },
     {

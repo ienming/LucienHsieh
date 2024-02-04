@@ -24,6 +24,7 @@
   .dynamic-color{
     background-color: var(--luc-dynamic-bg-color);
     color: var(--luc-dynamic-text-color);
+    transition: background-color .3s, color .3s;
     &:not(.no-hover):hover{
       background-color: var(--luc-dynamic-text-color);
       color: var(--luc-dynamic-bg-color);
@@ -32,6 +33,7 @@
   .dynamic-color-reverse{
     background-color: var(--luc-dynamic-text-color);
     color: var(--luc-dynamic-bg-color);
+    transition: background-color .3s, color .3s;
     &:not(.no-hover):hover{
       background-color: var(--luc-dynamic-bg-color);
       color: var(--luc-dynamic-text-color);

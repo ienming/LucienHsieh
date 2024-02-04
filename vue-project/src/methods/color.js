@@ -28,15 +28,23 @@ export function setDarkTheme(){
 
 export function getRandomColor(){
   const colors = [
-    '#A62900',
-    '#255588',
+    '#7ebfe5',
+    '#3863A3',
+    '#637392',
+    '#A5ABBB',
     '#C3D9E2',
+    '#E4F2FC',
     '#DCACCC',
+    '#9D4525',
+    '#AB5330',
+    '#c99700',
+    '#BB967C',
+    '#898470',
     '#D3C0B6',
-    '#618426',
-    '#FCB089',
-    '#188A6F',
-    '#E5DFCC',
+    '#EFE4D1',
+    '#6F8B71',
+    '#347f6a',
+    '#9C9E57',
     '#C2D4AE'
   ]
   const idx = Math.floor(Math.random()*colors.length)
@@ -44,11 +52,19 @@ export function getRandomColor(){
 }
 
 export function getReverseColor(hslObj){
-    if (hslObj.l > 25 && hslObj.l < 75) {
-      return {
-        'h': 0,
-        's': 0,
-        'l': 92,
+    if (hslObj.l > 20 && hslObj.l < 80) {
+      if (hslObj.l < 50){
+        return {
+          'h': 0,
+          's': 0,
+          'l': 92,
+        }
+      }else{
+        return {
+          'h': 0,
+          's': 0,
+          'l': 8,
+        }
       }
     } else {
       return {

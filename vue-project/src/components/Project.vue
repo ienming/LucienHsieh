@@ -34,10 +34,11 @@ function useCSSCover(){
     canvas.value.appendChild(coverEl);
 
     coverEl.style['background-image'] = `url(${coverImg})`;
-    coverEl.style['mask-image'] = `url(${maskImg})`;
-    coverEl.style['mask-size'] = `contain`;
-    coverEl.style['mask-repeat'] = `no-repeat`;
-    coverEl.style['mask-position'] = `center`;
+    // coverEl.style['mask-image'] = `url(${maskImg})`;
+    // coverEl.style['mask-size'] = `contain`;
+    // coverEl.style['mask-repeat'] = `no-repeat`;
+    // coverEl.style['mask-position'] = `center`;
+    coverEl.style['border-radius'] = '40px';
     coverEl.classList.add('h-full', 'bg-cover', 'bg-center');
 }
 
@@ -75,15 +76,15 @@ onMounted(()=>{
                 <a :href="info.url.demo"
                 :class="usingMobile ? '':'hidden'"
                 v-if="Object.prototype.hasOwnProperty.call(info.url, 'demo')" target="_blank"
-                class="flex gap-1 items-center py-1 px-2 text-sm bg-dark rounded-full">
-                    <span class="material-symbols-outlined text-sm">
+                class="flex gap-1 items-center p-2 tracking-wider dynamic-color-reverse rounded-full">
+                    <span class="material-symbols-outlined">
                         open_in_new
                     </span>
                     成品</a>
                 <a :href="info.url.detail"
                 v-if="Object.prototype.hasOwnProperty.call(info.url, 'detail')" target="_blank"
-                class="flex gap-1 items-center py-1 px-2 text-sm bg-dark rounded-full">
-                    <span class="material-symbols-outlined text-sm">
+                class="flex gap-1 items-center p-2 tracking-wider dynamic-color-reverse rounded-full">
+                    <span class="material-symbols-outlined">
                         open_in_new
                     </span>
                     專案過程</a>
